@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3em;
+  position: sticky;
+  background-color: #ffffff;
+  &__navigation {
+    display: flex;
+    &:hover {
+      background-color: #fefefe;
+    }
+    img {
+      width: 1.6em;
+      height: 1.6em;
+      margin: 0.8em 1.6em;
+    }
+  }
+}
+.selected {
+  border-bottom: 3px solid #f18a8a;
+}
+
