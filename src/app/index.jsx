@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Login from '../auth/login'
 import Register from '../auth/register'
 import Header from '../components/header'
@@ -15,10 +15,10 @@ const App = () => {
   const auth = useSelector(state => state.auth)
 
   useEffect(() => {
-    if (!auth.authentecated) {
+    if (!auth.authenticated) {
       dispatch(isLoggedInUser())
     }
-  },[])
+  }, [])
 
   return (
     <BrowserRouter>
@@ -26,11 +26,9 @@ const App = () => {
         <Header />
         <Switch>
           <Route path="/" component={Home} exact />
-          <Route path="/userPage" component={UserPage} />
-          <Route path="/login" component={Login} />
+          <Route path="/user-page" component={UserPage} />
           <Route path="/register" component={Register} />
-
-          <Redirect to="/" />
+          <Route path="/login" component={Login} />
         </Switch>
       </div>
     </BrowserRouter>

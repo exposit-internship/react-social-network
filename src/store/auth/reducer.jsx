@@ -30,7 +30,7 @@ export default (state = initialState, action) => {
       console.log('ACTION SUCCESS')
       break
     case `${authConst.USER_LOGIN}_FAILURE`:
-      console.log(state)
+     
       console.log('THIS IS AN ERROR')
       state = {
         ...state,
@@ -52,11 +52,7 @@ export default (state = initialState, action) => {
       }
       console.log('LOGOUT SUCCESS')
       break
-    case `${authConst.USER_LOGOUT}_REQUEST`:
-      state = {
-        ...state
-      }
-      break
+    
   }
   return state
 }

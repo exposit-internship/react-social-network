@@ -1,34 +1,75 @@
 import { useState } from 'react'
 import './index.scss'
 import { signUp } from '../../store/auth/action'
-import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { useMemo } from 'react'
+import CustomInput from '../custom-unput'
 
 const Register = () => {
-  const [firstName, setFirstName] = useState('')
-  const [secondName, setSecondName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [userCredentials, setUserCredentials] = useState({
+    firstName: '',
+    secondName: '',
+    email: '',
+    password: ''
+  })
 
   const dispatch = useDispatch()
-  const auth = useSelector(state => state.auth)
+  const history = useHistory()
+
+  const userCredencialData = useMemo(() => {
+    return [
+      {
+        type: 'text',
+        name: 'firstName',
+        value: userCredentials.firstName,
+        text: 'First Name'
+      },
+      {
+        type: 'text',
+        name: 'secondName',
+        value: userCredentials.secondName,
+        text: 'Second Name'
+      },
+      {
+        type: 'email',
+        name: 'email',
+        value: userCredentials.email,
+        text: 'Email'
+      },
+      {
+        type: 'password',
+        name: 'password',
+        value: userCredentials.password,
+        text: 'Password'
+      }
+    ]
+  }, [
+    userCredentials.firstName,
+    userCredentials.secondName,
+    userCredentials.email,
+    userCredentials.password
+  ])
+
+  const handleChange = event => {
+    const { value, name } = event.target
+    setUserCredentials({ ...userCredentials, [name]: value })
+  }
 
   const registerUser = event => {
     event.preventDefault()
 
-    const user = {
-      firstName,
-      secondName,
-      email,
-      password
-    }
+    const { firstName, secondName, email, password } = userCredentials
+    //password = window.btoa(password) пароль должен быть захешен, но пока ругается на него консоль, исправить
 
-    dispatch(signUp(user))
-
-    setFirstName('')
-    setSecondName('')
-    setEmail('')
-    setPassword('')
+    dispatch(signUp(userCredentials))
+    history.push('/')
+    setUserCredentials({
+      firstName: '',
+      secondName: '',
+      email: '',
+      password: ''
+    })
   }
 
   return (
@@ -36,44 +77,19 @@ const Register = () => {
       <div className="register__box">
         <h1>Register</h1>
         <form className="register__form">
-          <div className="register__user_data">
-            <label>
-              <span>First Name</span>
-              <input
-                type="text"
-                value={firstName}
-                onChange={e => setFirstName(e.target.value)}
+          {userCredencialData.map((item, idx) => {
+            return (
+              <CustomInput
+                key={idx}
+                type={item.type}
+                text={item.text}
+                name={item.name}
+                value={item.value}
+                flag={item.flag}
+                onChange={handleChange}
               />
-            </label>
-
-            <label>
-              <span>Second Name</span>
-              <input
-                className="secondName"
-                type="text"
-                value={secondName}
-                onChange={e => setSecondName(e.target.value)}
-              />
-            </label>
-          </div>
-
-          <label>
-            <span>Email</span>
-            <input
-              type="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-            />
-          </label>
-
-          <label>
-            <span>Password</span>
-            <input
-              type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-            />
-          </label>
+            )
+          })}
 
           <button
             className="register__btn"
@@ -89,3 +105,48 @@ const Register = () => {
 }
 
 export default Register
+
+{
+  /* <div className="register__user_data">
+            <label>
+              <span>First Name</span>
+              <input
+                type="text"
+                name="firstName"
+                value={userCredentials.firstName}
+                onChange={handleChange}
+              />
+            </label>
+
+            <label>
+              <span>Second Name</span>
+              <input
+                className="secondName"
+                type="text"
+                name="secondName"
+                value={userCredentials.secondName}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+
+          <label>
+            <span>Email</span>
+            <input
+              type="email"
+              name="email"
+              value={userCredentials.email}
+              onChange={handleChange}
+            />
+          </label>
+
+          <label>
+            <span>Password</span>
+            <input
+              type="password"
+              name="password"
+              value={userCredentials.password}
+              onChange={handleChange}
+            />
+          </label> */
+}

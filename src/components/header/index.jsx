@@ -1,40 +1,50 @@
 import './index.scss'
-import { NavLink, useHistory } from 'react-router-dom'
+import { Link, NavLink, useHistory } from 'react-router-dom'
 import homeIcon from '../../images/home.svg'
 import userIcon from '../../images/user.svg'
 import Auth from '../../auth'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../../store/auth/action'
 
 const Header = () => {
   const history = useHistory()
   const auth = useSelector(state => state.auth)
+  const dispatch = useDispatch()
 
-  const logout = () => {
-    localStorage.clear()
-    history.push('/login')
+  const logoutUser = () => {
+    dispatch(logout())
+    history.push('/register')
   }
 
   return (
     <div className="header">
       <div className="header__logo">
-        <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" />
+        <img 
+        src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" 
+        alt='logo'
+        />
       </div>
+
       {auth.authenticated ? (
         <div className="header__navigation">
-          <NavLink to="/" activeClassName="selected">
-            <img src={homeIcon} alt="home-page" />
+          <NavLink to="/">
+            <img src={homeIcon} alt="home-icon" />
           </NavLink>
-          <NavLink to="/userPage" activeClassName="selected">
-            <img src={userIcon} alt="user-icon" />
+          <NavLink to="/user-page">
+            <img src={userIcon} alt="user-page-icon" />
           </NavLink>
         </div>
       ) : null}
 
-      {!auth.authenticated ? (
-        <Auth />
-      ) : (
-        <button onClick={logout}>Logout</button>
-      )}
+      {!auth.authenticated ? <Auth /> : null}
+
+      {auth.authenticated ? (
+        <div className="header__logout">
+          <Link to="#" onClick={logoutUser}>
+            Logout
+          </Link>
+        </div>
+      ) : null}
     </div>
   )
 }

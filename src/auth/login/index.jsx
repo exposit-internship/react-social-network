@@ -1,50 +1,79 @@
+import { useMemo } from 'react'
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { signIn } from '../../store/auth/action'
+import CustomInput from '../custom-unput'
 import './index.scss'
 
 const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [userLoginData, setUserLoginData] = useState({
+    email: '',
+    password: ''
+  })
+
+  const loginData = useMemo(() => {
+    return [
+      {
+        type: 'email',
+        name: 'email',
+        value: userLoginData.email,
+        text: 'Email'
+      },
+      {
+        type: 'password',
+        name: 'password',
+        value: userLoginData.password,
+        text: 'Password'
+      }
+    ]
+  }, [userLoginData.email, userLoginData.password])
+
   const dispatch = useDispatch()
-  const auth = useSelector(state => state.auth)
+  const history = useHistory()
+
+  const handleChange = event => {
+    event.preventDefault()
+
+    const { value, name } = event.target
+    setUserLoginData({ ...userLoginData, [name]: value })
+  }
+
+  const { email, password } = userLoginData
 
   const loginUser = event => {
     event.preventDefault()
 
+    // const { email, password } = userLoginData
+
     dispatch(signIn({ email, password }))
-    console.log({ email, password })
-    setEmail('')
-    setPassword('')
+    history.push('/')
+
+    setUserLoginData({
+      email: '',
+      password: ''
+    })
   }
 
-  if (auth.authentecated) {
-    return <Redirect to="/" />
-  }
+  
 
   return (
     <div className="login">
       <div className="login__box">
         <h1>Login</h1>
         <form className="login__form">
-          <label>
-            <span>Email</span>
-            <input
-              type="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-            />
-          </label>
-
-          <label>
-            <span>Password</span>
-            <input
-              type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-            />
-          </label>
+          {loginData.map((item, idx) => {
+            return (
+              <CustomInput
+                key={idx}
+                name={item.name}
+                type={item.type}
+                value={item.value}
+                text={item.text}
+                onChange={handleChange}
+              />
+            )
+          })}
 
           <button className="login__btn" type="submit" onClick={loginUser}>
             Sign In

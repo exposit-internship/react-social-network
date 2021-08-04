@@ -1,9 +1,6 @@
 import './index.scss'
-import db from '../../db.json'
 
 const UserPage = () => {
-  const { users } = db
-
   return (
     <div className="userPage">
       <section className="userPage__cover_photo">

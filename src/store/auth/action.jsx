@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
 import { authConst } from './types'
 
 export const signUp = user => {
@@ -8,26 +7,20 @@ export const signUp = user => {
       type: `${authConst.USER_LOGIN}_REQUEST`
     })
 
-    const db = `http://localhost:3005/user`
+    const db = `${process.env.REACT_APP_LOCALHOST_5000}/user`
     axios
-      .post(db, {
-        firstName: user.firstName,
-        secondName: user.secondName,
-        email: user.email,
-        password: user.password,
-        id: user.id
-      })
-      .then(({ data }) => {
-        const loggedInUser = {
-          firstName: user.firstName,
-          secondName: user.secondName,
-          email: user.email,
-          password: user.password,
-          id: data.id
-        }
+      // .get(db)
+      // .then(({ data }) => {
+      //   data.filter(({ email, password } = user) => {
+      //     console.log({email, password})
+      //   })
+      // })
+      .post(db, user)
+      .then(({ data: loggedInUser }) => {
         localStorage.setItem('user', JSON.stringify(loggedInUser))
-        console.log(loggedInUser)
-        console.log(data)
+
+        console.log('data', { loggedInUser })
+        console.log('user', user.email)
 
         dispatch({
           type: `${authConst.USER_LOGIN}_SUCCESS`
@@ -47,7 +40,7 @@ export const signIn = user => {
     dispatch({
       type: `${authConst.USER_LOGIN}_REQUEST`
     })
-    const db = 'http://localhost:3005/user'
+    const db = `${process.env.REACT_APP_LOCALHOST_5000}/user`
     axios
       .get(db)
       .then(() => {
@@ -72,11 +65,11 @@ export const signIn = user => {
 
 export const isLoggedInUser = () => {
   return async dispatch => {
-    const isLoggedUser = localStorage.getItem('user')
+    const user = localStorage.getItem('user')
       ? JSON.parse(localStorage.getItem('user'))
       : null
 
-    if (isLoggedUser) {
+    if (user) {
       dispatch({
         type: `${authConst.USER_LOGIN}_SUCCESS`
       })
@@ -88,10 +81,19 @@ export const isLoggedInUser = () => {
   }
 }
 
-// export const logout = id => {
-//   dispatch => {
-//     dispatch({
-//       type: `${authConst.USER_LOGOUT}_REQUEST`
-//     })
-//   }
-// }
+export const logout = () => {
+  return async dispatch => {
+    dispatch({
+      type: `${authConst.USER_LOGOUT}_REQUEST`
+    })
+
+    localStorage.clear()
+
+    dispatch({
+      type: `${authConst.USER_LOGOUT}_SUCCESS`
+    })
+    dispatch({
+      type: `${authConst.USER_LOGOUT}_FAILURE`
+    })
+  }
+}
