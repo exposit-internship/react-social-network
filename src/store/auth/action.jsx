@@ -7,7 +7,7 @@ export const signUp = user => {
       type: `${authConst.USER_LOGIN}_REQUEST`
     })
 
-    const db = `${process.env.REACT_APP_LOCALHOST_5000}/user`
+    const db = `${process.env.REACT_APP_LOCALHOST_5000}/users`
     axios
       // .get(db)
       // .then(({ data }) => {
@@ -18,9 +18,6 @@ export const signUp = user => {
       .post(db, user)
       .then(({ data: loggedInUser }) => {
         localStorage.setItem('user', JSON.stringify(loggedInUser))
-
-        console.log('data', { loggedInUser })
-        console.log('user', user.email)
 
         dispatch({
           type: `${authConst.USER_LOGIN}_SUCCESS`
@@ -40,7 +37,7 @@ export const signIn = user => {
     dispatch({
       type: `${authConst.USER_LOGIN}_REQUEST`
     })
-    const db = `${process.env.REACT_APP_LOCALHOST_5000}/user`
+    const db = `${process.env.REACT_APP_LOCALHOST_5000}/users`
     axios
       .get(db)
       .then(() => {

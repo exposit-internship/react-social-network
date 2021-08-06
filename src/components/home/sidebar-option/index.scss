@@ -1,0 +1,20 @@
+.sidebar__option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 8px 20px;
+}
+
+.sidebar__option h3 {
+  margin-top: -20px;
+}
+.sidebar__option:hover {
+  background-color: #e6ecf0;
+  border-radius: 30px;
+  transition: color 0.1ms ease-out;
+  & a {
+    color: #50b7f5;
+    transition: color 0.1ms ease-out;
+  }
+}

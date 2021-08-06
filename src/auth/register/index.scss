@@ -52,6 +52,7 @@
   }
   &__form {
     margin-top: 2em;
+    width: 16em;
     label {
       display: flex;
       flex-direction: column;
@@ -59,6 +60,13 @@
       font-size: 1.6em;
       margin-bottom: 0.8em;
       transition: all 0.25s;
+      & span {
+        color: brown;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+      }
 
       & input {
         border: none;
@@ -72,7 +80,7 @@
       .secondName {
         border-left: 1px solid black;
       }
-      span {
+      p {
         display: block;
         font-size: 0.5em;
         font-weight: 500;

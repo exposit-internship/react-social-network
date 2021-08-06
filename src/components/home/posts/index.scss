@@ -1,0 +1,86 @@
+.posts {
+  flex: 0.5;
+  border-right: 1px solid #e6ecf0;
+  background-color: #ffffff;
+  overflow-y: scroll;
+  &__header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e6ecf0;
+    padding: 15px 20px;
+  }
+  &__box {
+    padding: 20px 25px;
+    border-bottom: 1px solid #e6ecf0;
+    margin-bottom: 30px;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+  &__input {
+    display: flex;
+    & input {
+      width: 100%;
+      margin-left: 20px;
+      font-size: 20px;
+      // border: none;
+      outline: none;
+    }
+  }
+  &__box-btn {
+    width: 10em;
+    height: 50px;
+    align-self: center;
+    border-radius: 30px;
+    color: #ffffff;
+    background-color: #50b7f5;
+    border: none;
+    text-transform: uppercase;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+}
+
+.post {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid lightgrey;
+  background-color: #ffffff;
+  margin-bottom: 25px;
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+  }
+  &__username {
+    margin-left: 10px;
+  }
+  &__image {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    object-fit: contain;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+  }
+  &__text {
+    font-weight: normal;
+    margin-left: 20px;
+    padding: 10px 0px;
+  }
+}
+
+.posts::-webkit-scrollbar {
+  width: 0; /*or display:none*/
+}
+
+/*скрывает полосу прокрутки для IE, Edge, Firefox*/
+.posts {
+  -ms-overflow-style: none; /*IE, Edge*/
+  scrollbar-width: none; /*Firefox*/
+}

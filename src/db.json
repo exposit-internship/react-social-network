@@ -1,18 +1,11 @@
 {
-  "user": [
+  "users": [
     {
       "firstName": "ilia",
       "secondName": "white",
-      "email": "1@mail.com",
-      "password": "11111",
+      "email": "w@mail.com",
+      "password": "111111",
       "id": 1
-    },
-    {
-      "firstName": "second",
-      "secondName": "user",
-      "email": "2@mail.com",
-      "password": "22222",
-      "id": 2
     }
   ]
 }

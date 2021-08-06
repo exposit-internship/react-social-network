@@ -1,0 +1,9 @@
+.home {
+  display: flex;
+  height: calc(100vh - 60px);
+
+  .widgets {
+    flex: 0.3;
+    border-right: 1px solid grey;
+  }
+}

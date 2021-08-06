@@ -1,10 +1,12 @@
 import './index.scss'
+import Posts from './posts'
+import Sidebar from './sidebar'
 
 const Home = () => (
-  <div className="homePage">
-    <div>THIS IS HOME WITH SIDEBAR</div> 
-    <div>posts from all users with attach files</div>
-    <div>do u need widgets?</div>
+  <div className="home">
+    <Sidebar />
+    <Posts />
+    <div className="widgets">Widgets</div>
   </div>
 )
 

@@ -17,7 +17,6 @@ export default (state = initialState, action) => {
         ...state,
         authenticating: true
       }
-      console.log(state)
       console.log('ACTION IN REQUEST')
       break
     case `${authConst.USER_LOGIN}_SUCCESS`:
@@ -26,18 +25,16 @@ export default (state = initialState, action) => {
         authenticating: false,
         authenticated: true
       }
-      console.log(state)
       console.log('ACTION SUCCESS')
       break
     case `${authConst.USER_LOGIN}_FAILURE`:
-     
-      console.log('THIS IS AN ERROR')
       state = {
         ...state,
         authenticating: false,
         authenticated: false,
         error: true
       }
+      console.log('THIS IS AN ERROR')
       break
     case `${authConst.USER_LOGOUT}_REQUEST`:
       state = {
@@ -52,7 +49,6 @@ export default (state = initialState, action) => {
       }
       console.log('LOGOUT SUCCESS')
       break
-    
   }
   return state
 }
