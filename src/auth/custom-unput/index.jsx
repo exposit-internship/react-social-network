@@ -7,7 +7,6 @@ const CustomInput = ({ type, name, value, onChange, onBlur, text, error }) => {
       <p>
         {text} <span>{error ? <span>{error}</span> : null}</span>
       </p>
-
       <input
         type={type}
         name={name}

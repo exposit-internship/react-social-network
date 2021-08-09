@@ -1,0 +1,13 @@
+{
+  "changeLanguage": "Поменять язык",
+  "updateContext": "Обновить контекст",
+  "updateRedux": "Обновить редакс",
+  "apiText": "Любой текст",
+
+  "Home":"Главная",
+
+  "Messenger": "Мессенджер",
+  "Watch": "Смотреть",
+  "Gallery": "Галлерея",
+  "Logout": "Выход"
+}

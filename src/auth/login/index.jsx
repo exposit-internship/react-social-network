@@ -1,9 +1,10 @@
-import { useMemo } from 'react'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+
 import { signIn } from '../../store/auth/action'
 import CustomInput from '../custom-unput'
+
 import './index.scss'
 
 const Login = () => {
@@ -11,6 +12,15 @@ const Login = () => {
     email: '',
     password: ''
   })
+
+  const [errors, setErrors] = useState({
+    email: '',
+    password: ''
+  })
+
+  const dispatch = useDispatch()
+  const history = useHistory()
+  const { email, password } = userLoginData
 
   const loginData = useMemo(() => {
     return [
@@ -29,9 +39,6 @@ const Login = () => {
     ]
   }, [userLoginData.email, userLoginData.password])
 
-  const dispatch = useDispatch()
-  const history = useHistory()
-
   const handleChange = event => {
     event.preventDefault()
 
@@ -39,12 +46,8 @@ const Login = () => {
     setUserLoginData({ ...userLoginData, [name]: value })
   }
 
-  const { email, password } = userLoginData
-
   const loginUser = event => {
     event.preventDefault()
-
-    // const { email, password } = userLoginData
 
     dispatch(signIn({ email, password }))
     history.push('/')
@@ -54,8 +57,6 @@ const Login = () => {
       password: ''
     })
   }
-
-  
 
   return (
     <div className="login">

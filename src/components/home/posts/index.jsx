@@ -1,37 +1,83 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+
+import Post from '../post'
+import { addPost, deletePost, getPosts } from '../../../store/posts/action'
+
 import './index.scss'
+import { useCallback } from 'react'
 
 const Posts = () => {
-  const [post, setPost] = useState('')
+  // TODO: как сделать динамический displayname из localstorage и сохранять посты от пользователей под их именами
+  const [post, setPost] = useState({
+    displayName: '',
+    avatarURL:
+      'https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png',
+    imageURL: '',
+    caption: ''
+  })
+  let { displayName, avatarURL, imageURL, caption } = post
+
+  const user = JSON.parse(localStorage.getItem('user'))
+
+  // let userName = `${firstName} ${secondName}`
+
+  const dispatch = useDispatch()
+
+  const { posts } = useSelector(state => state.posts)
+
+  const { t } = useTranslation('translation')
 
   const publishPost = event => {
     event.preventDefault()
 
-    console.log(post)
-    setPost('')
+    if (!caption || !imageURL) {
+      console.log('Please add data')
+    } else {
+      dispatch(addPost(post))
+    }
   }
+
+  const handleChange = e => {
+    const { name, value } = e.target
+    setPost({ ...post, [name]: value })
+  }
+
+  const handleDelete = useCallback(id => {
+    dispatch(deletePost(id))
+  }, [])
+
+  useEffect(() => {
+    dispatch(getPosts())
+  }, [handleDelete])
 
   return (
     <div className="posts">
-      <div className="posts__header">
-        <h3>Home</h3>
+      <div className="posts__header ">
+        <h3>{t('Home')}</h3>
       </div>
 
       <div className="posts__box">
         <form className="posts__form">
           <div className="posts__input">
-            <img
-              width="40px"
-              height="40px"
-              src="https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png"
-              alt="avatar"
-            />
+            <img width="40px" height="40px" src={avatarURL} alt="avatar" />
             <input
               type="text"
-              value={post}
-              onChange={e => setPost(e.target.value)}
+              name="caption"
+              value={caption}
+              onChange={handleChange}
+              placeholder="What's happening?"
             />
           </div>
+          <input
+            type="text"
+            name="imageURL"
+            value={imageURL}
+            onChange={handleChange}
+            placeholder="Enter your image..."
+            className="posts__image_upload"
+          />
 
           <button
             type="submit"
@@ -42,28 +88,20 @@ const Posts = () => {
           </button>
         </form>
       </div>
-
-      <div className="post">
-        <div className="post__header">
-          <img
-            className="post__avatart"
-            width="40px"
-            height="40px"
-            src="https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png"
-            alt=""
-          />
-          <h3 className="post__username">User Name</h3>
-        </div>
-        <img
-          src="https://firebasestorage.googleapis.com/v0/b/instagram-655ce.appspot.com/o/images%2FDTqWY69jWeg.jpg?alt=media&token=b6eb483f-3645-40ac-9a0a-6caf2c192fc9"
-          alt=""
-          className="post__img"
-        />
-        <h4 className="post__text">
-          {' '}
-          <strong>username </strong>Hardcode text
-        </h4>
-      </div>
+      {posts &&
+        posts.length > 0 &&
+        posts.map(item => {
+          return (
+            <Post
+              key={item.id}
+              displayName={post.displayName}
+              avatarURL={item.avatarURL}
+              image={item.imageURL}
+              caption={item.caption}
+              onClick={() => handleDelete(item.id)}
+            />
+          )
+        })}
     </div>
   )
 }

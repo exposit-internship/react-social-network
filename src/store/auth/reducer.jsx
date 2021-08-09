@@ -1,53 +1,25 @@
 import { authConst } from './types'
 
 const initialState = {
-  firstName: '',
-  secondName: '',
-  email: '',
-  password: '',
-  authenticating: false,
-  authenticated: false,
-  error: null
+  users: [],
+  user: {},
+  authenticated: false
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case `${authConst.USER_LOGIN}_REQUEST`:
+    case `${authConst.USER_LOGIN}`:
       state = {
         ...state,
-        authenticating: true
-      }
-      console.log('ACTION IN REQUEST')
-      break
-    case `${authConst.USER_LOGIN}_SUCCESS`:
-      state = {
-        ...state,
-        authenticating: false,
         authenticated: true
       }
-      console.log('ACTION SUCCESS')
+      console.log({...state})
       break
-    case `${authConst.USER_LOGIN}_FAILURE`:
-      state = {
-        ...state,
-        authenticating: false,
-        authenticated: false,
-        error: true
-      }
-      console.log('THIS IS AN ERROR')
-      break
-    case `${authConst.USER_LOGOUT}_REQUEST`:
-      state = {
-        ...state
-      }
-      console.log('LOGOUT REQUEST, IN PROCESS...')
-      break
-    case `${authConst.USER_LOGOUT}_SUCCESS`:
+    case `${authConst.USER_LOGOUT}`:
       state = {
         ...state,
         authenticated: false
       }
-      console.log('LOGOUT SUCCESS')
       break
   }
   return state

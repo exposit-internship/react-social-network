@@ -1,0 +1,13 @@
+{
+  "changeLanguage": "Change language",
+  "updateContext": "Update context",
+  "updateRedux": "Update redux",
+  "apiText": "random text",
+
+  "Home":"Home",
+
+  "Messenger": "Messenger",
+  "Watch":"Watch", 
+  "Gallery":"Gallery", 
+  "Logout" : "Logout"
+}

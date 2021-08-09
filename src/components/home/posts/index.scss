@@ -26,9 +26,14 @@
       width: 100%;
       margin-left: 20px;
       font-size: 20px;
-      // border: none;
+      border: none;
       outline: none;
     }
+  }
+  &__image_upload {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
   }
   &__box-btn {
     width: 10em;
@@ -41,37 +46,6 @@
     text-transform: uppercase;
     margin-top: 20px;
     cursor: pointer;
-  }
-}
-
-.post {
-  max-width: 500px;
-  width: 100%;
-  margin: 0 auto;
-  border: 1px solid lightgrey;
-  background-color: #ffffff;
-  margin-bottom: 25px;
-  &__header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 20px;
-  }
-  &__username {
-    margin-left: 10px;
-  }
-  &__image {
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-    object-fit: contain;
-    border-top: 1px solid lightgrey;
-    border-bottom: 1px solid lightgrey;
-  }
-  &__text {
-    font-weight: normal;
-    margin-left: 20px;
-    padding: 10px 0px;
   }
 }
 

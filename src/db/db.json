@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "firstName": "ilia",
+      "secondName": "white",
+      "email": "w@mail.com",
+      "password": "111111",
+      "id": 1
+    },
+    {
+      "firstName": "ilia",
+      "secondName": "white",
+      "email": "1@mail.com",
+      "password": "111111",
+      "id": 2
+    },
+    {
+      "firstName": "3",
+      "secondName": "3",
+      "email": "3",
+      "password": "3",
+      "id": 3
+    }
+  ],
+  "posts": [
+    {
+      "displayName": "",
+      "avatarURL": "https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png",
+      "imageURL": "https://cdn.custom-cursor.com/collections/125/coll_adventure_time.png",
+      "caption": "sdsd",
+      "id": 3
+    },
+    {
+      "displayName": "",
+      "avatarURL": "https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png",
+      "imageURL": "https://hi-news.ru/wp-content/uploads/2015/11/Adventure-Time-Investigations-02-750x580.jpg",
+      "caption": "bom",
+      "id": 4
+    }
+  ]
+}

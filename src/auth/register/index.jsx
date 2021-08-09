@@ -1,10 +1,11 @@
-import { useState } from 'react'
-import './index.scss'
-import { signUp } from '../../store/auth/action'
+import { useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { useMemo } from 'react'
+
+import { signUp } from '../../store/auth/action'
 import CustomInput from '../custom-unput'
+
+import './index.scss'
 
 const Register = () => {
   const [userCredentials, setUserCredentials] = useState({
@@ -117,26 +118,26 @@ const Register = () => {
     // if (firstName === '') {
     //   errors.firstNameError = 'First Name is required'
     //   console.log(errors.firstNameError)
-    
+
     //   return
     // }
 
     // if (secondName === '') {
     //   errors.secondNameError = 'Second Name is required'
     //   console.log(errors.secondNameError)
-   
+
     //   return
     // }
     // if (email === '') {
     //   errors.emailError = 'Email is required'
     //   console.log(errors.emailError)
-   
+
     //   return
     // }
     // if (password === '') {
     //   errors.passwordError = 'Password is required'
     //   console.log(errors.passwordError)
-  
+
     //   return
     // }
 
@@ -170,7 +171,7 @@ const Register = () => {
                 flag={item.flag}
                 onChange={handleChange}
                 // onBlur={handleBlur}
-                error={item.error }
+                error={item.error}
               />
             )
           })}
@@ -189,48 +190,3 @@ const Register = () => {
 }
 
 export default Register
-
-{
-  /* <div className="register__user_data">
-            <label>
-              <span>First Name</span>
-              <input
-                type="text"
-                name="firstName"
-                value={userCredentials.firstName}
-                onChange={handleChange}
-              />
-            </label>
-
-            <label>
-              <span>Second Name</span>
-              <input
-                className="secondName"
-                type="text"
-                name="secondName"
-                value={userCredentials.secondName}
-                onChange={handleChange}
-              />
-            </label>
-          </div>
-
-          <label>
-            <span>Email</span>
-            <input
-              type="email"
-              name="email"
-              value={userCredentials.email}
-              onChange={handleChange}
-            />
-          </label>
-
-          <label>
-            <span>Password</span>
-            <input
-              type="password"
-              name="password"
-              value={userCredentials.password}
-              onChange={handleChange}
-            />
-          </label> */
-}
