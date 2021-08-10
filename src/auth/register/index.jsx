@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 
 import { signUp } from '../../store/auth/action'
 import CustomInput from '../custom-unput'
+import { v4 } from 'uuid'
 
 import './index.scss'
 
@@ -12,7 +13,8 @@ const Register = () => {
     firstName: '',
     secondName: '',
     email: '',
-    password: ''
+    password: '',
+    id: v4()
   })
 
   let [errors, setErrors] = useState({
@@ -60,37 +62,49 @@ const Register = () => {
     userCredentials.firstName,
     userCredentials.secondName,
     userCredentials.email,
-    userCredentials.password
+    userCredentials.password,
+    errors.firstName,
+    errors.secondName,
+    errors.email,
+    errors.password
   ])
 
   const handleChange = event => {
     const { value, name } = event.target
+
     setUserCredentials({ ...userCredentials, [name]: value })
   }
 
   // const handleBlur = event => {
   //   event.preventDefault()
 
-  //   const { name } = event.target
-  //   console.log(name)
-  //   switch (name) {
-  //     case 'firstName':
-  //       setErrors({ firstName: 'cant be empty' })
-  //       console.log('errors', errors)
-  //       break
-  //     case 'secondName':
-  //       setErrors({ secondName: 'cant be empty' })
-  //       console.log('errors', errors)
-  //       break
-  //     case 'email':
-  //       setErrors({ email: 'cant be empty' })
-  //       console.log('errors', errors)
-  //       break
-  //     case 'password':
-  //       setErrors({ password: 'cant be empty' })
-  //       console.log('errors', errors)
-  //       break
+  //   let { firstName, secondName, email, password } = userCredentials
+
+  //   if (firstName = '') {
+  //     setErrors({ ...errors, firstName: 'cant be empty' })
+  //     console.log('errors', errors)
   //   }
+
+  // const { name } = event.target
+  // console.log(name)
+  // switch (name) {
+  //   case 'firstName':
+  //     setErrors({ firstName: 'cant be empty' })
+  //     console.log('errors', errors)
+  //     break
+  //   case 'secondName':
+  //     setErrors({ secondName: 'cant be empty' })
+  //     console.log('errors', errors)
+  //     break
+  //   case 'email':
+  //     setErrors({ email: 'cant be empty' })
+  //     console.log('errors', errors)
+  //     break
+  //   case 'password':
+  //     setErrors({ password: 'cant be empty' })
+  //     console.log('errors', errors)
+  //     break
+  // }
   // }
 
   const registerUser = event => {

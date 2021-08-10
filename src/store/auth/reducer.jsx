@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
         ...state,
         authenticated: true
       }
-      console.log({...state})
+      console.log({ ...state })
       break
     case `${authConst.USER_LOGOUT}`:
       state = {

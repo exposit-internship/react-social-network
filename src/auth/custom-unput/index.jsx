@@ -1,11 +1,10 @@
 import React from 'react'
 
 const CustomInput = ({ type, name, value, onChange, onBlur, text, error }) => {
-  console.log(error)
   return (
     <label>
       <p>
-        {text} <span>{error ? <span>{error}</span> : null}</span>
+        {text} <span>{error}</span>
       </p>
       <input
         type={type}
