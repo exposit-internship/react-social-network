@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { useCallback } from 'react'
 
 import Post from '../post'
 import { addPost, deletePost, getPosts } from '../../../store/posts/action'
 
 import './index.scss'
-import { useCallback } from 'react'
 
 const Posts = () => {
   // TODO: как сделать динамический displayname из localstorage и сохранять посты от пользователей под их именами
@@ -15,13 +15,16 @@ const Posts = () => {
     avatarURL:
       'https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png',
     imageURL: '',
-    caption: ''
+    caption: '',
+    comments: {
+      userName: '',
+      comment: ''
+    }
   })
+
   let { displayName, avatarURL, imageURL, caption } = post
 
   const user = JSON.parse(localStorage.getItem('user'))
-
-  // let userName = `${firstName} ${secondName}`
 
   const dispatch = useDispatch()
 

@@ -14,17 +14,41 @@
   &__username {
     margin-left: 10px;
   }
-  & > img {
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-    object-fit: contain;
-    border-top: 1px solid lightgrey;
-    border-bottom: 1px solid lightgrey;
+  &__body {
+    & > img {
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      object-fit: contain;
+      border-top: 1px solid lightgrey;
+      border-bottom: 1px solid lightgrey;
+    }
   }
+
   &__text {
     font-weight: normal;
     margin-left: 20px;
     padding: 10px 0px;
+  }
+  &__comments {
+    &_container {
+      display: flex;
+    }
+    &_message {
+      flex: 8;
+      padding: 10px;
+      border: none;
+      border-top: 1px solid lightgrey;
+    }
+    &_btn {
+      flex: 2;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      border-top: 1px solid lightgrey;
+      color: #6082a3;
+      background-color: transparent;
+    }
   }
 }
