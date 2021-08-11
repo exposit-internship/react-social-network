@@ -1,5 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
 import SidebarOption from '../sidebar-option'
 
@@ -8,8 +9,11 @@ import './index.scss'
 const Sidebar = () => {
   const { t } = useTranslation('translation')
 
-  // const user = JSON.parse(localStorage.getItem('user'))
-  // const { firstName, secondName } = user
+  // const users = useSelector(state => state.users)
+  // console.log(users)
+
+  const user = JSON.parse(localStorage.getItem('user'))
+  const { firstName, secondName } = user
 
   return (
     <div className="sidebar">
@@ -17,7 +21,7 @@ const Sidebar = () => {
       <div className="sidebar__nav">
         <SidebarOption
           to={'/user-page'}
-          text={'`${firstName} ${secondName}`'}
+          text={`${firstName} ${secondName}`}
           src=""
         />
         <SidebarOption to={'/user-page'} text={t('Messenger')} src="" />

@@ -53,22 +53,25 @@
   &__form {
     margin-top: 2em;
     width: 16em;
-    label {
-      display: flex;
-      flex-direction: column;
-      border-bottom: 1px solid #333;
-      font-size: 1.6em;
-      margin-bottom: 0.8em;
-      transition: all 0.25s;
-      & span {
-        color: brown;
-        font-size: 14px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: 600;
+    & .custom {
+      &__input {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid #333;
+        margin-bottom: 0.8em;
+        transition: all 0.25s;
       }
-
-      & input {
+      &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        & span {
+          color: brown;
+          font-size: 14px;
+          text-transform: uppercase;
+        }
+      }
+      &__footer {
         border: none;
         outline: none;
         height: 3em;
@@ -77,24 +80,6 @@
         font-weight: 300;
         padding: 0.8em 0.2em 0 0.4em;
       }
-      .secondName {
-        border-left: 1px solid black;
-      }
-      p {
-        display: block;
-        font-size: 0.5em;
-        font-weight: 500;
-        text-transform: uppercase;
-        padding-left: 0.8em;
-        transition: all 0.25s;
-        margin-bottom: -1em;
-      }
-    }
-  }
-  &__user_data {
-    display: flex;
-    & span {
-      // margin-bottom: -1em;
     }
   }
   &__btn {
@@ -106,6 +91,10 @@
     padding: 0.8em 2.4em;
     transition: all 0.25s;
     cursor: pointer;
+    &.disabled {
+      color: #000000;
+      background-color: transparent;
+    }
     &:hover {
       background: #333;
       color: #fff;

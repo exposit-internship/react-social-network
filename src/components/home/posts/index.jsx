@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useCallback } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 import Post from '../post'
 import { addPost, deletePost, getPosts } from '../../../store/posts/action'
@@ -16,6 +17,7 @@ const Posts = () => {
       'https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png',
     imageURL: '',
     caption: '',
+    id: uuidv4(),
     comments: {
       userName: '',
       comment: ''
@@ -24,13 +26,20 @@ const Posts = () => {
 
   let { displayName, avatarURL, imageURL, caption } = post
 
-  const user = JSON.parse(localStorage.getItem('user'))
-
   const dispatch = useDispatch()
 
   const { posts } = useSelector(state => state.posts)
 
   const { t } = useTranslation('translation')
+
+  const user = JSON.parse(localStorage.getItem('user'))
+
+  const { firstName, secondName } = user
+
+  const handleChange = e => {
+    const { name, value } = e.target
+    setPost({ ...post, [name]: value })
+  }
 
   const publishPost = event => {
     event.preventDefault()
@@ -38,13 +47,8 @@ const Posts = () => {
     if (!caption || !imageURL) {
       console.log('Please add data')
     } else {
-      dispatch(addPost(post))
+      dispatch(addPost({ ...post, displayName: `${firstName} ${secondName}` }))
     }
-  }
-
-  const handleChange = e => {
-    const { name, value } = e.target
-    setPost({ ...post, [name]: value })
   }
 
   const handleDelete = useCallback(id => {
@@ -97,7 +101,7 @@ const Posts = () => {
           return (
             <Post
               key={item.id}
-              displayName={post.displayName}
+              displayName={item.displayName}
               avatarURL={item.avatarURL}
               image={item.imageURL}
               caption={item.caption}

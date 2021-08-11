@@ -1,17 +1,30 @@
 import axios from 'axios'
+
+import { DB } from '../../core/axios'
+
 import { authConst } from './types'
+import { INDEX_ROUTE } from '../../constants/routs'
 
-export const signUp = user => {
+export const signUp = (user, email, history) => {
   return async dispatch => {
-    const db = `${process.env.REACT_APP_LOCALHOST_5000}/users`
-    axios
-      .post(db, user)
-      .then(({ data: loggedInUser }) => {
-        localStorage.setItem('user', JSON.stringify(loggedInUser))
+    DB(`/users?email=${email}`)
+      .then(({ data }) => {
+        if (data.length > 0) {
+          alert('This user is already registered')
+        } else {
+          DB.post('/users', user)
+            .then(({ data: loggedInUser }) => {
+              localStorage.setItem('user', JSON.stringify(loggedInUser))
 
-        dispatch({
-          type: `${authConst.USER_LOGIN}`
-        })
+              dispatch({
+                type: `${authConst.USER_LOGIN}`
+              })
+              history.push(INDEX_ROUTE)
+            })
+            .catch(error => {
+              console.log(error.message)
+            })
+        }
       })
       .catch(error => {
         console.log(error.message)
@@ -19,21 +32,19 @@ export const signUp = user => {
   }
 }
 
-export const signIn = user => {
+export const signIn = (email, password, history) => {
   return async dispatch => {
-    const db = `${process.env.REACT_APP_LOCALHOST_5000}/users`
-    axios
-      .get(db)
-      .then(() => {
-        const loggedInUser = {
-          email: user.email,
-          password: user.password
+    DB(`/users?email=${email}&password=${window.btoa(password)}`)
+      .then(({ data }) => {
+        console.log(data)
+        if (data.length > 0) {
+          dispatch({
+            type: `${authConst.USER_LOGIN}`
+          })
+          history.push(INDEX_ROUTE)
+        } else {
+          alert('incorrect data')
         }
-        localStorage.setItem('user', JSON.stringify(loggedInUser))
-
-        dispatch({
-          type: `${authConst.USER_LOGIN}`
-        })
       })
       .catch(error => {
         console.log(error.message)

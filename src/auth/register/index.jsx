@@ -1,12 +1,21 @@
 import { useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import classNames from 'classnames'
+import { v4 as uuidv4 } from 'uuid'
+
+import CustomInput from '../custom-unput'
 
 import { signUp } from '../../store/auth/action'
-import CustomInput from '../custom-unput'
-import { v4 } from 'uuid'
 
 import './index.scss'
+
+const INITIAL_ERROR_STATE = {
+  firstName: '',
+  secondName: '',
+  email: '',
+  password: ''
+}
 
 const Register = () => {
   const [userCredentials, setUserCredentials] = useState({
@@ -14,98 +23,86 @@ const Register = () => {
     secondName: '',
     email: '',
     password: '',
-    id: v4()
+    id: uuidv4()
   })
 
-  let [errors, setErrors] = useState({
-    firstName: '',
-    secondName: '',
-    email: '',
-    password: ''
-  })
+  let [errors, setErrors] = useState(INITIAL_ERROR_STATE)
+
+  const { firstName, secondName, email, password } = userCredentials
+
+  const getIsButtonDisabled = () =>
+    !firstName ||
+    !secondName ||
+    !email ||
+    !password ||
+    errors.firstName ||
+    errors.secondName ||
+    errors.email ||
+    errors.password
+
+  // const hashedPassword = window.btoa(password)
+  // console.log(hashedPassword)
 
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const userCredencialData = useMemo(() => {
-    return [
+  const userCredencialData = useMemo(
+    () => [
       {
         type: 'text',
         name: 'firstName',
-        value: userCredentials.firstName,
+        value: firstName,
         text: 'First Name',
         error: errors.firstName
       },
       {
         type: 'text',
         name: 'secondName',
-        value: userCredentials.secondName,
+        value: secondName,
         text: 'Second Name',
         error: errors.secondName
       },
       {
         type: 'email',
         name: 'email',
-        value: userCredentials.email,
+        value: email,
         text: 'Email',
         error: errors.email
       },
       {
         type: 'password',
         name: 'password',
-        value: userCredentials.password,
+        value: password,
         text: 'Password',
         error: errors.password
       }
+    ],
+    [
+      firstName,
+      secondName,
+      email,
+      password,
+      errors.firstName,
+      errors.secondName,
+      errors.email,
+      errors.password
     ]
-  }, [
-    userCredentials.firstName,
-    userCredentials.secondName,
-    userCredentials.email,
-    userCredentials.password,
-    errors.firstName,
-    errors.secondName,
-    errors.email,
-    errors.password
-  ])
+  )
 
   const handleChange = event => {
     const { value, name } = event.target
-
+    setErrors({ ...errors, [name]: '' })
     setUserCredentials({ ...userCredentials, [name]: value })
   }
 
-  // const handleBlur = event => {
-  //   event.preventDefault()
+  const getEmptyFieldsWithErrors = userCredentials => {
+    let emptyFields = {}
+    Object.entries(userCredentials).forEach(([key, value]) => {
+      !value && (emptyFields[key] = 'can\'t be empty')
+    })
 
-  //   let { firstName, secondName, email, password } = userCredentials
-
-  //   if (firstName = '') {
-  //     setErrors({ ...errors, firstName: 'cant be empty' })
-  //     console.log('errors', errors)
-  //   }
-
-  // const { name } = event.target
-  // console.log(name)
-  // switch (name) {
-  //   case 'firstName':
-  //     setErrors({ firstName: 'cant be empty' })
-  //     console.log('errors', errors)
-  //     break
-  //   case 'secondName':
-  //     setErrors({ secondName: 'cant be empty' })
-  //     console.log('errors', errors)
-  //     break
-  //   case 'email':
-  //     setErrors({ email: 'cant be empty' })
-  //     console.log('errors', errors)
-  //     break
-  //   case 'password':
-  //     setErrors({ password: 'cant be empty' })
-  //     console.log('errors', errors)
-  //     break
-  // }
-  // }
+    return emptyFields
+  }
 
   const registerUser = event => {
     event.preventDefault()
@@ -114,59 +111,26 @@ const Register = () => {
 
     //TODO password = window.btoa(password) пароль должен быть захешен, но пока ругается на него консоль, исправить
 
-    // errors = { ...errors }
+    const emptyFieldsWithErrors = getEmptyFieldsWithErrors(userCredentials)
 
-    // if (firstName === '') {
-    //   setErrors({ firstName: 'cant be empty' })
-    //   console.log('errors', errors)
-    //   console.log('FIRST NAME:', errors.firstName)
-    //   return
-    // }
-    // if (secondName === '') {
-    //   setErrors({ ...errors, secondNameError: 'Second Name is required' })
-    //   console.log('errors', errors)
-    //   console.log('SECOND NAME ERROR:', errors.secondNameError)
-    //   return
-    // }
+    const areFildsWithErrorsEmpty = !!Object.keys(emptyFieldsWithErrors).length
 
-    // if (firstName === '') {
-    //   errors.firstNameError = 'First Name is required'
-    //   console.log(errors.firstNameError)
+    if (areFildsWithErrorsEmpty) {
+      setErrors({ ...errors, ...emptyFieldsWithErrors })
+    } else {
+      const transformedUserCredentials = {
+        ...userCredentials,
+        password: window.btoa(password)
+      }
+      dispatch(signUp(transformedUserCredentials, email, history))
 
-    //   return
-    // }
-
-    // if (secondName === '') {
-    //   errors.secondNameError = 'Second Name is required'
-    //   console.log(errors.secondNameError)
-
-    //   return
-    // }
-    // if (email === '') {
-    //   errors.emailError = 'Email is required'
-    //   console.log(errors.emailError)
-
-    //   return
-    // }
-    // if (password === '') {
-    //   errors.passwordError = 'Password is required'
-    //   console.log(errors.passwordError)
-
-    //   return
-    // }
-
-    setErrors(errors)
-
-    dispatch(signUp(userCredentials))
-
-    history.push('/')
-
-    setUserCredentials({
-      firstName: '',
-      secondName: '',
-      email: '',
-      password: ''
-    })
+      setUserCredentials({
+        firstName: '',
+        secondName: '',
+        email: '',
+        password: ''
+      })
+    }
   }
 
   return (
@@ -174,24 +138,22 @@ const Register = () => {
       <div className="register__box">
         <h1>Register</h1>
         <form className="register__form">
-          {userCredencialData.map((item, idx) => {
-            return (
-              <CustomInput
-                key={idx}
-                type={item.type}
-                text={item.text}
-                name={item.name}
-                value={item.value}
-                flag={item.flag}
-                onChange={handleChange}
-                // onBlur={handleBlur}
-                error={item.error}
-              />
-            )
-          })}
+          {userCredencialData.map(({ type, text, name, value, error }, idx) => (
+            <CustomInput
+              key={idx}
+              type={type}
+              text={text}
+              name={name}
+              value={value}
+              onChange={handleChange}
+              error={error}
+            />
+          ))}
 
           <button
-            className="register__btn"
+            className={classNames('register__btn', {
+              disabled: getIsButtonDisabled()
+            })}
             type="submit"
             onClick={registerUser}
           >

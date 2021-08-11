@@ -6,7 +6,6 @@ export const getPosts = () => {
     axios
       .get(`${process.env.REACT_APP_LOCALHOST_5000}/posts`)
       .then(res => {
-        console.log('res', res.data)
         dispatch({
           type: `${postsConst.GET_POSTS}`,
           payload: res.data
@@ -25,10 +24,7 @@ export const addPost = post => {
         dispatch({
           type: `${postsConst.ADD_POST}`
         })
-        // dispatch({
-        //   type: `${postsConst.GET_POSTS}`,
-        //   payload: res.data
-        // })
+
         console.log('post', res.data)
       })
       .catch(error => console.log(error))
@@ -39,16 +35,10 @@ export const deletePost = id => {
   return dispatch => {
     axios
       .delete(`${process.env.REACT_APP_LOCALHOST_5000}/posts/${id}`)
-      .then(res => {
-        console.log('delete', res)
+      .then(() => {
         dispatch({
           type: `${postsConst.DELETE_POST}`
         })
-        // dispatch({
-        //   type: `${postsConst.GET_POSTS}`,
-        //   payload: res.data
-        // })
-        console.log('delete', res.data)
       })
       .catch(error => console.log(error))
   }

@@ -1,19 +1,18 @@
-import React from 'react'
-
-const CustomInput = ({ type, name, value, onChange, onBlur, text, error }) => {
+const CustomInput = ({ type, name, value, onChange, text, error }) => {
   return (
-    <label>
-      <p>
-        {text} <span>{error}</span>
-      </p>
+    <div className="custom__input">
+      <div className="custom__header">
+        <label>{text}</label>
+        {error ? <span>({error})</span> : null}
+      </div>
       <input
+        className="custom__footer"
         type={type}
         name={name}
         value={value}
         onChange={onChange}
-        onBlur={onBlur}
       />
-    </label>
+    </div>
   )
 }
 

@@ -1,6 +1,8 @@
 import './index.scss'
 
 const Post = ({ displayName, avatarURL, image, caption, onClick }) => {
+  
+
   return (
     <div className="post">
       <div className="post__header">
