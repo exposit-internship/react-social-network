@@ -1,9 +1,9 @@
 import classNames from 'classnames'
 import { useMemo, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import { signIn } from '../../store/auth/action'
+import { signIn } from '../../store/user/action'
 import CustomInput from '../custom-unput'
 
 import './index.scss'
@@ -18,6 +18,8 @@ const Login = () => {
     email: '',
     password: ''
   })
+
+  const { user } = useSelector(state => state.user)
 
   const dispatch = useDispatch()
   const history = useHistory()
@@ -48,9 +50,9 @@ const Login = () => {
 
   const handleChange = event => {
     const { value, name } = event.target
-    console.log('errors', errors)
+
     setErrors({ ...errors, [name]: '' })
-    console.log('errors', errors)
+
     setUserLoginData({ ...userLoginData, [name]: value })
   }
 
@@ -59,7 +61,6 @@ const Login = () => {
     Object.entries(userLoginData).forEach(([key, value]) => {
       !value && (emptyFields[key] = "can't be empty")
     })
-    console.log('emptyFields', emptyFields)
   }
 
   const loginUser = event => {
@@ -74,9 +75,6 @@ const Login = () => {
     //   setErrors({ ...errors, ...emptyFieldsWithErrors })
     // } else {
     dispatch(signIn(email, password, history))
-    console.log('email', email)
-    console.log('password', password)
-  
 
     setUserLoginData({
       email: '',
@@ -84,7 +82,6 @@ const Login = () => {
     })
     // }
   }
-  console.log('errors', errors)
   return (
     <div className="login">
       <div className="login__box">

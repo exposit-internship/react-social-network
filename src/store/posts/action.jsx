@@ -8,7 +8,7 @@ export const getPosts = () => {
       .then(res => {
         dispatch({
           type: `${postsConst.GET_POSTS}`,
-          payload: res.data
+          payload: res.data.reverse()
         })
       })
       .catch(error => console.log(error))
@@ -19,13 +19,10 @@ export const addPost = post => {
   return dispatch => {
     axios
       .post(`${process.env.REACT_APP_LOCALHOST_5000}/posts`, post)
-      .then(res => {
-        console.log('post', res.data)
+      .then(() => {
         dispatch({
           type: `${postsConst.ADD_POST}`
         })
-
-        console.log('post', res.data)
       })
       .catch(error => console.log(error))
   }

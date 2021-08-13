@@ -1,4 +1,4 @@
-import { authConst } from './types'
+import { userConst } from './types'
 
 const initialState = {
   users: [],
@@ -8,19 +8,26 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case `${authConst.USER_LOGIN}`:
+    case `${userConst.USER_LOGIN}`:
       state = {
         ...state,
+        user: action.payload,
         authenticated: true
       }
       console.log({ ...state })
       break
-    case `${authConst.USER_LOGOUT}`:
+    case `${userConst.USER_LOGOUT}`:
       state = {
         ...state,
         authenticated: false
       }
       break
+    case `${userConst.USER_BALANCE}`:
+      state = {
+        ...state
+      }
+      break
   }
+
   return state
 }

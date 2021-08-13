@@ -7,14 +7,15 @@ import Auth from '../../auth'
 import homeIcon from '../../images/home.svg'
 import userIcon from '../../images/user.svg'
 
-import { logout } from '../../store/auth/action'
+import { logout } from '../../store/user/action'
 
 import './index.scss'
 import { handleLanguageChange } from '../../utils/translation'
+import Monetization from '../monetization'
 
 const Header = () => {
   const history = useHistory()
-  const auth = useSelector(state => state.auth)
+  const user = useSelector(state => state.user)
   const dispatch = useDispatch()
 
   const logoutUser = () => {
@@ -33,7 +34,7 @@ const Header = () => {
         />
       </div>
 
-      {auth.authenticated ? (
+      {user.authenticated ? (
         <div className="header__navigation">
           <NavLink to="/">
             <img src={homeIcon} alt="home-icon" />
@@ -44,16 +45,18 @@ const Header = () => {
         </div>
       ) : null}
 
-      {!auth.authenticated ? <Auth /> : null}
+      {!user.authenticated ? <Auth /> : null}
 
-      {auth.authenticated ? (
+      {user.authenticated ? (
         <div className="header__language_change">
           <p>{t('message')}</p>
           <button onClick={handleLanguageChange}>{t('changeLanguage')}</button>
         </div>
       ) : null}
 
-      {auth.authenticated ? (
+      {user.authenticated ? <Monetization /> : null}
+
+      {user.authenticated ? (
         <div className="header__logout">
           <Link to="#" onClick={logoutUser}>
             {t('Logout')}

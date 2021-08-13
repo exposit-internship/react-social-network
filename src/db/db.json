@@ -3,16 +3,10 @@
     {
       "firstName": "ilia",
       "secondName": "white",
-      "email": "white@mail.com",
+      "email": "w@mail.com",
       "password": "MTExMTEx",
-      "id": "94e6459a-d335-4da3-9795-fe9bcf760a24"
-    },
-    {
-      "firstName": "Mr.",
-      "secondName": "Rabbit",
-      "email": "rabbit@mail.com",
-      "password": "MTExMTEx",
-      "id": "ae8b93c5-9d01-4f65-92c3-25a2485fca29"
+      "amount": 1,
+      "id": "1313a558-d2a1-4167-a1bf-d3d713bda892"
     }
   ],
   "posts": [
@@ -21,6 +15,7 @@
       "avatarURL": "https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png",
       "imageURL": "https://www.kino-teatr.ru/news/16015/144771.jpg",
       "caption": "IT'S ADVENTURE TIME, BITCH",
+      "amount": 1,
       "id": "66f46297-7276-4450-9cb7-fe511f0cedc1",
       "comments": {
         "userName": "",
@@ -33,6 +28,39 @@
       "imageURL": "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/1ae03e96-f16a-4ee0-b8e4-7968037daffa/300x450",
       "caption": "punks not dead",
       "id": "2fcceaf0-98c0-4932-839f-0ccce2467639",
+      "comments": {
+        "userName": "",
+        "comment": ""
+      }
+    },
+    {
+      "displayName": "Mr. Rabbit",
+      "avatarURL": "https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png",
+      "imageURL": "https://oir.mobi/uploads/posts/2021-05/1622262892_61-oir_mobi-p-krasivie-vidi-prirodi-priroda-krasivo-foto-65.jpg",
+      "caption": "Поеду туда)",
+      "id": "f4e1e5f8-d277-413f-b488-15b78f486d78",
+      "comments": {
+        "userName": "",
+        "comment": ""
+      }
+    },
+    {
+      "displayName": "Mr. Rabbit",
+      "avatarURL": "https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png",
+      "imageURL": "http://niklife.com.ua/images/2018_08/63408_1_990x557.jpeg",
+      "caption": "hmmmmm",
+      "id": "3129bd0c-0cea-407a-9998-02b5c2f4ca66",
+      "comments": {
+        "userName": "",
+        "comment": ""
+      }
+    },
+    {
+      "displayName": "ilia White",
+      "avatarURL": "https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png",
+      "imageURL": "https://i2.wp.com/itc.ua/wp-content/uploads/2018/08/alf-1126430-1280x0.jpeg",
+      "caption": "I DID IT",
+      "id": "6cd2ad46-b9cc-4ce1-9f6e-eb1518675c2a",
       "comments": {
         "userName": "",
         "comment": ""

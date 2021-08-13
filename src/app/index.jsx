@@ -5,17 +5,16 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Home, Header, UserPage } from '../components'
 import Login from '../auth/login'
 import Register from '../auth/register'
-import { isLoggedInUser } from '../store/auth/action'
+import { isLoggedInUser } from '../store/user/action'
 
 import './index.scss'
 
 const App = () => {
-  
   const dispatch = useDispatch()
-  const auth = useSelector(state => state.auth)
+  const user = useSelector(state => state.user)
 
   useEffect(() => {
-    if (!auth.authenticated) {
+    if (!user.authenticated) {
       dispatch(isLoggedInUser())
     }
   }, [])

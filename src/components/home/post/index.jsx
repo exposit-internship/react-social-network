@@ -1,8 +1,14 @@
 import './index.scss'
 
-const Post = ({ displayName, avatarURL, image, caption, onClick }) => {
-  
-
+const Post = ({
+  displayName,
+  avatarURL,
+  image,
+  caption,
+  onClick,
+  user,
+  comment
+}) => {
   return (
     <div className="post">
       <div className="post__header">
@@ -24,6 +30,10 @@ const Post = ({ displayName, avatarURL, image, caption, onClick }) => {
           <strong>{`${displayName} : `} </strong>
           {caption}
         </h4>
+      </div>
+      <div className="comments">
+        <p className="commets__user">{user}</p>
+        <p className={comment}></p>
       </div>
 
       <div className="post__comments">

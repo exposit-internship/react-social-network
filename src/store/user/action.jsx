@@ -1,8 +1,6 @@
-import axios from 'axios'
-
 import { DB } from '../../core/axios'
 
-import { authConst } from './types'
+import { userConst } from './types'
 import { INDEX_ROUTE } from '../../constants/routs'
 
 export const signUp = (user, email, history) => {
@@ -13,12 +11,14 @@ export const signUp = (user, email, history) => {
           alert('This user is already registered')
         } else {
           DB.post('/users', user)
-            .then(({ data: loggedInUser }) => {
-              localStorage.setItem('user', JSON.stringify(loggedInUser))
-
+            .then(({ data }) => {
               dispatch({
-                type: `${authConst.USER_LOGIN}`
+                type: `${userConst.USER_LOGIN}`,
+                payload: data
               })
+              localStorage.setItem('user', JSON.stringify(data))
+
+              console.log('data', data)
               history.push(INDEX_ROUTE)
             })
             .catch(error => {
@@ -39,7 +39,8 @@ export const signIn = (email, password, history) => {
         console.log(data)
         if (data.length > 0) {
           dispatch({
-            type: `${authConst.USER_LOGIN}`
+            type: `${userConst.USER_LOGIN}`,
+            payload: data[0]
           })
           history.push(INDEX_ROUTE)
         } else {
@@ -52,7 +53,7 @@ export const signIn = (email, password, history) => {
   }
 }
 
-export const isLoggedInUser = () => {
+export const isLoggedInUser = user => {
   return async dispatch => {
     const user = localStorage.getItem('user')
       ? JSON.parse(localStorage.getItem('user'))
@@ -60,11 +61,11 @@ export const isLoggedInUser = () => {
 
     if (user) {
       dispatch({
-        type: `${authConst.USER_LOGIN}`
+        type: `${userConst.USER_LOGIN}`
       })
     } else {
       dispatch({
-        type: `${authConst.USER_LOGOUT}`
+        type: `${userConst.USER_LOGOUT}`
       })
     }
   }
@@ -75,7 +76,20 @@ export const logout = () => {
     localStorage.clear()
 
     dispatch({
-      type: `${authConst.USER_LOGOUT}`
+      type: `${userConst.USER_LOGOUT}`
     })
+  }
+}
+
+export const addUserDeposite = (id) => {
+  return async dispatch => {
+    DB.put(`/users/${id}`)
+      .then(({ data }) => {
+        console.log("DATTTONIO", data)
+        
+      })
+      .catch(error => {
+        console.log(error.message)
+      })
   }
 }

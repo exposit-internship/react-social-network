@@ -8,6 +8,7 @@ import Post from '../post'
 import { addPost, deletePost, getPosts } from '../../../store/posts/action'
 
 import './index.scss'
+import { useHistory } from 'react-router-dom'
 
 const Posts = () => {
   // TODO: как сделать динамический displayname из localstorage и сохранять посты от пользователей под их именами
@@ -26,15 +27,16 @@ const Posts = () => {
 
   let { displayName, avatarURL, imageURL, caption } = post
 
+  const history = useHistory()
   const dispatch = useDispatch()
 
   const { posts } = useSelector(state => state.posts)
 
   const { t } = useTranslation('translation')
 
-  const user = JSON.parse(localStorage.getItem('user'))
+  const { user } = useSelector(state => state.user)
 
-  const { firstName, secondName } = user
+  let { firstName, secondName } = user
 
   const handleChange = e => {
     const { name, value } = e.target
@@ -47,7 +49,9 @@ const Posts = () => {
     if (!caption || !imageURL) {
       console.log('Please add data')
     } else {
-      dispatch(addPost({ ...post, displayName: `${firstName} ${secondName}` }))
+      dispatch(
+        addPost({ ...post, displayName: `${firstName} ${secondName}` }, history)
+      )
     }
   }
 
@@ -57,7 +61,7 @@ const Posts = () => {
 
   useEffect(() => {
     dispatch(getPosts())
-  }, [handleDelete])
+  }, [getPosts, addPost, deletePost])
 
   return (
     <div className="posts">
@@ -97,18 +101,20 @@ const Posts = () => {
       </div>
       {posts &&
         posts.length > 0 &&
-        posts.map(item => {
-          return (
+        posts.map(
+          ({ id, displayName, avatarURL, imageURL, caption, comments }) => (
             <Post
-              key={item.id}
-              displayName={item.displayName}
-              avatarURL={item.avatarURL}
-              image={item.imageURL}
-              caption={item.caption}
-              onClick={() => handleDelete(item.id)}
+              key={id}
+              displayName={displayName}
+              avatarURL={avatarURL}
+              image={imageURL}
+              caption={caption}
+              user={comments.userName}
+              comment={comments.comment}
+              onClick={() => handleDelete(id)}
             />
           )
-        })}
+        )}
     </div>
   )
 }

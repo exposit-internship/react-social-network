@@ -4,9 +4,8 @@
   background-color: #ffffff;
   overflow-y: scroll;
   &__header {
-    position: sticky;
+    // position: sticky;
     top: 0;
-    z-index: 1;
     background-color: #ffffff;
     border-bottom: 1px solid #e6ecf0;
     padding: 15px 20px;

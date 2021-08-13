@@ -8,16 +8,14 @@ import './index.scss'
 
 const Sidebar = () => {
   const { t } = useTranslation('translation')
+  const { user } = useSelector(state => state.user)
 
-  // const users = useSelector(state => state.users)
-  // console.log(users)
-
-  const user = JSON.parse(localStorage.getItem('user'))
-  const { firstName, secondName } = user
+  let { firstName, secondName, amount } = user
 
   return (
     <div className="sidebar">
-      <h1>Your menu</h1>
+      <h2>{`Your balance: ${amount}$`} </h2>
+
       <div className="sidebar__nav">
         <SidebarOption
           to={'/user-page'}

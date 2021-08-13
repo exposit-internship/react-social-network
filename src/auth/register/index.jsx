@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import CustomInput from '../custom-unput'
 
-import { signUp } from '../../store/auth/action'
+import { getBalance, signUp } from '../../store/user/action'
 
 import './index.scss'
 
@@ -23,12 +23,13 @@ const Register = () => {
     secondName: '',
     email: '',
     password: '',
+    amount: 1,
     id: uuidv4()
   })
 
   let [errors, setErrors] = useState(INITIAL_ERROR_STATE)
 
-  const { firstName, secondName, email, password } = userCredentials
+  const { firstName, secondName, email, password, amount } = userCredentials
 
   const getIsButtonDisabled = () =>
     !firstName ||
@@ -98,7 +99,7 @@ const Register = () => {
   const getEmptyFieldsWithErrors = userCredentials => {
     let emptyFields = {}
     Object.entries(userCredentials).forEach(([key, value]) => {
-      !value && (emptyFields[key] = 'can\'t be empty')
+      !value && (emptyFields[key] = "can't be empty")
     })
 
     return emptyFields
@@ -107,7 +108,7 @@ const Register = () => {
   const registerUser = event => {
     event.preventDefault()
 
-    const { firstName, secondName, email, password } = userCredentials
+    const { firstName, secondName, email, password, amount } = userCredentials
 
     //TODO password = window.btoa(password) пароль должен быть захешен, но пока ругается на него консоль, исправить
 
@@ -122,6 +123,7 @@ const Register = () => {
         ...userCredentials,
         password: window.btoa(password)
       }
+
       dispatch(signUp(transformedUserCredentials, email, history))
 
       setUserCredentials({
