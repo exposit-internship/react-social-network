@@ -5,7 +5,12 @@ import { useCallback } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import Post from '../post'
-import { addPost, deletePost, getPosts } from '../../../store/posts/action'
+import {
+  addPost,
+  deletePost,
+  getPosts,
+  addPostComment
+} from '../../../store/posts/action'
 
 import './index.scss'
 import { useHistory } from 'react-router-dom'
@@ -19,23 +24,29 @@ const Posts = () => {
     imageURL: '',
     caption: '',
     id: uuidv4(),
-    comments: {
-      userName: '',
-      comment: ''
-    }
+    comments: [
+      {
+        userName: '',
+        comment: ''
+      }
+    ]
   })
 
-  let { displayName, avatarURL, imageURL, caption } = post
+  let { displayName, avatarURL, imageURL, caption, comments } = post
 
   const history = useHistory()
   const dispatch = useDispatch()
 
   const { posts } = useSelector(state => state.posts)
+  // const {displayName, avatarURL, imageURL, caption, id, comments} = posts
 
   const { t } = useTranslation('translation')
 
-  const { user } = useSelector(state => state.user)
+  // const { user } = useSelector(state => state.user)
 
+  // let { firstName, secondName } = user
+
+  const user = JSON.parse(localStorage.getItem('user'))
   let { firstName, secondName } = user
 
   const handleChange = e => {
@@ -62,6 +73,12 @@ const Posts = () => {
   useEffect(() => {
     dispatch(getPosts())
   }, [getPosts, addPost, deletePost])
+
+  const { userName, comment } = post.comments
+
+  // const addComment = () => {
+  //   dispatch(addPostComment(userName, comment))
+  // }
 
   return (
     <div className="posts">
@@ -102,19 +119,27 @@ const Posts = () => {
       {posts &&
         posts.length > 0 &&
         posts.map(
-          ({ id, displayName, avatarURL, imageURL, caption, comments }) => (
+          ({ id, displayName, avatarURL, imageURL, caption, value }) => (
             <Post
               key={id}
               displayName={displayName}
               avatarURL={avatarURL}
               image={imageURL}
               caption={caption}
-              user={comments.userName}
-              comment={comments.comment}
+              userName={userName}
+              comment={comment}
               onClick={() => handleDelete(id)}
+              value={value}
             />
           )
         )}
+      {/* <button onClick={addComment}>ADDDDDO</button> */}
+      {/* {post.comments.map(item => (
+        <div>
+          <p>{item.userName}</p>
+          <p>{item.comment}</p>
+        </div>
+      ))} */}
     </div>
   )
 }

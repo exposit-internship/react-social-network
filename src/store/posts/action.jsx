@@ -1,15 +1,15 @@
-import axios from 'axios'
+import { DB } from '../../core/axios'
 import { postsConst } from './type'
 
 export const getPosts = () => {
   return dispatch => {
-    axios
-      .get(`${process.env.REACT_APP_LOCALHOST_5000}/posts`)
+    DB(`/posts`)
       .then(res => {
         dispatch({
           type: `${postsConst.GET_POSTS}`,
           payload: res.data.reverse()
         })
+        console.log(res.data)
       })
       .catch(error => console.log(error))
   }
@@ -17,8 +17,7 @@ export const getPosts = () => {
 
 export const addPost = post => {
   return dispatch => {
-    axios
-      .post(`${process.env.REACT_APP_LOCALHOST_5000}/posts`, post)
+    DB.post(`/posts`, post)
       .then(() => {
         dispatch({
           type: `${postsConst.ADD_POST}`
@@ -30,8 +29,7 @@ export const addPost = post => {
 
 export const deletePost = id => {
   return dispatch => {
-    axios
-      .delete(`${process.env.REACT_APP_LOCALHOST_5000}/posts/${id}`)
+    DB.delete(`/posts/${id}`)
       .then(() => {
         dispatch({
           type: `${postsConst.DELETE_POST}`
@@ -40,3 +38,31 @@ export const deletePost = id => {
       .catch(error => console.log(error))
   }
 }
+
+// export const getComments = () => {
+//   return dispatch => {
+//     DB(`posts/comments`).then(({ data }) => {
+//       dispatch({
+//         type: `${postsConst.GET_COMMENTS}`
+//       })
+//       console.log(data)
+//     })
+//   }
+// }
+
+// export const addPostComment = comment => {
+//   return async dispatch => {
+//     DB.post(`posts/comments`).then(() => {
+//       dispatch({
+//         type: `${postsConst.ADD_POST}`,
+//         comment: [
+//           {
+//             userName: comment.userName,
+//             comment
+//           }
+//         ]
+//       })
+//       console.log('comment', comment)
+//     })
+//   }
+// }

@@ -8,8 +8,11 @@ import './index.scss'
 
 const Sidebar = () => {
   const { t } = useTranslation('translation')
-  const { user } = useSelector(state => state.user)
+  // const {user}  = useSelector(state => state.user)
+  // console.log(user)
 
+  // let { firstName, secondName, amount } = user
+  const user = JSON.parse(localStorage.getItem('user'))
   let { firstName, secondName, amount } = user
 
   return (

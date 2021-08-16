@@ -22,6 +22,16 @@ export default (state = initialState, action) => {
       state = {
         ...state
       }
+    case ` ${postsConst.GET_COMMENTS}`:
+      state = {
+        ...state
+      }
+      break
+    case ` ${postsConst.ADD_COMMENT}`:
+      state = {
+        ...state
+      }
+      break
   }
   return state
 }

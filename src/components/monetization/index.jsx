@@ -7,7 +7,8 @@ import './modal/index.scss'
 export class Monetization extends Component {
   state = {
     isOpenModal: false,
-    depositeValue: ''
+    depositeValue: '',
+    userPassword: ''
   }
 
   handleOpenModal = () => {
@@ -19,16 +20,28 @@ export class Monetization extends Component {
   }
 
   handleChange = event => {
+    const { name, value } = event.target
     this.setState({
-      depositeValue: event.target.value
+      [name]: value
     })
-    console.log(event.target.value)
+    console.log('name', name)
+    console.log('value', value)
   }
-  handleAddUserDeposit = () => {
-    
-    
+
+  handleAddUserDeposit = (event) => {
+    event.preventDefault()
+
+
+    this.setState({
+      //how update amount
+      //amount: this.state.depositeValue
+    })
+
+    console.log(this.state.user)
   }
+
   render() {
+
     return (
       <>
         <div>
@@ -44,7 +57,15 @@ export class Monetization extends Component {
                 <label>Enter Sum</label>
                 <input
                   type="number"
+                  name="depositeValue"
                   value={this.state.depositeValue}
+                  onChange={this.handleChange}
+                />
+                <label>Enter your password </label>
+                <input
+                  type="text"
+                  name="userPassword"
+                  value={this.state.userPassword}
                   onChange={this.handleChange}
                 />
                 <div className="monetization__btn">
@@ -60,23 +81,17 @@ export class Monetization extends Component {
   }
 }
 
-
 //считываю состояние
-const mapStateToProps = props => {
-  console.log('PROPS', props.user)
-  const { user } = props.user
-  console.log('USERRO', user)
-  const { amount, email, firstName, id, password, secondName } = user
-  console.log('USER DATA', amount, email, firstName, id, password, secondName)
+const mapStateToProps = state => {
   return {
-    user: props.user
+    user: state.user.user
   }
 }
 
 //передача события, что я хочу делать
 const mapDispatchToProps = dispatch => {
   return {
-    user: () => dispatch(addUserDeposite())
+    user: (email, password, amount, id) => dispatch(addUserDeposite(email, password, amount, id))
   }
 }
 

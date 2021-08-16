@@ -14,7 +14,6 @@ export default (state = initialState, action) => {
         user: action.payload,
         authenticated: true
       }
-      console.log({ ...state })
       break
     case `${userConst.USER_LOGOUT}`:
       state = {
@@ -24,7 +23,8 @@ export default (state = initialState, action) => {
       break
     case `${userConst.USER_BALANCE}`:
       state = {
-        ...state
+        ...state,
+        user: action.payload
       }
       break
   }

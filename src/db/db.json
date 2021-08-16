@@ -7,6 +7,14 @@
       "password": "MTExMTEx",
       "amount": 1,
       "id": "1313a558-d2a1-4167-a1bf-d3d713bda892"
+    },
+    {
+      "firstName": "andreu",
+      "secondName": "bom",
+      "email": "1@mail.com",
+      "password": "MTEx",
+      "amount": 1,
+      "id": "501d4a5e-ff0a-4cbc-9fa2-f635ec9bfa68"
     }
   ],
   "posts": [
@@ -61,10 +69,16 @@
       "imageURL": "https://i2.wp.com/itc.ua/wp-content/uploads/2018/08/alf-1126430-1280x0.jpeg",
       "caption": "I DID IT",
       "id": "6cd2ad46-b9cc-4ce1-9f6e-eb1518675c2a",
-      "comments": {
-        "userName": "",
-        "comment": ""
-      }
+      "comments": [
+        {
+          "userName": "",
+          "comment": ""
+        },
+        {
+          "userName": "",
+          "comment": ""
+        }
+      ]
     }
   ]
 }

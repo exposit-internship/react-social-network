@@ -6,7 +6,9 @@ const Post = ({
   image,
   caption,
   onClick,
-  user,
+  value,
+  onChange,
+  userName,
   comment
 }) => {
   return (
@@ -32,8 +34,8 @@ const Post = ({
         </h4>
       </div>
       <div className="comments">
-        <p className="commets__user">{user}</p>
-        <p className={comment}></p>
+        <p className="commets__user">{userName}</p>
+        <p className="comments__comment">{comment}</p>
       </div>
 
       <div className="post__comments">
@@ -42,6 +44,8 @@ const Post = ({
             className="post__comments_message"
             placeholder="Add a comment..."
             type="text"
+            value={value}
+            onChange={onChange}
           />
           <button className="post__comments_btn" type="submit">
             Post

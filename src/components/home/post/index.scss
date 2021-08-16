@@ -30,6 +30,19 @@
     margin-left: 20px;
     padding: 10px 0px;
   }
+  .comments {
+    background-color: lightgrey;
+    display: flex;
+    padding: 10px 15px;
+    &__user {
+      font-weight: 600;
+      
+    }
+    &__comment {
+      color: black;
+      margin-left: 10px;
+    }
+  }
   &__comments {
     &_container {
       display: flex;

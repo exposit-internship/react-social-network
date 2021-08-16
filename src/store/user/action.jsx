@@ -42,6 +42,7 @@ export const signIn = (email, password, history) => {
             type: `${userConst.USER_LOGIN}`,
             payload: data[0]
           })
+          localStorage.setItem('user', JSON.stringify(data[0]))
           history.push(INDEX_ROUTE)
         } else {
           alert('incorrect data')
@@ -81,12 +82,26 @@ export const logout = () => {
   }
 }
 
-export const addUserDeposite = (id) => {
+export const addUserDeposite = (email, password, amount, id) => {
   return async dispatch => {
-    DB.put(`/users/${id}`)
+    DB(`/users?email=${email}&password=${window.btoa(password)}`)
       .then(({ data }) => {
-        console.log("DATTTONIO", data)
-        
+        if (data.length < 1) {
+          alert('Please, enter correct password')
+        } else {
+          DB.put(`/user/${id}`)
+            .then(() => {
+              console.log('addUserDeposite', data)
+              dispatch({
+                type: `${userConst.USER_BALANCE}`,
+                payload: data[0]
+              })
+              console.log('addUserDeposite', data)
+            })
+            .catch(error => {
+              console.log(error.message)
+            })
+        }
       })
       .catch(error => {
         console.log(error.message)
