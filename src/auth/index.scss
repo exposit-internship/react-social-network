@@ -1,13 +1,14 @@
-.auth__btn {
-  min-width: 64px;
-  padding: 1em 1em;
-  margin: 0.6em 0;
+@import '../styles/common';
+
+.auth__button {
+  min-width: 4em;
+  padding: 1.2em 1em;
+  margin: 0.4em 0;
   font-weight: 600;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   background-color: transparent;
-
   border: none;
   border-radius: 4px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
@@ -16,9 +17,111 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #efefef;
+    background-color: get-color($bg, 200);
   }
 }
 a {
-  color: rgba(58, 58, 58, 0.87);
+  color: get-color($text, 800);
+}
+
+.registration__form {
+  height: calc(44em - 5.4em);
+  background: url('../images/register-bcg.jpg') center no-repeat;
+  background-size: cover;
+  color: get-color($text, 900);
+  font-size: 18px;
+  font-family: 'Raleway', sans-serif;
+  .box {
+    max-width: 32em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0.4em;
+    box-shadow: 0 0 1em 0 rgba(51, 51, 51, 0.25);
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    padding: 2.2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    h1 {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    &:before {
+      background: url('../images/register-bcg.jpg') center no-repeat;
+      background-size: cover;
+      content: '';
+      filter: blur(0.4em);
+      height: 36em;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: -1;
+      transform: translate(-50%, -50%);
+      width: 32em;
+    }
+    &:after {
+      background: rgba(255, 255, 255, 0.6);
+      content: '';
+      display: block;
+      height: 30em;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 22em;
+    }
+    & .form {
+      margin-top: 2.2em;
+      width: 16em;
+      & .custom {
+        &__input {
+          display: flex;
+          flex-direction: column;
+          border-bottom: 1px solid get-color($text, 900);
+          margin-bottom: 0.8em;
+          transition: all 0.24s;
+        }
+        &__header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          & span {
+            color: get-color($error, 700);
+            font-size: 0.8em;
+            text-transform: uppercase;
+          }
+        }
+        &__footer {
+          border: none;
+          outline: none;
+          height: 2.8em;
+          background: transparent;
+          font-size: 15px;
+          font-weight: 300;
+          padding: 0.8em 0.2em 0 0.4em;
+        }
+      }
+    }
+    & .button {
+      display: block;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.25);
+      border: 1px solid #333;
+      line-height: 0.8em;
+      padding: 0.8em 2.4em;
+      transition: all 0.24s;
+      cursor: pointer;
+      &.disabled {
+        color: $black;
+        background-color: transparent;
+      }
+      &:hover {
+        background: get-color($text, 900);
+        color: #fff;
+        outline: none;
+      }
+    }
+  }
 }

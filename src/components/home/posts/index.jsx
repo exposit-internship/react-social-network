@@ -1,22 +1,17 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useCallback } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 import Post from '../post'
-import {
-  addPost,
-  deletePost,
-  getPosts,
-  addPostComment
-} from '../../../store/posts/action'
+import { addPost, deletePost, getPosts } from '../../../store/posts/action'
 
+import Comments from '../comments'
 import './index.scss'
-import { useHistory } from 'react-router-dom'
 
 const Posts = () => {
-  // TODO: как сделать динамический displayname из localstorage и сохранять посты от пользователей под их именами
   const [post, setPost] = useState({
     displayName: '',
     avatarURL:
@@ -24,12 +19,7 @@ const Posts = () => {
     imageURL: '',
     caption: '',
     id: uuidv4(),
-    comments: [
-      {
-        userName: '',
-        comment: ''
-      }
-    ]
+    comments: []
   })
 
   let { displayName, avatarURL, imageURL, caption, comments } = post
@@ -38,13 +28,8 @@ const Posts = () => {
   const dispatch = useDispatch()
 
   const { posts } = useSelector(state => state.posts)
-  // const {displayName, avatarURL, imageURL, caption, id, comments} = posts
 
   const { t } = useTranslation('translation')
-
-  // const { user } = useSelector(state => state.user)
-
-  // let { firstName, secondName } = user
 
   const user = JSON.parse(localStorage.getItem('user'))
   let { firstName, secondName } = user
@@ -73,12 +58,6 @@ const Posts = () => {
   useEffect(() => {
     dispatch(getPosts())
   }, [getPosts, addPost, deletePost])
-
-  const { userName, comment } = post.comments
-
-  // const addComment = () => {
-  //   dispatch(addPostComment(userName, comment))
-  // }
 
   return (
     <div className="posts">
@@ -118,28 +97,19 @@ const Posts = () => {
       </div>
       {posts &&
         posts.length > 0 &&
-        posts.map(
-          ({ id, displayName, avatarURL, imageURL, caption, value }) => (
+        posts.map(({ id, displayName, avatarURL, imageURL, caption }) => (
+          <>
             <Post
               key={id}
               displayName={displayName}
               avatarURL={avatarURL}
               image={imageURL}
               caption={caption}
-              userName={userName}
-              comment={comment}
               onClick={() => handleDelete(id)}
-              value={value}
             />
-          )
-        )}
-      {/* <button onClick={addComment}>ADDDDDO</button> */}
-      {/* {post.comments.map(item => (
-        <div>
-          <p>{item.userName}</p>
-          <p>{item.comment}</p>
-        </div>
-      ))} */}
+            <Comments />
+          </>
+        ))}
     </div>
   )
 }

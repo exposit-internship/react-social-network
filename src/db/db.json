@@ -5,7 +5,7 @@
       "secondName": "white",
       "email": "w@mail.com",
       "password": "MTExMTEx",
-      "amount": 1,
+      "amount": 23,
       "id": "1313a558-d2a1-4167-a1bf-d3d713bda892"
     },
     {
@@ -25,10 +25,7 @@
       "caption": "IT'S ADVENTURE TIME, BITCH",
       "amount": 1,
       "id": "66f46297-7276-4450-9cb7-fe511f0cedc1",
-      "comments": {
-        "userName": "",
-        "comment": ""
-      }
+      "comments": []
     },
     {
       "displayName": "Mr. Rabbit",
@@ -36,10 +33,7 @@
       "imageURL": "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/1ae03e96-f16a-4ee0-b8e4-7968037daffa/300x450",
       "caption": "punks not dead",
       "id": "2fcceaf0-98c0-4932-839f-0ccce2467639",
-      "comments": {
-        "userName": "",
-        "comment": ""
-      }
+      "comments": []
     },
     {
       "displayName": "Mr. Rabbit",
@@ -47,10 +41,7 @@
       "imageURL": "https://oir.mobi/uploads/posts/2021-05/1622262892_61-oir_mobi-p-krasivie-vidi-prirodi-priroda-krasivo-foto-65.jpg",
       "caption": "Поеду туда)",
       "id": "f4e1e5f8-d277-413f-b488-15b78f486d78",
-      "comments": {
-        "userName": "",
-        "comment": ""
-      }
+      "comments": []
     },
     {
       "displayName": "Mr. Rabbit",
@@ -58,10 +49,7 @@
       "imageURL": "http://niklife.com.ua/images/2018_08/63408_1_990x557.jpeg",
       "caption": "hmmmmm",
       "id": "3129bd0c-0cea-407a-9998-02b5c2f4ca66",
-      "comments": {
-        "userName": "",
-        "comment": ""
-      }
+      "comments": []
     },
     {
       "displayName": "ilia White",
@@ -71,12 +59,8 @@
       "id": "6cd2ad46-b9cc-4ce1-9f6e-eb1518675c2a",
       "comments": [
         {
-          "userName": "",
-          "comment": ""
-        },
-        {
-          "userName": "",
-          "comment": ""
+          "userName": "ilia white",
+          "userComment": "ilia white"
         }
       ]
     }

@@ -3,13 +3,17 @@
   width: 100%;
   margin: 0 auto;
   border: 1px solid lightgrey;
+  border-bottom: none;
   background-color: #ffffff;
-  margin-bottom: 25px;
   &__header {
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     padding: 20px;
+    &_info {
+      display: flex;
+      align-items: center;
+    }
   }
   &__username {
     margin-left: 10px;
@@ -29,39 +33,5 @@
     font-weight: normal;
     margin-left: 20px;
     padding: 10px 0px;
-  }
-  .comments {
-    background-color: lightgrey;
-    display: flex;
-    padding: 10px 15px;
-    &__user {
-      font-weight: 600;
-      
-    }
-    &__comment {
-      color: black;
-      margin-left: 10px;
-    }
-  }
-  &__comments {
-    &_container {
-      display: flex;
-    }
-    &_message {
-      flex: 8;
-      padding: 10px;
-      border: none;
-      border-top: 1px solid lightgrey;
-    }
-    &_btn {
-      flex: 2;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      outline: none;
-      border-top: 1px solid lightgrey;
-      color: #6082a3;
-      background-color: transparent;
-    }
   }
 }

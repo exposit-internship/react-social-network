@@ -1,22 +1,31 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { connect } from 'react-redux'
+
 import { addUserDeposite } from '../../store/user/action'
-import Modal from './modal'
-import './modal/index.scss'
+import { DB } from '../../core/axios'
+
+import ReplenishModal from './replenish-modal'
+
+import './replenish-modal/index.scss'
+
 
 export class Monetization extends Component {
   state = {
-    isOpenModal: false,
+    isModalVisible: false,
     depositeValue: '',
     userPassword: ''
   }
 
-  handleOpenModal = () => {
-    this.setState(prevState => {
-      return {
-        isOpenModal: !prevState.isOpenModal
-      }
-    })
+  async componentDidMount() {
+    DB('/users').then(({ data }) => console.log('USERDATA', data))
+    const { email, password, id, amount } = this.props.user
+    console.log('CURRENT USER PROPS:', email, password, id, amount)
+    console.log('MONETIZATION PROPS', this.props)
+  }
+
+  toggleModalVisibitity = e => {
+    e.preventDefault()
+    this.setState({ isModalVisible: !this.state.isModalVisible })
   }
 
   handleChange = event => {
@@ -24,75 +33,69 @@ export class Monetization extends Component {
     this.setState({
       [name]: value
     })
-    console.log('name', name)
-    console.log('value', value)
+    // console.table({ name, value })
   }
 
-  handleAddUserDeposit = (event) => {
+  handleAddUserDeposit = event => {
     event.preventDefault()
 
+    let { depositeValue, userPassword } = this.state
+    console.table({ depositeValue, userPassword })
 
-    this.setState({
-      //how update amount
-      //amount: this.state.depositeValue
+    let { email, password, id, amount } = this.props.user
+    console.table({ email, password, id, amount, depositeValue })
+
+    depositeValue = parseInt(depositeValue, 10)
+    amount = parseInt(amount, 10)
+    console.log(depositeValue)
+
+    password = window.btoa(password)
+
+    if (!depositeValue || !userPassword) {
+      return
+    }
+
+    console.log(this.state)
+
+    this.props.increaseUserAmount({
+      email,
+      password,
+      id,
+      amount,
+      depositeValue
     })
 
-    console.log(this.state.user)
+    this.setState({
+      depositeValue: '',
+      userPassword: ''
+    })
   }
 
   render() {
+    const { isModalVisible } = this.state
 
     return (
-      <>
-        <div>
-          {/* {this.state.isOpenModal && (
-            <Modal handleOpenModal={this.handleOpenModal} />
-          )} */}
-          <button onClick={this.handleOpenModal}>Replenish</button>
-        </div>
-        {this.state.isOpenModal && (
-          <div className="monetization">
-            <div className="monetization__container">
-              <div className="monetization__form">
-                <label>Enter Sum</label>
-                <input
-                  type="number"
-                  name="depositeValue"
-                  value={this.state.depositeValue}
-                  onChange={this.handleChange}
-                />
-                <label>Enter your password </label>
-                <input
-                  type="text"
-                  name="userPassword"
-                  value={this.state.userPassword}
-                  onChange={this.handleChange}
-                />
-                <div className="monetization__btn">
-                  <button onClick={this.handleAddUserDeposit}>Submit</button>
-                  <button onClick={this.handleOpenModal}>Cancel</button>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div className="monetization">
+        <button onClick={this.toggleModalVisibitity}>Replenish</button>
+
+        {isModalVisible && (
+          <ReplenishModal
+            handleAddUserDeposit={this.handleAddUserDeposit}
+            toggleModalVisibitity={this.toggleModalVisibitity}
+            handleChange={this.handleChange}
+          />
         )}
-      </>
+      </div>
     )
   }
 }
 
-//считываю состояние
-const mapStateToProps = state => {
-  return {
-    user: state.user.user
-  }
-}
+const mapStateToProps = ({ user: currentUserState }) => ({
+  user: currentUserState.user
+})
 
-//передача события, что я хочу делать
-const mapDispatchToProps = dispatch => {
-  return {
-    user: (email, password, amount, id) => dispatch(addUserDeposite(email, password, amount, id))
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  increaseUserAmount: data => dispatch(addUserDeposite(data))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Monetization)

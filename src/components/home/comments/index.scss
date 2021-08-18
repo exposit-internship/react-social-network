@@ -1,9 +1,11 @@
 .comments {
+  max-width: 500px;
   display: flex;
   flex-direction: column;
+  border: 1px solid lightgrey;
+  margin: 0 auto;
+  margin-bottom: 35px;
   &__box {
-    height: 40px;
-
     &__user {
       font-weight: 600;
     }
@@ -22,7 +24,6 @@
       flex: 8;
       padding: 10px;
       border: none;
-      border-top: 1px solid lightgrey;
     }
     &_button {
       flex: 2;
@@ -30,7 +31,6 @@
       border: none;
       cursor: pointer;
       outline: none;
-      border-top: 1px solid lightgrey;
       color: #6082a3;
       background-color: transparent;
     }

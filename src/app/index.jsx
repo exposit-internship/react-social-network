@@ -2,10 +2,18 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
+import { isLoggedInUser } from '../store/user/action'
+
 import { Home, Header, UserPage } from '../components'
 import Login from '../auth/login'
 import Register from '../auth/register'
-import { isLoggedInUser } from '../store/user/action'
+
+import {
+  INDEX_ROUTE,
+  USER_PAGE_ROUTE,
+  REGISTER_ROUTE,
+  LOGIN_ROUTE
+} from '../constants/routs'
 
 import './index.scss'
 
@@ -24,10 +32,10 @@ const App = () => {
       <div className="App">
         <Header />
         <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/user-page" component={UserPage} />
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
+          <Route path={INDEX_ROUTE} component={Home} exact />
+          <Route path={USER_PAGE_ROUTE} component={UserPage} />
+          <Route path={REGISTER_ROUTE} component={Register} />
+          <Route path={LOGIN_ROUTE} component={Login} />
         </Switch>
       </div>
     </BrowserRouter>

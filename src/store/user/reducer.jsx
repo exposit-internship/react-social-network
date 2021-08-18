@@ -14,6 +14,7 @@ export default (state = initialState, action) => {
         user: action.payload,
         authenticated: true
       }
+      console.log('USER', state)
       break
     case `${userConst.USER_LOGOUT}`:
       state = {

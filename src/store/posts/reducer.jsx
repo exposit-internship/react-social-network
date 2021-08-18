@@ -29,7 +29,8 @@ export default (state = initialState, action) => {
       break
     case ` ${postsConst.ADD_COMMENT}`:
       state = {
-        ...state
+        ...state,
+       
       }
       break
   }

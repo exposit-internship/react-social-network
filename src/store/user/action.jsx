@@ -54,7 +54,7 @@ export const signIn = (email, password, history) => {
   }
 }
 
-export const isLoggedInUser = user => {
+export const isLoggedInUser = () => {
   return async dispatch => {
     const user = localStorage.getItem('user')
       ? JSON.parse(localStorage.getItem('user'))
@@ -82,16 +82,24 @@ export const logout = () => {
   }
 }
 
-export const addUserDeposite = (email, password, amount, id) => {
+// without email but id?
+export const addUserDeposite = ({
+  email,
+  password,
+  amount,
+  id,
+  depositeValue
+}) => {
   return async dispatch => {
     DB(`/users?email=${email}&password=${window.btoa(password)}`)
       .then(({ data }) => {
-        if (data.length < 1) {
+        if (data.length) {
           alert('Please, enter correct password')
+          console.log('ACTION DATA', data)
         } else {
-          DB.put(`/user/${id}`)
+          DB.patch(`/users/${id}`, { amount: amount + depositeValue })
             .then(() => {
-              console.log('addUserDeposite', data)
+              console.log('amount', amount)
               dispatch({
                 type: `${userConst.USER_BALANCE}`,
                 payload: data[0]

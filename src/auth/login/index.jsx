@@ -6,15 +6,13 @@ import { useHistory } from 'react-router-dom'
 import { signIn } from '../../store/user/action'
 import CustomInput from '../custom-unput'
 
-import './index.scss'
-
 const Login = () => {
-  const [userLoginData, setUserLoginData] = useState({
+  const [errors, setErrors] = useState({
     email: '',
     password: ''
   })
 
-  const [errors, setErrors] = useState({
+  const [userLoginData, setUserLoginData] = useState({
     email: '',
     password: ''
   })
@@ -25,6 +23,9 @@ const Login = () => {
   const history = useHistory()
 
   let { email, password } = userLoginData
+
+  const getIsButtonDisabled = () =>
+    !email || !password || errors.email || errors.password
 
   const loginData = useMemo(() => {
     return [
@@ -45,14 +46,9 @@ const Login = () => {
     ]
   }, [email, password, errors.email, errors.password])
 
-  const getIsButtonDisabled = () =>
-    !email || !password || errors.email || errors.password
-
   const handleChange = event => {
     const { value, name } = event.target
-
     setErrors({ ...errors, [name]: '' })
-
     setUserLoginData({ ...userLoginData, [name]: value })
   }
 
@@ -61,32 +57,33 @@ const Login = () => {
     Object.entries(userLoginData).forEach(([key, value]) => {
       !value && (emptyFields[key] = "can't be empty")
     })
+    return emptyFields
   }
 
   const loginUser = event => {
     event.preventDefault()
-    // const { email, password } = userLoginData
+    const { email, password } = userLoginData
 
-    // const emptyFieldsWithErrors = getEmptyFieldsWithErrors(userLoginData)
+    const emptyFieldsWithErrors = getEmptyFieldsWithErrors(userLoginData)
 
-    // const areFildsWithErrorsEmpty = !!Object.keys(emptyFieldsWithErrors).length
+    const areFildsWithErrorsEmpty = !!Object.keys(emptyFieldsWithErrors).length
 
-    // if (areFildsWithErrorsEmpty) {
-    //   setErrors({ ...errors, ...emptyFieldsWithErrors })
-    // } else {
-    dispatch(signIn(email, password, history))
+    if (areFildsWithErrorsEmpty) {
+      setErrors({ ...errors, ...emptyFieldsWithErrors })
+    } else {
+      dispatch(signIn(email, password, history))
 
-    setUserLoginData({
-      email: '',
-      password: ''
-    })
-    // }
+      setUserLoginData({
+        email: '',
+        password: ''
+      })
+    }
   }
   return (
-    <div className="login">
-      <div className="login__box">
+    <div className="login registration__form">
+      <div className="login__box box">
         <h1>Login</h1>
-        <form className="login__form">
+        <form className="login__form form">
           {loginData.map(({ name, type, value, text, error }, idx) => {
             return (
               <CustomInput
@@ -102,7 +99,7 @@ const Login = () => {
           })}
 
           <button
-            className={classNames('login__btn', {
+            className={classNames('login__button', 'button', {
               disabled: getIsButtonDisabled()
             })}
             type="submit"

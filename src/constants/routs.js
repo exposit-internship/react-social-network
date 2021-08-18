@@ -1,1 +1,5 @@
 export const INDEX_ROUTE = '/'
+export const USER_PAGE_ROUTE = '/user-page'
+export const REGISTER_ROUTE = '/register'
+export const LOGIN_ROUTE = '/login'
+export const FAKE_ROUTE = '#'

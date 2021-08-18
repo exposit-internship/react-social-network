@@ -1,14 +1,12 @@
 import { useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+
 import classNames from 'classnames'
 import { v4 as uuidv4 } from 'uuid'
 
+import { signUp } from '../../store/user/action'
 import CustomInput from '../custom-unput'
-
-import { getBalance, signUp } from '../../store/user/action'
-
-import './index.scss'
 
 const INITIAL_ERROR_STATE = {
   firstName: '',
@@ -18,6 +16,8 @@ const INITIAL_ERROR_STATE = {
 }
 
 const Register = () => {
+  let [errors, setErrors] = useState(INITIAL_ERROR_STATE)
+
   const [userCredentials, setUserCredentials] = useState({
     firstName: '',
     secondName: '',
@@ -27,7 +27,8 @@ const Register = () => {
     id: uuidv4()
   })
 
-  let [errors, setErrors] = useState(INITIAL_ERROR_STATE)
+  const dispatch = useDispatch()
+  const history = useHistory()
 
   const { firstName, secondName, email, password, amount } = userCredentials
 
@@ -40,12 +41,6 @@ const Register = () => {
     errors.secondName ||
     errors.email ||
     errors.password
-
-  // const hashedPassword = window.btoa(password)
-  // console.log(hashedPassword)
-
-  const dispatch = useDispatch()
-  const history = useHistory()
 
   const userCredencialData = useMemo(
     () => [
@@ -110,8 +105,6 @@ const Register = () => {
 
     const { firstName, secondName, email, password, amount } = userCredentials
 
-    //TODO password = window.btoa(password) пароль должен быть захешен, но пока ругается на него консоль, исправить
-
     const emptyFieldsWithErrors = getEmptyFieldsWithErrors(userCredentials)
 
     const areFildsWithErrorsEmpty = !!Object.keys(emptyFieldsWithErrors).length
@@ -136,10 +129,10 @@ const Register = () => {
   }
 
   return (
-    <div className="register">
-      <div className="register__box">
+    <div className="register registration__form">
+      <div className="register__box box">
         <h1>Register</h1>
-        <form className="register__form">
+        <form className="register__form form">
           {userCredencialData.map(({ type, text, name, value, error }, idx) => (
             <CustomInput
               key={idx}
@@ -153,7 +146,7 @@ const Register = () => {
           ))}
 
           <button
-            className={classNames('register__btn', {
+            className={classNames('register__button ', 'button', {
               disabled: getIsButtonDisabled()
             })}
             type="submit"

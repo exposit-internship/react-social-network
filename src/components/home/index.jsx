@@ -1,6 +1,7 @@
-import './index.scss'
 import Posts from './posts'
 import Sidebar from './sidebar'
+
+import './index.scss'
 
 const Home = () => (
   <div className="home">

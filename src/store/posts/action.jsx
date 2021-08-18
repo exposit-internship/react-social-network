@@ -50,19 +50,17 @@ export const deletePost = id => {
 //   }
 // }
 
-// export const addPostComment = comment => {
-//   return async dispatch => {
-//     DB.post(`posts/comments`).then(() => {
-//       dispatch({
-//         type: `${postsConst.ADD_POST}`,
-//         comment: [
-//           {
-//             userName: comment.userName,
-//             comment
-//           }
-//         ]
-//       })
-//       console.log('comment', comment)
-//     })
-//   }
-// }
+export const addPostComment = id => {
+  return async dispatch => {
+    // DB(`/posts?id=${id}`)
+    // .then(({data}) => {
+    //   DB.post('/posts', comments){
+    //     dispatch({
+    //       type: `${postsConst.ADD_COMMENT}`
+    //     })
+    //   }
+    // })
+
+  
+  }
+}

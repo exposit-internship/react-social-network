@@ -1,15 +1,18 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 
 import TestContext from './test-context'
 
-const TestState = (props) => {
-  const [testContextData, setTestContextData] = useState('initial context data')
+const TestState = props => {
+  const [changeThemeToDark, setChangeThemeToDark] = useState(false)
+
+  const themeChangeToggle = () => setChangeThemeToDark(!changeThemeToDark)
+  
 
   return (
     <TestContext.Provider
       value={{
-        testContextData,
-        setTestContextData
+        changeThemeToDark,
+        themeChangeToggle
       }}
     >
       {props.children}
@@ -18,3 +21,5 @@ const TestState = (props) => {
 }
 
 export default TestState
+
+export const useTheme = () => useContext(TestContext)
