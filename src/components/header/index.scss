@@ -18,9 +18,9 @@
       margin: 0.8em 1.6em;
     }
   }
-  &__logout {
+  &__logout,
+  &__language_change {
     color: get-color($text, 900);
-    padding: 0.4em 1em;
     font-size: 1em;
     min-width: 64px;
     box-sizing: border-box;

@@ -1,13 +1,14 @@
 import { Component } from 'react'
+import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { FAKE_ROUTE } from '../../constants/routs'
 
 import { addUserDeposite } from '../../store/user/action'
-import { DB } from '../../core/axios'
 
 import ReplenishModal from './replenish-modal'
 
 import './replenish-modal/index.scss'
-
 
 export class Monetization extends Component {
   state = {
@@ -16,11 +17,12 @@ export class Monetization extends Component {
     userPassword: ''
   }
 
-  async componentDidMount() {
-    DB('/users').then(({ data }) => console.log('USERDATA', data))
-    const { email, password, id, amount } = this.props.user
-    console.log('CURRENT USER PROPS:', email, password, id, amount)
-    console.log('MONETIZATION PROPS', this.props)
+  // TODO how to get user in state all time/ get request componentDidUpdate or localstorage
+  componentDidMount() {
+    // DB('/users').then(({ data }) => console.log('USERDATA', data))
+    // const { email, password, id, amount } = this.props.user
+    // console.log('CURRENT USER PROPS:', email, password, id, amount)
+    // console.log('MONETIZATION PROPS', this.props)
   }
 
   toggleModalVisibitity = e => {
@@ -49,7 +51,7 @@ export class Monetization extends Component {
     amount = parseInt(amount, 10)
     console.log(depositeValue)
 
-    password = window.btoa(password)
+    userPassword = window.btoa(userPassword)
 
     if (!depositeValue || !userPassword) {
       return
@@ -59,13 +61,14 @@ export class Monetization extends Component {
 
     this.props.increaseUserAmount({
       email,
-      password,
       id,
       amount,
-      depositeValue
+      depositeValue,
+      userPassword
     })
 
     this.setState({
+      isModalVisible: false,
       depositeValue: '',
       userPassword: ''
     })
@@ -73,10 +76,13 @@ export class Monetization extends Component {
 
   render() {
     const { isModalVisible } = this.state
+    const { t } = this.props
 
     return (
       <div className="monetization">
-        <button onClick={this.toggleModalVisibitity}>Replenish</button>
+        <Link to={FAKE_ROUTE} onClick={this.toggleModalVisibitity}>
+          {t('replenish')}
+        </Link>
 
         {isModalVisible && (
           <ReplenishModal
@@ -98,4 +104,6 @@ const mapDispatchToProps = dispatch => ({
   increaseUserAmount: data => dispatch(addUserDeposite(data))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Monetization)
+export default withTranslation()(
+  connect(mapStateToProps, mapDispatchToProps)(Monetization)
+)

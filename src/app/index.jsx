@@ -17,9 +17,19 @@ import {
 
 import './index.scss'
 
+import { useTheme } from '../context/test/test-state'
+import classNames from 'classnames'
+
 const App = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
+  const { changeThemeToDark } = useTheme()
+
+  useEffect(() => {
+    const lightTheme = '#ffffff'
+    const darkTheme = '#505050'
+    document.body.style.background = changeThemeToDark ? darkTheme : lightTheme
+  }, [changeThemeToDark])
 
   useEffect(() => {
     if (!user.authenticated) {
@@ -29,7 +39,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className={classNames('App', { darkModeTheme: changeThemeToDark })}>
         <Header />
         <Switch>
           <Route path={INDEX_ROUTE} component={Home} exact />

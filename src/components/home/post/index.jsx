@@ -26,8 +26,6 @@ const Post = ({ displayName, avatarURL, image, caption, onClick }) => {
           {caption}
         </h4>
       </div>
-
-      
     </div>
   )
 }

@@ -1,13 +1,24 @@
 {
-  "changeLanguage": "Поменять язык",
   "updateContext": "Обновить контекст",
   "updateRedux": "Обновить редакс",
   "apiText": "Любой текст",
 
-  "Home":"Главная",
+  "changeLanguage": "Поменять язык",
+  "light": "Светлая",
+  "dark": "Тёмная",
 
+  "replenish": "Пополнить",
+  "enterSum": "Введите сумму",
+  "enterYourPassword": "Введите пароль",
+  "submit": "Пополнить",
+  "cancel": "Закрыть",
+
+  "home": "Главная",
+  "post": "Отправить",
+
+  "yourBalance": "Ваш баланс",
   "Messenger": "Мессенджер",
   "Watch": "Смотреть",
   "Gallery": "Галлерея",
-  "Logout": "Выход"
+  "logout": "Выход"
 }

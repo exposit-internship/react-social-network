@@ -1,4 +1,5 @@
 import { PureComponent } from 'react'
+import { withTranslation } from 'react-i18next'
 import './index.scss'
 
 export class ReplenishModal extends PureComponent {
@@ -15,10 +16,12 @@ export class ReplenishModal extends PureComponent {
       handleChange
     } = this.props
 
+    const { t } = this.props
+
     return (
       <div className="replenishModal__container">
         <form onSubmit={handleAddUserDeposit} className="replenishModal__form">
-          <label className="replenishModal__label">Enter Sum</label>
+          <label className="replenishModal__label">{t('enterSum')}</label>
           <input
             className="replenishModal__depositeValue_input"
             type="number"
@@ -26,7 +29,9 @@ export class ReplenishModal extends PureComponent {
             value={depositeValue}
             onChange={handleChange}
           />
-          <label className="replenishModal__label">Enter your password </label>
+          <label className="replenishModal__label">
+            {t('enterYourPassword')}
+          </label>
           <input
             className="replenishModal__userPassword_input"
             type="password"
@@ -35,12 +40,12 @@ export class ReplenishModal extends PureComponent {
             onChange={handleChange}
           />
           <div className="replenishModal__buttons">
-            <button className="replenishModal__button_submit">Submit</button>
+            <button className="replenishModal__button_submit">{t('submit')}</button>
             <button
               className="replenishModal__button_cancel"
               onClick={toggleModalVisibitity}
             >
-              Cancel
+              {t('cancel')}
             </button>
           </div>
         </form>
@@ -49,4 +54,4 @@ export class ReplenishModal extends PureComponent {
   }
 }
 
-export default ReplenishModal
+export default withTranslation()(ReplenishModal)

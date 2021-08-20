@@ -1,0 +1,30 @@
+@import '../../styles/common';
+.dropdown-menu {
+  position: absolute;
+  top: 58px;
+  right: 0;
+  width: 300px;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  border: 1px solid get-color($primary, 100);
+  padding: 1em;
+  overflow: hidden;
+
+  &__item {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    padding: 0.8em;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-transform: capitalize;
+    &:hover {
+      background-color: get-color($primary, 100);
+      transition: color 0.1ms ease-out;
+      & a {
+        color: get-color($primary, 400);
+      }
+    }
+  }
+}

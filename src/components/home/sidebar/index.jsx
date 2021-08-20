@@ -1,7 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { USER_PAGE_ROUTE } from '../../../constants/routs'
-import classNames from 'classnames'
+
 import { useTheme } from '../../../context/test/test-state'
+
+import classNames from 'classnames'
 
 import SidebarOption from '../sidebar-option'
 
@@ -15,16 +17,17 @@ const Sidebar = () => {
   const { changeThemeToDark } = useTheme()
   return (
     <div className={classNames('sidebar', { darkmode: changeThemeToDark })}>
-      <h2>{`Your balance: ${amount}$`} </h2>
+      <h2>{`${t('yourBalance')}: ${amount}$`} </h2>
       <div className="sidebar__nav">
         <SidebarOption
           to={USER_PAGE_ROUTE}
           text={`${firstName} ${secondName}`}
           src=""
         />
-        <SidebarOption to={USER_PAGE_ROUTE} text={t('Messenger')} src="" />
         <SidebarOption to={USER_PAGE_ROUTE} text={t('Watch')} src="" />
-        <SidebarOption to={USER_PAGE_ROUTE} text={t('Gallery')} src="" />
+        {/* <SidebarOption to={USER_PAGE_ROUTE} text={t('Messenger')} src="" /> */}
+
+        {/* <SidebarOption to={USER_PAGE_ROUTE} text={t('Gallery')} src="" /> */}
       </div>
     </div>
   )

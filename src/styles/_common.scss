@@ -4,6 +4,48 @@
 @import 'variables';
 @import 'mixins';
 
-.darkmode{
-  background: rgb(44, 42, 42);
+.darkModeTheme {
+  input::-webkit-input-placeholder {
+    color: #c5c0c0;
+  }
+  .header {
+    background: #505050;
+    border-color: #7b7676;
+    a {
+      color: #fefefe;
+    }
+  }
+  .posts,
+  .sidebar,
+  .post,
+  .dropdown-menu {
+    background: #424242;
+    border-color: #7b7676;
+    color: #fefefe;
+    &__header {
+      background: #424242;
+      border-color: #7b7676;
+    }
+    &__item:hover,
+    &__option:hover {
+      background-color: rgb(29, 173, 240);
+    }
+    a {
+      color: #fefefe;
+    }
+
+    &__box {
+      border-color: #7b7676;
+      input {
+        background: #393939;
+      }
+    }
+  }
+  .comments {
+    border-color: #7b7676;
+    input {
+      color: #fefefe;
+      background: #393939;
+    }
+  }
 }
