@@ -1,44 +1,46 @@
-import classNames from 'classnames'
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useTheme } from '../../../context/test/test-state'
+import { useDispatch } from 'react-redux'
+
 import { addPostComment } from '../../../store/posts/action'
+import Comment from './comment'
+
 import './index.scss'
 
 function Comments() {
-  const user = JSON.parse(localStorage.getItem('user'))
-  const { firstName, secondName } = user
-
   const [comment, setComment] = useState({
     userName: '',
     userComment: ''
   })
-  let { userName, userComment } = comment
   const dispatch = useDispatch()
+
+  const user = JSON.parse(localStorage.getItem('user'))
+  const { firstName, secondName } = user
+
+  let { userName, userComment } = comment
+  userName = `${firstName} ${secondName}`
 
   const handleChange = event => {
     const { name, value } = event.target
     setComment({ ...comment, [name]: value })
   }
-  const { changeThemeToDark } = useTheme()
 
-  // const {posts}  = useSelector(state => state.posts)
-  // console.log(posts)
-  let postId
 
+  // TODO need poster id
   const addUserComment = event => {
     event.preventDefault()
+    const { value } = event.target
 
     if (!userComment) {
       return
     } else {
       dispatch(
-        addPostComment(postId, {
+        addPostComment({
           ...comment,
-          userName: `${firstName}${secondName}`,
-          userComment: event.target.value
+          userName,
+          userComment: value
         })
       )
+      console.log({ userName, userComment })
       setComment({
         userName: '',
         userComment: ''
@@ -48,16 +50,16 @@ function Comments() {
 
   return (
     <div className="comments">
-      <div className="comments__box">
-        <p className="commets__user"></p>
-        <p className="comments__comment"></p>
-      </div>
+      {comment &&
+        comment.length &&
+        comment.map(idx => (
+          <Comment key={idx} name={userName} message={userComment} />
+        ))}
+
       <div className="comments__post">
-        <form className="comments__post_container">
+        <form onSubmit={addUserComment} className="comments__post_container">
           <input
-            className={classNames('comments__post_message', {
-              dark__393939: changeThemeToDark
-            })}
+            className="comments__post_message"
             placeholder="Add a comment..."
             type="text"
             name="userComment"
@@ -65,11 +67,7 @@ function Comments() {
             onChange={handleChange}
           />
           {userComment ? (
-            <button
-              className="comments__post_button"
-              type="submit"
-              onClick={addUserComment}
-            >
+            <button className="comments__post_button" type="submit">
               Post
             </button>
           ) : (

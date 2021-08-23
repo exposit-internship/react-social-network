@@ -1,16 +1,15 @@
 import { Redirect, Route } from 'react-router-dom'
+import { REGISTER_ROUTE } from '../constants/routs'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const isUserAuthentecated = localStorage.getItem('user')
-    ? JSON.parse(localStorage.getItem('user'))
-    : null
+  const isAuthenticated = window.localStorage.getItem('user')
 
   return (
     <Route
       {...rest}
       render={props =>
-        !isUserAuthentecated ? (
-          <Redirect to="/register" />
+        isAuthenticated !== 'user' ? (
+          <Redirect to={REGISTER_ROUTE} />
         ) : (
           <Component {...props} />
         )

@@ -1,7 +1,9 @@
 import { Component } from 'react'
-import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+
+import { withTranslation } from 'react-i18next'
+
 import { FAKE_ROUTE } from '../../constants/routs'
 
 import { addUserDeposite } from '../../store/user/action'
@@ -18,16 +20,13 @@ export class Monetization extends Component {
   }
 
   // TODO how to get user in state all time/ get request componentDidUpdate or localstorage
-  componentDidMount() {
-    // DB('/users').then(({ data }) => console.log('USERDATA', data))
-    // const { email, password, id, amount } = this.props.user
-    // console.log('CURRENT USER PROPS:', email, password, id, amount)
-    // console.log('MONETIZATION PROPS', this.props)
-  }
+  componentDidMount() {}
 
   toggleModalVisibitity = e => {
     e.preventDefault()
     this.setState({ isModalVisible: !this.state.isModalVisible })
+    let { email, id, amount } = this.props.user
+    console.log("PROPS",this.props.user)
   }
 
   handleChange = event => {
@@ -35,29 +34,25 @@ export class Monetization extends Component {
     this.setState({
       [name]: value
     })
-    // console.table({ name, value })
+   
   }
 
   handleAddUserDeposit = event => {
     event.preventDefault()
 
     let { depositeValue, userPassword } = this.state
-    console.table({ depositeValue, userPassword })
 
-    let { email, password, id, amount } = this.props.user
-    console.table({ email, password, id, amount, depositeValue })
+    let { email, id, amount } = this.props.user
+    console.log("PROPS",this.props.user)
 
     depositeValue = parseInt(depositeValue, 10)
     amount = parseInt(amount, 10)
-    console.log(depositeValue)
 
     userPassword = window.btoa(userPassword)
 
-    if (!depositeValue || !userPassword) {
+    if (!depositeValue || !window.btoa(userPassword)) {
       return
     }
-
-    console.log(this.state)
 
     this.props.increaseUserAmount({
       email,

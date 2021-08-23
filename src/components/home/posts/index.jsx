@@ -1,17 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuidv4 } from 'uuid'
-import classNames from 'classnames'
 
 import Post from '../post'
 import { addPost, deletePost, getPosts } from '../../../store/posts/action'
 
-import Comments from '../comments'
+// import Comments from '../comments'
+
 import './index.scss'
-import { INDEX_ROUTE } from '../../../constants/routs'
-import { useTheme } from '../../../context/test/test-state'
 
 const Posts = () => {
   const [post, setPost] = useState({
@@ -32,9 +30,9 @@ const Posts = () => {
   const { posts } = useSelector(state => state.posts)
 
   const { t } = useTranslation('translation')
-  const { changeThemeToDark } = useTheme()
 
-  const user = JSON.parse(localStorage.getItem('user'))
+  const { user } = useSelector(state => state.user)
+
   let { firstName, secondName } = user
 
   const handleChange = event => {
@@ -44,32 +42,24 @@ const Posts = () => {
 
   const publishPost = () => {
     if (!caption || !imageURL) {
-      console.log('Please add data')
+      return
     } else {
       dispatch(
         addPost({ ...post, displayName: `${firstName} ${secondName}` }, history)
       )
-      history.push(INDEX_ROUTE)
     }
   }
 
   const handleDelete = id => dispatch(deletePost(id))
 
-  useEffect(() => {
-    dispatch(getPosts())
-  }, [])
+  useEffect(() => dispatch(getPosts()), [])
 
   return (
-    <div className={classNames('posts', { darkmode: changeThemeToDark })}>
-      <div className={classNames('posts__header', { darkmode: changeThemeToDark })}>
+    <div className="posts">
+      <div className="posts__header">
         <h3>{t('home')}</h3>
       </div>
-
-      <div
-        className={classNames('posts__box', {
-          dark__background: changeThemeToDark
-        })}
-      >
+      <div className="posts__box">
         <form className="posts__form">
           <div className="posts__input">
             <img width="40px" height="40px" src={avatarURL} alt="avatar" />
@@ -79,9 +69,6 @@ const Posts = () => {
               value={caption}
               onChange={handleChange}
               placeholder="What's happening?"
-              className={classNames({
-                dark__393939: changeThemeToDark
-              })}
             />
           </div>
           <input
@@ -90,11 +77,8 @@ const Posts = () => {
             value={imageURL}
             onChange={handleChange}
             placeholder="Enter your image..."
-            className={classNames('posts__image_upload', {
-              dark__393939: changeThemeToDark
-            })}
+            className="posts__image_upload"
           />
-
           <button
             type="submit"
             className="posts__box-btn"
@@ -106,8 +90,8 @@ const Posts = () => {
       </div>
       {posts &&
         posts.length > 0 &&
-        posts.map(({ id, displayName, avatarURL, imageURL, caption }) => (
-          <>
+        posts.map(({ id, displayName, avatarURL, imageURL, caption }, idx) => (
+          <Fragment key={idx}>
             <Post
               key={id}
               displayName={displayName}
@@ -116,8 +100,8 @@ const Posts = () => {
               caption={caption}
               onClick={() => handleDelete(id)}
             />
-            <Comments />
-          </>
+            {/* <Comments /> */}
+          </Fragment>
         ))}
     </div>
   )

@@ -1,22 +1,29 @@
+import { useSelector } from 'react-redux'
+
 import { useTranslation } from 'react-i18next'
+
 import { USER_PAGE_ROUTE } from '../../../constants/routs'
 
-import { useTheme } from '../../../context/test/test-state'
-
-import classNames from 'classnames'
+import PropTypes from 'prop-types'
 
 import SidebarOption from '../sidebar-option'
-
+import { getUser } from '../../../store/user/action'
 import './index.scss'
+import { useEffect } from 'react'
+
+import { useDispatch } from 'react-redux'
 
 const Sidebar = () => {
+  const dispatch = useDispatch()
   const { t } = useTranslation('translation')
 
-  const user = JSON.parse(localStorage.getItem('user'))
-  let { firstName, secondName, amount } = user
-  const { changeThemeToDark } = useTheme()
+  useEffect(() => dispatch(getUser(email)), [])
+
+  const { user } = useSelector(state => state.user)
+  const { firstName, secondName, email, amount } = user
+
   return (
-    <div className={classNames('sidebar', { darkmode: changeThemeToDark })}>
+    <div className="sidebar">
       <h2>{`${t('yourBalance')}: ${amount}$`} </h2>
       <div className="sidebar__nav">
         <SidebarOption
@@ -25,12 +32,15 @@ const Sidebar = () => {
           src=""
         />
         <SidebarOption to={USER_PAGE_ROUTE} text={t('Watch')} src="" />
-        {/* <SidebarOption to={USER_PAGE_ROUTE} text={t('Messenger')} src="" /> */}
-
-        {/* <SidebarOption to={USER_PAGE_ROUTE} text={t('Gallery')} src="" /> */}
       </div>
     </div>
   )
 }
 
 export default Sidebar
+
+Sidebar.propTypes = {
+  amount: PropTypes.number,
+  firstName: PropTypes.string,
+  secondName: PropTypes.string
+}

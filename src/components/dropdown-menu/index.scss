@@ -1,15 +1,16 @@
 @import '../../styles/common';
 .dropdown-menu {
-  position: absolute;
-  top: 58px;
-  right: 0;
-  width: 300px;
-  transform: translateX(-50%);
-  background-color: #ffffff;
-  border: 1px solid get-color($primary, 100);
-  padding: 1em;
-  overflow: hidden;
-
+  &__container {
+    position: absolute;
+    top: 58px;
+    right: 0;
+    width: 300px;
+    transform: translateX(-50%);
+    background-color: $white;
+    border: 1px solid get-color($primary, 100);
+    padding: 1em;
+    overflow: hidden;
+  }
   &__item {
     height: 50px;
     display: flex;
@@ -25,6 +26,24 @@
       & a {
         color: get-color($primary, 400);
       }
+    }
+  }
+  &__button {
+    min-width: 4em;
+    padding: 0.8em 1em;
+    margin: 0.4em 0;
+    font-weight: $bold;
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    letter-spacing: 0.04em;
+    text-transform: $uppercase;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    cursor: pointer;
+    &:hover {
+      background-color: get-color($bg, 200);
     }
   }
 }

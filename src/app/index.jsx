@@ -1,12 +1,13 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import { isLoggedInUser } from '../store/user/action'
+import classNames from 'classnames'
 
-import { Home, Header, UserPage } from '../components'
+import { useTheme } from '../context/test/test-state'
+
 import Login from '../auth/login'
 import Register from '../auth/register'
+import { Home, Header, UserPage } from '../components'
 
 import {
   INDEX_ROUTE,
@@ -17,12 +18,7 @@ import {
 
 import './index.scss'
 
-import { useTheme } from '../context/test/test-state'
-import classNames from 'classnames'
-
 const App = () => {
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.user)
   const { changeThemeToDark } = useTheme()
 
   useEffect(() => {
@@ -30,12 +26,6 @@ const App = () => {
     const darkTheme = '#505050'
     document.body.style.background = changeThemeToDark ? darkTheme : lightTheme
   }, [changeThemeToDark])
-
-  useEffect(() => {
-    if (!user.authenticated) {
-      dispatch(isLoggedInUser())
-    }
-  }, [])
 
   return (
     <BrowserRouter>

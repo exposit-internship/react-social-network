@@ -1,4 +1,4 @@
-import { postsConst } from './type'
+import { postsConstance } from './type'
 
 const initialState = {
   posts: [],
@@ -7,27 +7,27 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case `${postsConst.GET_POSTS}`:
+    case `${postsConstance.GET_POSTS}`:
       state = {
         ...state,
         posts: action.payload
       }
       break
-    case `${postsConst.DELETE_POST}`:
+    case `${postsConstance.DELETE_POST}`:
       state = {
         ...state
       }
       break
-    case `${postsConst.ADD_POST}`:
+    case `${postsConstance.ADD_POST}`:
       state = {
         ...state
       }
-    case ` ${postsConst.GET_COMMENTS}`:
+    case ` ${postsConstance.GET_COMMENTS}`:
       state = {
         ...state
       }
       break
-    case ` ${postsConst.ADD_COMMENT}`:
+    case ` ${postsConstance.ADD_COMMENT}`:
       state = {
         ...state,
        

@@ -1,9 +1,10 @@
+@import '../../styles/common';
 .home {
   display: flex;
   height: calc(44em - .4em);
 
   .widgets {
-    flex: 0.3;
+    flex: .3;
     border-right: 1px solid grey;
   }
 }

@@ -1,28 +1,27 @@
+import { useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import Monetization from '../monetization'
-import homeIcon from '../../images/home.svg'
-import userIcon from '../../images/user.svg'
-import downArrow from '../../images/downArrow.svg'
 import Auth from '../../auth'
+import Monetization from '../monetization'
+import DropdownMenu from '../dropdown-menu'
 
 import { INDEX_ROUTE, USER_PAGE_ROUTE } from '../../constants/routs'
 
+import homeIcon from '../../images/home.svg'
+import userIcon from '../../images/user.svg'
+
 import './index.scss'
-import { useState } from 'react'
-import DropdownMenu from '../dropdown-menu'
-import { useCallback } from 'react'
 
 const Header = () => {
   const [isVisibleMenu, setIsVisibleMenu] = useState(false)
-
-  const user = useSelector(state => state.user)
 
   const isVisibleDropdown = useCallback(
     () => setIsVisibleMenu(!isVisibleMenu),
     [isVisibleMenu]
   )
+
+  const user = useSelector(state => state.user)
 
   return (
     <div className="header">
@@ -43,16 +42,13 @@ const Header = () => {
         </div>
       ) : null}
 
-      {user.authenticated ? <Monetization /> : null}
-
-      {!user.authenticated ? <Auth /> : null}
-
       {user.authenticated ? (
-        <button onClick={isVisibleDropdown}>Dropdown</button>
+        <Monetization isVisibleDropdown={isVisibleDropdown} />
       ) : null}
-      {!isVisibleMenu ? (
+      {user.authenticated ? (
         <DropdownMenu isVisibleDropdown={isVisibleDropdown} />
       ) : null}
+      {!user.authenticated ? <Auth /> : null}
     </div>
   )
 }

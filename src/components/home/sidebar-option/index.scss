@@ -1,26 +1,26 @@
 @import '../../../styles/common';
-
-.sidebar__option {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0.4em 1.2em;
-}
-
-.sidebar__option h3 {
-  margin-top: -1em;
-  margin-bottom: 0.2em;
-  font-weight: bold;
-  font-size: 1.4em;
-  text-transform: capitalize;
-}
-.sidebar__option:hover {
-  background-color: get-color($primary, 100);
-  border-radius: 30px;
-  transition: color 0.1ms ease-out;
-  & a {
-    color: get-color($primary, 400);
-    transition: color 0.1ms ease-out;
+.sidebar {
+  &__option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0.4em 1.2em;
+    & h3 {
+      margin-top: -1em;
+      margin-bottom: 0.2em;
+      font-weight: $bold;
+      font-size: 1.4em;
+      text-transform: $capitalize;
+    }
+    &:hover {
+      background-color: get-color($primary, 100);
+      border-radius: 30px;
+      transition: color 0.1ms ease-out;
+      & a {
+        color: get-color($primary, 400);
+        transition: color 0.1ms ease-out;
+      }
+    }
   }
 }

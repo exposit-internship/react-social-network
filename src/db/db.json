@@ -5,7 +5,7 @@
       "secondName": "white",
       "email": "w@mail.com",
       "password": "MTExMTEx",
-      "amount": 70,
+      "amount": 1600,
       "id": "1313a558-d2a1-4167-a1bf-d3d713bda892"
     },
     {
@@ -63,6 +63,22 @@
           "userComment": "ilia white"
         }
       ]
+    },
+    {
+      "displayName": "andreu bom",
+      "avatarURL": "https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png",
+      "imageURL": "https://www.meme-arsenal.com/memes/8aba1ab291114f07e91efa7945404bb6.jpg",
+      "caption": "FIXED USER STATE",
+      "id": "b1c311df-2d91-4727-b387-247fb68cdcf8",
+      "comments": []
+    },
+    {
+      "displayName": "ilia white",
+      "avatarURL": "https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png",
+      "imageURL": "https://boltai.com/wp-content/uploads/2017/12/ezgif.com-crop-1_1511384546.gif",
+      "caption": "ADD BALANCE FUNCIONALITY",
+      "id": "e3730627-73e1-4b0d-bc63-955da67e71c3",
+      "comments": []
     }
   ]
 }

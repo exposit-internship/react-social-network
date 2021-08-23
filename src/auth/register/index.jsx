@@ -5,7 +5,13 @@ import { useHistory } from 'react-router-dom'
 import classNames from 'classnames'
 import { v4 as uuidv4 } from 'uuid'
 
+import PropTypes from 'prop-types'
+
 import { signUp } from '../../store/user/action'
+import {
+  getEmptyFieldsWithErrors,
+  getIsButtonDisabled
+} from '../../utils/registration'
 import CustomInput from '../custom-unput'
 
 const INITIAL_ERROR_STATE = {
@@ -16,8 +22,6 @@ const INITIAL_ERROR_STATE = {
 }
 
 const Register = () => {
-  let [errors, setErrors] = useState(INITIAL_ERROR_STATE)
-
   const [userCredentials, setUserCredentials] = useState({
     firstName: '',
     secondName: '',
@@ -27,20 +31,23 @@ const Register = () => {
     id: uuidv4()
   })
 
+  let [errors, setErrors] = useState(INITIAL_ERROR_STATE)
+
   const dispatch = useDispatch()
   const history = useHistory()
 
   const { firstName, secondName, email, password, amount } = userCredentials
 
-  const getIsButtonDisabled = () =>
-    !firstName ||
-    !secondName ||
-    !email ||
-    !password ||
-    errors.firstName ||
-    errors.secondName ||
-    errors.email ||
+  getIsButtonDisabled(
+    !firstName,
+    secondName,
+    email,
+    password,
+    errors.firstName,
+    errors.secondName,
+    errors.email,
     errors.password
+  )
 
   const userCredencialData = useMemo(
     () => [
@@ -91,14 +98,7 @@ const Register = () => {
     setUserCredentials({ ...userCredentials, [name]: value })
   }
 
-  const getEmptyFieldsWithErrors = userCredentials => {
-    let emptyFields = {}
-    Object.entries(userCredentials).forEach(([key, value]) => {
-      !value && (emptyFields[key] = "can't be empty")
-    })
-
-    return emptyFields
-  }
+  getEmptyFieldsWithErrors(userCredentials)
 
   const registerUser = event => {
     event.preventDefault()
@@ -116,15 +116,7 @@ const Register = () => {
         ...userCredentials,
         password: window.btoa(password)
       }
-
       dispatch(signUp(transformedUserCredentials, email, history))
-
-      setUserCredentials({
-        firstName: '',
-        secondName: '',
-        email: '',
-        password: ''
-      })
     }
   }
 
@@ -161,3 +153,20 @@ const Register = () => {
 }
 
 export default Register
+
+Register.propTypes = {
+  firstName: PropTypes.string,
+  secondName: PropTypes.string,
+  email: PropTypes.string,
+  password: PropTypes.string,
+  INITIAL_ERROR_STATE: PropTypes.shape({
+    firstName: PropTypes.string,
+    secondName: PropTypes.string,
+    email: PropTypes.string,
+    password: PropTypes.string
+  }),
+  idx: PropTypes.number,
+  name: PropTypes.string,
+  type: PropTypes.string,
+  text: PropTypes.string
+}

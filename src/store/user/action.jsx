@@ -1,118 +1,86 @@
 import { DB } from '../../core/axios'
 
-import { userConst } from './types'
-import { INDEX_ROUTE } from '../../constants/routs'
+import { userConstance } from './types'
+import { INDEX_ROUTE, REGISTER_ROUTE } from '../../constants/routs'
 
-export const signUp = (user, email, history) => {
-  return async dispatch => {
-    DB(`/users?email=${email}`)
-      .then(({ data }) => {
-        if (data.length > 0) {
-          alert('This user is already registered')
-        } else {
-          DB.post('/users', user)
+export const getUser = email => dispatch =>
+  DB(`/users?email=${email}`).then(res => {
+    dispatch({
+      type: userConstance.GET_USER,
+      payload: res.data[0]
+    })
+  })
+
+export const signUp = (user, email, history) => dispatch =>
+  DB(`/users?email=${email}`)
+    .then(({ data }) => {
+      data.length > 0
+        ? alert('This user is already registered')
+        : DB.post('/users', user)
             .then(({ data }) => {
               dispatch({
-                type: `${userConst.USER_LOGIN}`,
+                type: `${userConstance.USER_LOGIN}`,
                 payload: data
               })
               localStorage.setItem('user', JSON.stringify(data))
-
-              console.log('data', data)
               history.push(INDEX_ROUTE)
             })
             .catch(error => {
               console.log(error.message)
             })
-        }
-      })
-      .catch(error => {
-        console.log(error.message)
-      })
-  }
-}
-
-export const signIn = (email, password, history) => {
-  return async dispatch => {
-    DB(`/users?email=${email}&password=${window.btoa(password)}`)
-      .then(({ data }) => {
-        console.log(data)
-        if (data.length > 0) {
-          dispatch({
-            type: `${userConst.USER_LOGIN}`,
-            payload: data[0]
-          })
-          localStorage.setItem('user', JSON.stringify(data[0]))
-          history.push(INDEX_ROUTE)
-        } else {
-          alert('incorrect data')
-        }
-      })
-      .catch(error => {
-        console.log(error.message)
-      })
-  }
-}
-
-export const isLoggedInUser = () => {
-  return async dispatch => {
-    const user = localStorage.getItem('user')
-      ? JSON.parse(localStorage.getItem('user'))
-      : null
-
-    if (user) {
-      dispatch({
-        type: `${userConst.USER_LOGIN}`
-      })
-    } else {
-      dispatch({
-        type: `${userConst.USER_LOGOUT}`
-      })
-    }
-  }
-}
-
-export const logout = () => {
-  return async dispatch => {
-    localStorage.clear()
-    dispatch({
-      type: `${userConst.USER_LOGOUT}`
     })
-  }
+    .catch(error => {
+      console.log(error.message)
+    })
+
+export const signIn = (email, password, history) => dispatch =>
+  DB(`/users?email=${email}&password=${window.btoa(password)}`)
+    .then(({ data }) => {
+      if (data.length > 0) {
+        dispatch({
+          type: `${userConstance.USER_LOGIN}`,
+          payload: data[0]
+        })
+        localStorage.setItem('user', JSON.stringify(data[0]))
+        history.push(INDEX_ROUTE)
+      } else {
+        alert('incorrect data')
+      }
+    })
+    .catch(error => {
+      console.log(error.message)
+    })
+
+export const logout = history => dispatch => {
+  localStorage.clear()
+  dispatch({
+    type: `${userConstance.USER_LOGOUT}`
+  })
+  history.push(REGISTER_ROUTE)
 }
 
-// without email but id?
-export const addUserDeposite = ({
-  email,
-  amount,
-  id,
-  depositeValue,
-  userPassword
-}) => {
-  return async dispatch => {
-    DB(`/users?email=${email}&password=${window.btoa(userPassword)}`)
-      .then(({ data }) => {
-        if (data.length) {
-          alert('Please, enter correct password')
-          console.log('ACTION DATA', data)
-        } else {
-          DB.patch(`/users/${id}`, { amount: amount + depositeValue })
-            .then(() => {
-              console.log('amount', amount)
-              dispatch({
-                type: `${userConst.USER_BALANCE}`,
-                payload: data[0]
-              })
+export const addUserDeposite =
+  ({ email, amount, id, depositeValue, userPassword }) =>
+  dispatch =>
+    DB(`/users?email=${email}&password=${userPassword}`)
+      .then(async ({ data }) => {
+        console.log('DATA', data, id)
 
-              console.log('addUserDeposite', data)
-            })
-            .catch(error => {
-              console.log(error.message)
-            })
-        }
+        data.length
+          ? DB.patch(`/users/${id}`, { amount: amount + depositeValue })
+              .then(( res ) => {
+                console.log("RES1", res)
+                dispatch({
+                  type: userConstance.USER_BALANCE,
+                  payload: res.data
+                })
+                console.log("RES2", res.data)
+              })
+              .catch(error => {
+                console.log(error.message)
+              })
+          : alert('Please, enter correct password')
       })
       .catch(error => {
         console.log(error.message)
       })
-  }
-}

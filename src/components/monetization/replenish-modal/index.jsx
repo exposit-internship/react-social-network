@@ -3,10 +3,6 @@ import { withTranslation } from 'react-i18next'
 import './index.scss'
 
 export class ReplenishModal extends PureComponent {
-  componentDidMount() {
-    console.log(this.props)
-  }
-
   render() {
     const {
       depositeValue,
@@ -40,7 +36,9 @@ export class ReplenishModal extends PureComponent {
             onChange={handleChange}
           />
           <div className="replenishModal__buttons">
-            <button className="replenishModal__button_submit">{t('submit')}</button>
+            <button className="replenishModal__button_submit">
+              {t('submit')}
+            </button>
             <button
               className="replenishModal__button_cancel"
               onClick={toggleModalVisibitity}

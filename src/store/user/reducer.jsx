@@ -1,4 +1,4 @@
-import { userConst } from './types'
+import { userConstance } from './types'
 
 const initialState = {
   users: [],
@@ -8,24 +8,33 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case `${userConst.USER_LOGIN}`:
+    case userConstance.GET_USER:
+      state = {
+        ...state,
+        user: action.payload
+      }
+      break
+    case userConstance.USER_LOGIN:
       state = {
         ...state,
         user: action.payload,
         authenticated: true
       }
-      console.log('USER', state)
       break
-    case `${userConst.USER_LOGOUT}`:
+    case userConstance.USER_LOGOUT:
       state = {
         ...state,
         authenticated: false
       }
       break
-    case `${userConst.USER_BALANCE}`:
+    case userConstance.USER_BALANCE:
+      console.log('BALANCEACTIONPAYLOAD', action.payload.amount)
       state = {
         ...state,
-        user: action.payload
+        user: {
+          ...state.user,
+          amount: action.payload.amount
+        }
       }
       break
   }
