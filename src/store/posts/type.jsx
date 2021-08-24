@@ -1,4 +1,5 @@
 export const postsConstance = {
+  GET_CURRENT_POST: 'GET_CURRENT_POST',
   GET_POSTS: 'GET_POSTS',
   ADD_POST: 'ADD_POST',
   DELETE_POST: 'DELETE_POST',

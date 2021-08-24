@@ -2,7 +2,15 @@
 
 import './index.scss'
 
-const Post = ({ displayName, avatarURL, image, caption, onClick }) => (
+const Post = ({
+  displayName,
+  avatarURL,
+  image,
+  caption,
+  onClick,
+  commentUserName,
+  commentUserMessage
+}) => (
   <div className="post">
     <div className="post__header">
       <div className="post__header_info">
@@ -25,6 +33,10 @@ const Post = ({ displayName, avatarURL, image, caption, onClick }) => (
         <strong>{`${displayName} : `} </strong>
         {caption}
       </h4>
+    </div>
+    <div className="comment">
+      <p className="commet__user">{commentUserName}</p>
+      <span className="comment__message">{commentUserMessage}</span>
     </div>
   </div>
 )

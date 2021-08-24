@@ -64,17 +64,14 @@ export const addUserDeposite =
   dispatch =>
     DB(`/users?email=${email}&password=${userPassword}`)
       .then(async ({ data }) => {
-        console.log('DATA', data, id)
-
         data.length
           ? DB.patch(`/users/${id}`, { amount: amount + depositeValue })
-              .then(( res ) => {
-                console.log("RES1", res)
+              .then(res => {
                 dispatch({
                   type: userConstance.USER_BALANCE,
                   payload: res.data
                 })
-                console.log("RES2", res.data)
+                localStorage.setItem('user', JSON.stringify(res.data))
               })
               .catch(error => {
                 console.log(error.message)

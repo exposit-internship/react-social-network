@@ -5,11 +5,17 @@ import { useTranslation } from 'react-i18next'
 import { v4 as uuidv4 } from 'uuid'
 
 import Post from '../post'
-import { addPost, deletePost, getPosts } from '../../../store/posts/action'
+import {
+  addPost,
+  deletePost,
+  getCurrentPost,
+  getPosts
+} from '../../../store/posts/action'
 
-// import Comments from '../comments'
+import Comments from '../comments'
 
 import './index.scss'
+import Comment from '../comments/comment'
 
 const Posts = () => {
   const [post, setPost] = useState({
@@ -19,7 +25,12 @@ const Posts = () => {
     imageURL: '',
     caption: '',
     id: uuidv4(),
-    comments: []
+    comments: [
+      {
+        userName: 's',
+        userComment: 's'
+      }
+    ]
   })
 
   let { displayName, avatarURL, imageURL, caption, comments } = post
@@ -32,6 +43,8 @@ const Posts = () => {
   const { t } = useTranslation('translation')
 
   const { user } = useSelector(state => state.user)
+
+  useEffect(() => dispatch(getPosts()), [])
 
   let { firstName, secondName } = user
 
@@ -50,9 +63,12 @@ const Posts = () => {
     }
   }
 
-  const handleDelete = id => dispatch(deletePost(id))
+  const handleDelete = id => {
+    dispatch(deletePost(id))
+    console.log('ID', id)
+  }
 
-  useEffect(() => dispatch(getPosts()), [])
+  // const handleGetCurrentPost = id => dispatch(getCurrentPost(id))
 
   return (
     <div className="posts">
@@ -90,19 +106,56 @@ const Posts = () => {
       </div>
       {posts &&
         posts.length > 0 &&
-        posts.map(({ id, displayName, avatarURL, imageURL, caption }, idx) => (
-          <Fragment key={idx}>
-            <Post
-              key={id}
-              displayName={displayName}
-              avatarURL={avatarURL}
-              image={imageURL}
-              caption={caption}
-              onClick={() => handleDelete(id)}
-            />
-            {/* <Comments /> */}
-          </Fragment>
-        ))}
+        posts.map(
+          ({
+            id,
+            displayName,
+            avatarURL,
+            imageURL,
+            caption,
+            commentUserName,
+            commentUserMessage
+          }) => (
+            <Fragment key={id}>
+              <Post
+                displayName={displayName}
+                avatarURL={avatarURL}
+                image={imageURL}
+                caption={caption}
+                onClick={() => handleDelete(id)}
+                commentUserName={comments.userNAme}
+                commentUserMessage={comments.userComment}
+              />
+              <div className="comments">
+                <div className="comments__post">
+                  <form
+                    onSubmit={() => console.log('comment')}
+                    className="comments__post_container"
+                  >
+                    <input
+                      className="comments__post_message"
+                      placeholder="Add a comment..."
+                      type="text"
+                      name="userComment"
+                      value={e => e.target.value}
+                      onChange={handleChange}
+                    />
+                    {user ? (
+                      <button className="comments__post_button" type="submit">
+                        Post
+                      </button>
+                    ) : (
+                      <button className="comments__post_button" disabled>
+                        {' '}
+                        Post
+                      </button>
+                    )}
+                  </form>
+                </div>
+              </div>
+            </Fragment>
+          )
+        )}
     </div>
   )
 }

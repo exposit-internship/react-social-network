@@ -1,85 +1,81 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+// import { useCallback } from 'react'
+// import { useState } from 'react'
+// import { useSelector } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 
-import { addPostComment } from '../../../store/posts/action'
-import Comment from './comment'
+// import { addPostComment, getCurrentPost } from '../../../store/posts/action'
+// import Comment from './comment'
 
-import './index.scss'
+// import './index.scss'
 
-function Comments() {
-  const [comment, setComment] = useState({
-    userName: '',
-    userComment: ''
-  })
-  const dispatch = useDispatch()
+// function Comments() {
+//   const [comment, setComment] = useState({
+//     userName: '',
+//     userComment: ''
+//   })
+//   const dispatch = useDispatch()
 
-  const user = JSON.parse(localStorage.getItem('user'))
-  const { firstName, secondName } = user
+//   const { user } = useSelector(state => state.user)
+//   const { firstName, secondName } = user
 
-  let { userName, userComment } = comment
-  userName = `${firstName} ${secondName}`
+//   const { posts } = useSelector(state => state.posts)
 
-  const handleChange = event => {
-    const { name, value } = event.target
-    setComment({ ...comment, [name]: value })
-  }
+//   const { id } = posts
+//   console.log('ID', id)
 
+//   let { userName, userComment } = comment
 
-  // TODO need poster id
-  const addUserComment = event => {
-    event.preventDefault()
-    const { value } = event.target
+//   const handleChange = event => {
+//     const { name, value } = event.target
+//     setComment({ ...comment, [name]: value })
+//   }
 
-    if (!userComment) {
-      return
-    } else {
-      dispatch(
-        addPostComment({
-          ...comment,
-          userName,
-          userComment: value
-        })
-      )
-      console.log({ userName, userComment })
-      setComment({
-        userName: '',
-        userComment: ''
-      })
-    }
-  }
+ 
+//   // TODO need poster id
+//   const addUserComment = (event, id, userName, userComment) => {
+//     event.preventDefault()
+//     const { value } = event.target
 
-  return (
-    <div className="comments">
-      {comment &&
-        comment.length &&
-        comment.map(idx => (
-          <Comment key={idx} name={userName} message={userComment} />
-        ))}
+//     if (!userComment) {
+//       return
+//     } else {
+//       dispatch(getCurrentPost(id))
+//       console.log('CURRENTID', id)
+//     }
+//   }
 
-      <div className="comments__post">
-        <form onSubmit={addUserComment} className="comments__post_container">
-          <input
-            className="comments__post_message"
-            placeholder="Add a comment..."
-            type="text"
-            name="userComment"
-            value={userComment}
-            onChange={handleChange}
-          />
-          {userComment ? (
-            <button className="comments__post_button" type="submit">
-              Post
-            </button>
-          ) : (
-            <button className="comments__post_button" disabled>
-              {' '}
-              Post
-            </button>
-          )}
-        </form>
-      </div>
-    </div>
-  )
-}
+//   return (
+//     <div className="comments">
+//       {comment &&
+//         comment.length &&
+//         comment.map(idx => (
+//           <Comment key={idx} name={userName} message={userComment} />
+//         ))}
 
-export default Comments
+//       <div className="comments__post">
+//         <form onSubmit={addUserComment} className="comments__post_container">
+//           <input
+//             className="comments__post_message"
+//             placeholder="Add a comment..."
+//             type="text"
+//             name="userComment"
+//             value={userComment}
+//             onChange={handleChange}
+//           />
+//           {userComment ? (
+//             <button className="comments__post_button" type="submit">
+//               Post
+//             </button>
+//           ) : (
+//             <button className="comments__post_button" disabled>
+//               {' '}
+//               Post
+//             </button>
+//           )}
+//         </form>
+//       </div>
+//     </div>
+//   )
+// }
+
+// export default Comments
