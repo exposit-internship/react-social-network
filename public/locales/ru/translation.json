@@ -1,0 +1,24 @@
+{
+  "updateContext": "Обновить контекст",
+  "updateRedux": "Обновить редакс",
+  "apiText": "Любой текст",
+
+  "changeLanguage": "Поменять язык",
+  "light": "Светлая",
+  "dark": "Тёмная",
+
+  "replenish": "Пополнить",
+  "enterSum": "Введите сумму",
+  "enterYourPassword": "Введите пароль",
+  "submit": "Пополнить",
+  "cancel": "Закрыть",
+
+  "home": "Главная",
+  "post": "Отправить",
+
+  "yourBalance": "Ваш баланс",
+  "Messenger": "Мессенджер",
+  "Watch": "Смотреть",
+  "Gallery": "Галлерея",
+  "logout": "Выход"
+}

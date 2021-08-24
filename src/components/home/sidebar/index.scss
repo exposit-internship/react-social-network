@@ -1,0 +1,12 @@
+@import '../../../styles/common';
+
+.sidebar {
+  flex: 0.2;
+  border-right: 1px solid get-color($primary, 100);
+  background-color: $white;
+  padding: 1.2em;
+  & h2 {
+    text-align: center;
+    color: get-color($primary, 400);
+  }
+}

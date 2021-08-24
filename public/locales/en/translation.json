@@ -1,0 +1,24 @@
+{
+  "updateContext": "Update context",
+  "updateRedux": "Update redux",
+  "apiText": "random text",
+
+  "changeLanguage": "Change language",
+  "light": "Light",
+  "dark": "Dark",
+
+  "replenish": "Replenish",
+  "enterSum": "Enter sum",
+  "enterYourPassword": "Enter your password",
+  "submit": "Submit",
+  "cancel": "Cancel",
+
+  "home": "Home",
+  "post":"Post",
+
+  "yourBalance": "Your balance",
+  "Messenger": "Messenger",
+  "Watch": "Watch",
+  "Gallery": "Gallery",
+  "logout": "Logout"
+}

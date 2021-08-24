@@ -1,0 +1,6 @@
+export const userConstance = {
+  GET_USER:'GET_USER',
+  USER_LOGIN: 'USER_LOGIN',
+  USER_LOGOUT: 'USER_LOGOUT',
+  USER_BALANCE: 'USER_BALANCE'
+}

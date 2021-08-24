@@ -1,0 +1,60 @@
+@import '../../../styles/common';
+.posts {
+  flex: 0.5;
+  border-right: 1px solid #e6ecf0;
+  background-color: $white;
+  overflow-y: scroll;
+  &__header {
+    top: 0;
+    background-color: $white;
+    border-bottom: 1px solid #e6ecf0;
+    padding: 15px 20px;
+  }
+  &__box {
+    padding: 20px 25px;
+    border-bottom: 1px solid #e6ecf0;
+    margin-bottom: 30px;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+  &__input {
+    display: flex;
+    & input {
+      width: 100%;
+      margin-left: 20px;
+      font-size: 20px;
+      border: none;
+      outline: none;
+      padding-left: 0.8em;
+    }
+  }
+  &__image_upload {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+  }
+  &__box-btn {
+    width: 10em;
+    height: 50px;
+    align-self: center;
+    border-radius: 30px;
+    color: $white;
+    background-color: #50b7f5;
+    border: none;
+    text-transform: $uppercase;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+}
+
+.posts::-webkit-scrollbar {
+  width: 0; /*or display:none*/
+}
+
+/*скрывает полосу прокрутки для IE, Edge, Firefox*/
+.posts {
+  -ms-overflow-style: none; /*IE, Edge*/
+  scrollbar-width: none; /*Firefox*/
+}

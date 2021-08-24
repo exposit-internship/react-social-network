@@ -1,0 +1,37 @@
+@import '../../../styles/common';
+.post {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid lightgrey;
+  border-bottom: none;
+  background-color: $white;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    &_info {
+      display: flex;
+      align-items: center;
+    }
+  }
+  &__username {
+    margin-left: 10px;
+  }
+  &__body {
+    & > img {
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      object-fit: contain;
+      border-top: 1px solid lightgrey;
+      border-bottom: 1px solid lightgrey;
+    }
+  }
+  &__text {
+    font-weight: normal;
+    margin-left: 20px;
+    padding: 10px 0px;
+  }
+}
