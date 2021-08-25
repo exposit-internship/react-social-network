@@ -17,8 +17,7 @@
   }
   .posts,
   .sidebar,
-  .post,
-  .dropdown-menu {
+  .post {
     background: #424242;
     border-color: #7b7676;
     color: #fefefe;
@@ -26,19 +25,29 @@
       background: #424242;
       border-color: #7b7676;
     }
-    &__item:hover,
+    &__item:hover {
+      background-color: rgb(29, 173, 240);
+    }
     &__option:hover {
       background-color: rgb(29, 173, 240);
     }
     a {
       color: #fefefe;
     }
-
     &__box {
       border-color: #7b7676;
       input {
         background: #393939;
       }
+    }
+  }
+  .dropdown-menu {
+    &__container {
+      background: #424242;
+      border-color: #7b7676;
+    }
+    &__item:hover {
+      background-color: rgb(29, 173, 240);
     }
   }
   .comments {

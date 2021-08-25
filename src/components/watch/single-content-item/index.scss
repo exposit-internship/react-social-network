@@ -1,0 +1,17 @@
+@import '../../../styles/common';
+.single-content-item {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: $white;
+  border-radius: 8px;
+  margin: 0.2em;
+  cursor: pointer;
+
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+}

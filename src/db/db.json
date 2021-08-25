@@ -5,7 +5,7 @@
       "secondName": "white",
       "email": "w@mail.com",
       "password": "MTExMTEx",
-      "amount": 1659,
+      "amount": 1671,
       "id": "1313a558-d2a1-4167-a1bf-d3d713bda892"
     },
     {
@@ -79,19 +79,6 @@
       "caption": "ADD BALANCE FUNCIONALITY",
       "id": "e3730627-73e1-4b0d-bc63-955da67e71c3",
       "comments": []
-    },
-    {
-      "displayName": "ilia white",
-      "avatarURL": "https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png",
-      "imageURL": "sdsd",
-      "caption": "sdsd",
-      "id": "941b1096-355f-484f-b7bd-61fb3a03b4c4",
-      "comments": [
-        {
-          "userName": "s",
-          "userComment": "s"
-        }
-      ]
     }
   ]
 }

@@ -7,11 +7,6 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case postsConstance.GET_CURRENT_POST:
-      state = {
-        ...state,
-      
-      }
     case postsConstance.GET_POSTS:
       state = {
         ...state,

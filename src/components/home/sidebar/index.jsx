@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 
 import { useTranslation } from 'react-i18next'
 
-import { USER_PAGE_ROUTE } from '../../../constants/routs'
+import { USER_PAGE_ROUTE, WATCH_ROUTE } from '../../../constants/routs'
 
 import PropTypes from 'prop-types'
 
@@ -31,7 +31,7 @@ const Sidebar = () => {
           text={`${firstName} ${secondName}`}
           src=""
         />
-        <SidebarOption to={USER_PAGE_ROUTE} text={t('Watch')} src="" />
+        <SidebarOption to={WATCH_ROUTE} text={t('Watch')} src="" />
       </div>
     </div>
   )

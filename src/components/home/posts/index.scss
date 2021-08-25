@@ -48,6 +48,36 @@
     cursor: pointer;
   }
 }
+.comments {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgrey;
+  margin: 0 auto;
+  margin-bottom: 35px;
+  &__post {
+    display: flex;
+    flex-direction: row;
+    &_container {
+      display: flex;
+      width: 100%;
+    }
+    &_message {
+      flex: 8;
+      padding: 10px;
+      border: none;
+    }
+    &_button {
+      flex: 2;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      color: #6082a3;
+      background-color: transparent;
+    }
+  }
+}
 
 .posts::-webkit-scrollbar {
   width: 0; /*or display:none*/
