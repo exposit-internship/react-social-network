@@ -8,14 +8,11 @@ import Post from '../post'
 import {
   addPost,
   deletePost,
-  getCurrentPost,
-  getPosts
+  getPosts,
+  addPostComment
 } from '../../../store/posts/action'
 
-import Comments from '../comments'
-
 import './index.scss'
-import Comment from '../comments/comment'
 
 const Posts = () => {
   const [post, setPost] = useState({
@@ -27,26 +24,28 @@ const Posts = () => {
     id: uuidv4(),
     comments: [
       {
-        userName: 's',
-        userComment: 's'
+        userName: '',
+        userComment: ''
       }
     ]
   })
 
-  let { displayName, avatarURL, imageURL, caption, comments } = post
+  const { displayName, avatarURL, imageURL, caption, comments } = post
+  let { userName, userComment } = comments
 
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const { posts } = useSelector(state => state.posts)
-
   const { t } = useTranslation('translation')
 
+  const { posts } = useSelector(state => state.posts)
   const { user } = useSelector(state => state.user)
 
-  useEffect(() => dispatch(getPosts()), [])
+  const { firstName, secondName } = user
 
-  let { firstName, secondName } = user
+  userName = `${firstName} ${secondName}`
+
+  useEffect(() => dispatch(getPosts()), [])
 
   const handleChange = event => {
     const { name, value } = event.target
@@ -68,7 +67,12 @@ const Posts = () => {
     console.log('ID', id)
   }
 
-  // const handleGetCurrentPost = id => dispatch(getCurrentPost(id))
+  const addComment = (event, id, userName, userComment) => {
+    event.preventDefault()
+
+    dispatch(addPostComment(id))
+   
+  }
 
   return (
     <div className="posts">
@@ -123,13 +127,11 @@ const Posts = () => {
                 image={imageURL}
                 caption={caption}
                 onClick={() => handleDelete(id)}
-                commentUserName={comments.userNAme}
-                commentUserMessage={comments.userComment}
               />
               <div className="comments">
                 <div className="comments__post">
                   <form
-                    onSubmit={() => console.log('comment')}
+                    onSubmit={addComment}
                     className="comments__post_container"
                   >
                     <input
@@ -137,19 +139,12 @@ const Posts = () => {
                       placeholder="Add a comment..."
                       type="text"
                       name="userComment"
-                      value={e => e.target.value}
+                      value={comments.userComment}
                       onChange={handleChange}
                     />
-                    {user ? (
-                      <button className="comments__post_button" type="submit">
-                        Post
-                      </button>
-                    ) : (
-                      <button className="comments__post_button" disabled>
-                        {' '}
-                        Post
-                      </button>
-                    )}
+                    <button className="comments__post_button" type="submit">
+                      Post
+                    </button>
                   </form>
                 </div>
               </div>

@@ -2,17 +2,6 @@ import { INDEX_ROUTE } from '../../constants/routs'
 import { DB } from '../../core/axios'
 import { postsConstance } from './type'
 
-export const getCurrentPost = id => dispatch =>
-  // console.log(id)
-  DB(`/posts/id=${id}`).then(res => {
-    console.log(id)
-    dispatch({
-      type: postsConstance.GET_CURRENT_POST,
-     
-    })
-    console.log('CURRENT POST DATA', res.data)
-  })
-
 export const getPosts = () => dispatch =>
   DB(`/posts`)
     .then(res => {
@@ -53,13 +42,9 @@ export const deletePost = id => dispatch =>
 //   }
 // }
 
-// export const addPostComment = id => dispatch =>
-//   DB(`/posts?id=${id}`)
-//     .then(() => {
-//       DB.post('/posts', 'comments').then(() => {
-//         dispatch({
-//           type: `${postsConstance.ADD_COMMENT}`
-//         })
-//       })
-//     })
-//     .catch(error => console.log(error))
+export const addPostComment = (id) => dispatch =>
+  DB(`/posts/${id}`)
+    .then((res) => {
+      console.log(res.data)
+    })
+    .catch(error => console.log(error))

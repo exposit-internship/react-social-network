@@ -45,7 +45,7 @@ function DropdownMenu() {
         to={FAKE_ROUTE}
         onClick={isVisibleDropdown}
       >
-        Dropdown
+        {t('menu')}
       </Link>
 
       {isVisibleMenu && (
