@@ -1,5 +1,3 @@
-// import Comments from '../comments'
-
 import './index.scss'
 
 const Post = ({
@@ -14,18 +12,10 @@ const Post = ({
   <div className="post">
     <div className="post__header">
       <div className="post__header_info">
-        <img
-          className="post__avatart"
-          width="40px"
-          height="40px"
-          src={avatarURL}
-          alt="user-avatar"
-        />
+        <img className="post__avatart" src={avatarURL} alt="user-avatar" />
         <h3 className="post__username">{`${displayName}`}</h3>
       </div>
-      <button className="post__delete_btn" onClick={onClick}>
-        X
-      </button>
+      <div className="post__delete_btn" onClick={onClick}></div>
     </div>
     <div className="post__body">
       <img src={image} alt="" className="post__img" />

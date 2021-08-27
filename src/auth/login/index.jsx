@@ -7,10 +7,12 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import { signIn } from '../../store/user/action'
+
 import {
   getEmptyFieldsWithErrors,
   getIsButtonDisabled
 } from '../../utils/registration'
+
 import CustomInput from '../custom-unput'
 
 const Login = () => {
@@ -55,8 +57,6 @@ const Login = () => {
     setErrors({ ...errors, [name]: '' })
     setUserLoginData({ ...userLoginData, [name]: value })
   }
-
-  getEmptyFieldsWithErrors(userLoginData)
 
   const loginUser = event => {
     event.preventDefault()
@@ -104,8 +104,6 @@ const Login = () => {
   )
 }
 
-export default Login
-
 Login.propTypes = {
   email: PropTypes.string,
   password: PropTypes.string,
@@ -118,3 +116,5 @@ Login.propTypes = {
   type: PropTypes.string,
   text: PropTypes.string
 }
+
+export default Login

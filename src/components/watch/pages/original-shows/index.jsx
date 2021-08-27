@@ -34,13 +34,9 @@ function OriginalShows() {
     console.log('filteredShow', filteredShow)
 
     setIsShowModalVisible(true)
-    console.log('workingOn', isShowModalVisible)
   }
 
-  const handleHideDescription = () => {
-    setIsShowModalVisible(false)
-    console.log('workingOFF', isShowModalVisible)
-  }
+  const handleHideDescription = () => setIsShowModalVisible(false)
 
   return (
     <div className="original-shows">

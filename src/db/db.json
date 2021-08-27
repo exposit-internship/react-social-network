@@ -5,7 +5,7 @@
       "secondName": "white",
       "email": "w@mail.com",
       "password": "MTExMTEx",
-      "amount": 1671,
+      "amount": 819,
       "id": "1313a558-d2a1-4167-a1bf-d3d713bda892"
     },
     {
@@ -18,15 +18,6 @@
     }
   ],
   "posts": [
-    {
-      "displayName": "ilia white",
-      "avatarURL": "https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png",
-      "imageURL": "https://www.kino-teatr.ru/news/16015/144771.jpg",
-      "caption": "IT'S ADVENTURE TIME, BITCH",
-      "amount": 1,
-      "id": "66f46297-7276-4450-9cb7-fe511f0cedc1",
-      "comments": []
-    },
     {
       "displayName": "Mr. Rabbit",
       "avatarURL": "https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png",

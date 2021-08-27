@@ -1,17 +1,17 @@
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { useTranslation } from 'react-i18next'
 
-import { USER_PAGE_ROUTE, WATCH_ROUTE } from '../../../constants/routs'
-
 import PropTypes from 'prop-types'
 
-import SidebarOption from '../sidebar-option'
-import { getUser } from '../../../store/user/action'
-import './index.scss'
-import { useEffect } from 'react'
+import { USER_PAGE_ROUTE, WATCH_ROUTE } from '../../../constants/routs'
 
-import { useDispatch } from 'react-redux'
+import { getUser } from '../../../store/user/action'
+
+import SidebarOption from '../sidebar-option'
+
+import './index.scss'
 
 const Sidebar = () => {
   const dispatch = useDispatch()
@@ -29,18 +29,15 @@ const Sidebar = () => {
         <SidebarOption
           to={USER_PAGE_ROUTE}
           text={`${firstName} ${secondName}`}
-          src=""
         />
-        <SidebarOption to={WATCH_ROUTE} text={t('Watch')} src="" />
+        <SidebarOption to={WATCH_ROUTE} text={t('Watch')} />
       </div>
     </div>
   )
 }
-
-export default Sidebar
-
 Sidebar.propTypes = {
   amount: PropTypes.number,
   firstName: PropTypes.string,
   secondName: PropTypes.string
 }
+export default Sidebar

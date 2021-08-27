@@ -81,3 +81,16 @@ export const addUserDeposite =
       .catch(error => {
         console.log(error.message)
       })
+
+export const userPaymentConfirm = (id, amount) => {
+  return async dispatch => {
+    DB.patch(`/users/${id}`, { amount: amount - 20 }).then(res => {
+      console.log('RES', res)
+      dispatch({
+        type: userConstance.USER_BALANCE,
+        payload: res.data
+      })
+      localStorage.setItem('user', JSON.stringify(res.data))
+    })
+  }
+}

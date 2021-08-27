@@ -1,0 +1,42 @@
+@import '../../../styles/common';
+
+.payment-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  background-color: $white;
+  color: get-color($text, 900);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: $absolute;
+  cursor: default;
+  &__body {
+    padding: 0 1em;
+  }
+  &__confirm_button,
+  &__cancel_button {
+    min-width: 4em;
+    margin: 0.4em 0;
+    padding: 0.8em 1em;
+    font-weight: $bold;
+    background-color: transparent;
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    letter-spacing: 0.04em;
+    text-transform: $uppercase;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    cursor: pointer;
+    &:hover {
+      background-color: get-color($primary, 100);
+      transition: color 0.1ms ease-out;
+      color: get-color($primary, 400);
+    }
+  }
+}

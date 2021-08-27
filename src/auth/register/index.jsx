@@ -3,16 +3,21 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 import classNames from 'classnames'
-import { v4 as uuidv4 } from 'uuid'
 
 import PropTypes from 'prop-types'
 
+import { v4 as uuidv4 } from 'uuid'
+
 import { signUp } from '../../store/user/action'
+
 import {
   getEmptyFieldsWithErrors,
   getIsButtonDisabled
 } from '../../utils/registration'
+
 import CustomInput from '../custom-unput'
+
+import '../index.scss'
 
 const INITIAL_ERROR_STATE = {
   firstName: '',
@@ -36,10 +41,10 @@ const Register = () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const { firstName, secondName, email, password, amount } = userCredentials
+  const { firstName, secondName, email, password } = userCredentials
 
   getIsButtonDisabled(
-    !firstName,
+    firstName,
     secondName,
     email,
     password,
@@ -98,12 +103,10 @@ const Register = () => {
     setUserCredentials({ ...userCredentials, [name]: value })
   }
 
-  getEmptyFieldsWithErrors(userCredentials)
-
   const registerUser = event => {
     event.preventDefault()
 
-    const { firstName, secondName, email, password, amount } = userCredentials
+    const { email, password } = userCredentials
 
     const emptyFieldsWithErrors = getEmptyFieldsWithErrors(userCredentials)
 

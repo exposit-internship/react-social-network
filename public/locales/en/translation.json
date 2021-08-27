@@ -8,9 +8,13 @@
   "light": "Light",
   "dark": "Dark",
 
+  "themeChangeMessage": "There is a charge for changing the theme. Would you like to pay $20 to change the theme?",
+
   "replenish": "Replenish",
   "enterSum": "Enter sum",
   "enterYourPassword": "Enter your password",
+
+  "confirm": "Confirm",
   "submit": "Submit",
   "cancel": "Cancel",
 

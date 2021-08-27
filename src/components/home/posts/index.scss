@@ -1,19 +1,19 @@
 @import '../../../styles/common';
 .posts {
   flex: 0.5;
-  border-right: 1px solid #e6ecf0;
+  border-right: 1px solid get-color($info, 100);
   background-color: $white;
   overflow-y: scroll;
   &__header {
     top: 0;
     background-color: $white;
-    border-bottom: 1px solid #e6ecf0;
-    padding: 15px 20px;
+    border-bottom: 1px solid get-color($info, 100);
+    padding: 0.8em 1.2em;
   }
   &__box {
-    padding: 20px 25px;
-    border-bottom: 1px solid #e6ecf0;
-    margin-bottom: 30px;
+    padding: 1.2em 1.6em;
+    border-bottom: 1px solid get-color($info, 100);
+    margin-bottom: 2em;
   }
   &__form {
     display: flex;
@@ -23,38 +23,38 @@
     display: flex;
     & input {
       width: 100%;
-      margin-left: 20px;
-      font-size: 20px;
+      margin-left: 1.2em;
+      font-size: 1.2em;
       border: none;
       outline: none;
       padding-left: 0.8em;
     }
   }
   &__image_upload {
-    margin-top: 20px;
-    padding: 10px;
+    margin-top: 1.2em;
+    padding: 0.8em;
     border: none;
   }
   &__box-btn {
     width: 10em;
-    height: 50px;
+    height: 4em;
     align-self: center;
     border-radius: 30px;
     color: $white;
-    background-color: #50b7f5;
+    background-color: get-color($primary, 400);
     border: none;
     text-transform: $uppercase;
-    margin-top: 20px;
+    margin-top: 1.6em;
     cursor: pointer;
   }
 }
 .comments {
-  max-width: 500px;
+  max-width: 32em;
   display: flex;
   flex-direction: column;
   border: 1px solid lightgrey;
   margin: 0 auto;
-  margin-bottom: 35px;
+  margin-bottom: 2.4em;
   &__post {
     display: flex;
     flex-direction: row;
@@ -69,21 +69,18 @@
     }
     &_button {
       flex: 2;
-      padding: 10px;
+      padding: 0.8em;
+      color: get-color($primary, 400);
+      background-color: $transparent;
       border: none;
-      cursor: pointer;
       outline: none;
-      color: #6082a3;
-      background-color: transparent;
+      cursor: pointer;
     }
   }
 }
-
 .posts::-webkit-scrollbar {
   width: 0; /*or display:none*/
 }
-
-/*скрывает полосу прокрутки для IE, Edge, Firefox*/
 .posts {
   -ms-overflow-style: none; /*IE, Edge*/
   scrollbar-width: none; /*Firefox*/

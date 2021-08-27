@@ -19,14 +19,12 @@ export class Monetization extends Component {
     userPassword: ''
   }
 
-  // TODO how to get user in state all time/ get request componentDidUpdate or localstorage
   componentDidMount() {}
 
   toggleModalVisibitity = e => {
     e.preventDefault()
+    this.props.closeDropDown()
     this.setState({ isModalVisible: !this.state.isModalVisible })
-    let { email, id, amount } = this.props.user
-    console.log("PROPS",this.props.user)
   }
 
   handleChange = event => {
@@ -34,7 +32,6 @@ export class Monetization extends Component {
     this.setState({
       [name]: value
     })
-   
   }
 
   handleAddUserDeposit = event => {
@@ -43,7 +40,6 @@ export class Monetization extends Component {
     let { depositeValue, userPassword } = this.state
 
     let { email, id, amount } = this.props.user
-    console.log("PROPS",this.props.user)
 
     depositeValue = parseInt(depositeValue, 10)
     amount = parseInt(amount, 10)

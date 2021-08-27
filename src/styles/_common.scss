@@ -8,16 +8,22 @@
   input::-webkit-input-placeholder {
     color: #c5c0c0;
   }
-  .header {
+  .header,
+  .sidebar {
     background: #505050;
     border-color: #7b7676;
-    a {
+    &__option:hover {
+      background-color: rgb(29, 173, 240);
+    }
+    a,
+    h1 {
       color: #fefefe;
     }
   }
   .posts,
-  .sidebar,
-  .post {
+  .post,
+  .watch,
+  .payment-modal {
     background: #424242;
     border-color: #7b7676;
     color: #fefefe;
@@ -28,9 +34,6 @@
     &__item:hover {
       background-color: rgb(29, 173, 240);
     }
-    &__option:hover {
-      background-color: rgb(29, 173, 240);
-    }
     a {
       color: #fefefe;
     }
@@ -38,6 +41,15 @@
       border-color: #7b7676;
       input {
         background: #393939;
+      }
+    }
+  }
+  .payment-modal {
+    &__confirm_button,
+    &__cancel_button {
+      color: #fefefe;
+      &:hover {
+        background-color: rgb(29, 173, 240);
       }
     }
   }

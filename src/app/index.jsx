@@ -17,16 +17,17 @@ import {
   WATCH_ROUTE
 } from '../constants/routs'
 
+import { DARK_THEME, LIGHT_THEME } from '../constants/change-theme'
+
 import './index.scss'
-import OriginalFilms from '../components/watch/pages/original-films'
 
 const App = () => {
   const { changeThemeToDark } = useTheme()
 
   useEffect(() => {
-    const lightTheme = '#ffffff'
-    const darkTheme = '#505050'
-    document.body.style.background = changeThemeToDark ? darkTheme : lightTheme
+    document.body.style.background = changeThemeToDark
+      ? DARK_THEME
+      : LIGHT_THEME
   }, [changeThemeToDark])
 
   return (

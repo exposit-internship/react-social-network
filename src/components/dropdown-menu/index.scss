@@ -1,37 +1,39 @@
 @import '../../styles/common';
 .dropdown-menu {
   &__container {
-    position: absolute;
-    top: 58px;
-    right: 0;
-    width: 300px;
-    transform: translateX(-50%);
+    width: 20em;
+    position: $absolute;
+    top: 4em;
+    right: 0%;
+    transform: translate(-25%, -5%);
+    padding: 1em;
     background-color: $white;
     border: 1px solid get-color($primary, 100);
-    padding: 1em;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     overflow: hidden;
   }
   &__item {
-    height: 50px;
+    height: 2.8em;
     display: flex;
     align-items: center;
-    border-radius: 10px;
     padding: 0.8em;
-    font-weight: bold;
+    border-radius: 8px;
+    font-weight: $bold;
     font-size: 1.2em;
-    text-transform: capitalize;
+    text-transform: $capitalize;
     &:hover {
       background-color: get-color($primary, 100);
       transition: color 0.1ms ease-out;
       & a {
         color: get-color($primary, 400);
+        width: 100%;
       }
     }
   }
   &__button {
     min-width: 4em;
-    padding: 0.8em 1em;
     margin: 0.4em 0;
+    padding: 0.8em 1em;
     font-weight: $bold;
     font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
     letter-spacing: 0.04em;

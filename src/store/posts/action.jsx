@@ -42,9 +42,9 @@ export const deletePost = id => dispatch =>
 //   }
 // }
 
-export const addPostComment = (id) => dispatch =>
+export const addPostComment = id => dispatch =>
   DB(`/posts/${id}`)
-    .then((res) => {
+    .then(res => {
       console.log(res.data)
     })
     .catch(error => console.log(error))

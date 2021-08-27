@@ -45,7 +45,8 @@ const Posts = () => {
 
   userName = `${firstName} ${secondName}`
 
-  useEffect(() => dispatch(getPosts()), [])
+  //TODO if posts in dependencies, infinity get request useCallback in useEffect?
+  useEffect(() => dispatch(getPosts()), [/*posts*/])
 
   const handleChange = event => {
     const { name, value } = event.target
@@ -62,16 +63,11 @@ const Posts = () => {
     }
   }
 
-  const handleDelete = id => {
-    dispatch(deletePost(id))
-    console.log('ID', id)
-  }
+  const handleDelete = id => dispatch(deletePost(id))
 
   const addComment = (event, id, userName, userComment) => {
     event.preventDefault()
-
-    dispatch(addPostComment(id))
-   
+    dispatch(addPostComment(id, userName, userComment))
   }
 
   return (

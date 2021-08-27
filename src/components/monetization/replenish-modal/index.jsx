@@ -1,5 +1,6 @@
 import { PureComponent } from 'react'
 import { withTranslation } from 'react-i18next'
+
 import './index.scss'
 
 export class ReplenishModal extends PureComponent {

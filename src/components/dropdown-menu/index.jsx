@@ -1,42 +1,49 @@
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 
 import { useTranslation } from 'react-i18next'
 
 import { handleLanguageChange } from '../../utils/translation'
 
+import PropTypes from 'prop-types'
+
 import { useTheme } from '../../context/test/test-state'
 
-import { logout } from '../../store/user/action'
+import { logout, userPaymentConfirm } from '../../store/user/action'
 
 import { FAKE_ROUTE } from '../../constants/routs'
 
+import PaymentModal from './payment-modal'
+
 import './index.scss'
-import { useState } from 'react'
-import { useCallback } from 'react'
 
-function DropdownMenu() {
-  const [isVisibleMenu, setIsVisibleMenu] = useState(false)
-
-  const isVisibleDropdown = useCallback(
-    () => setIsVisibleMenu(!isVisibleMenu),
-    [isVisibleMenu]
-  )
-
-  const history = useHistory()
-  const dispatch = useDispatch()
-
-  const { user } = useSelector(state => state.user)
-
-  const { changeThemeToDark, themeChangeToggle } = useTheme()
+function DropdownMenu({ isVisibleMenu, isVisibleDropdown }) {
+  const [isPaymentModalVisible, setIsPaymentModalVisible] = useState(false)
 
   const { t } = useTranslation('translation')
 
-  const logoutUser = () => {
-    dispatch(logout(history))
-    setIsVisibleMenu(!isVisibleMenu)
+  const { changeThemeToDark, themeChangeToggle } = useTheme()
+
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+  const { user } = useSelector(state => state.user)
+  const { id, amount } = user
+
+  const themeChangePaymentToggle = () =>
+    setIsPaymentModalVisible(!isPaymentModalVisible)
+
+  const paymentConfirm = (id, amount) => {
+    if (amount >= 20) {
+      dispatch(userPaymentConfirm(id, amount))
+      themeChangeToggle()
+    } else {
+      alert(`Пополните счёт, ${amount}$ не хватает для смены темы`)
+    }
   }
+
+  const areUserLogout = () => dispatch(logout(history))
 
   return (
     <div className="dropdown-menu">
@@ -57,13 +64,19 @@ function DropdownMenu() {
           </div>
 
           <div className="dropdown-menu__theme_change dropdown-menu__item">
-            <Link to={FAKE_ROUTE} onClick={themeChangeToggle}>
+            <Link to={FAKE_ROUTE} onClick={themeChangePaymentToggle}>
+              {isPaymentModalVisible ? (
+                <PaymentModal
+                  handleConfirmPayment={() => paymentConfirm(id, amount)}
+                  handleClose={themeChangePaymentToggle}
+                />
+              ) : null}
               {changeThemeToDark ? t('light') : t('dark')}
             </Link>
           </div>
 
           <div className="dropdown-menu__logout dropdown-menu__item">
-            <Link to={FAKE_ROUTE} onClick={logoutUser}>
+            <Link to={FAKE_ROUTE} onClick={areUserLogout}>
               {t('logout')}
             </Link>
           </div>
@@ -71,6 +84,12 @@ function DropdownMenu() {
       )}
     </div>
   )
+}
+
+DropdownMenu.propTypes = {
+  handleLanguageChange: PropTypes.func,
+  themeChangePaymentToggle: PropTypes.func,
+  areUserLogout: PropTypes.func
 }
 
 export default DropdownMenu
