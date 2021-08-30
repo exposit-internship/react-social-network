@@ -1,13 +1,12 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-
 import classNames from 'classnames'
 
-import { useTheme } from '../context/test/test-state'
-
+import PrivateRoute from '../private-route'
 import Login from '../auth/login'
 import Register from '../auth/register'
 import { Home, Header, UserPage, Watch } from '../components'
+import { useTheme } from '../context/test/test-state'
 
 import {
   INDEX_ROUTE,
@@ -16,7 +15,6 @@ import {
   LOGIN_ROUTE,
   WATCH_ROUTE
 } from '../constants/routs'
-
 import { DARK_THEME, LIGHT_THEME } from '../constants/change-theme'
 
 import './index.scss'
@@ -32,10 +30,10 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className={classNames('App', { darkModeTheme: changeThemeToDark })}>
+      <div className={classNames('app', { darkModeTheme: changeThemeToDark })}>
         <Header />
         <Switch>
-          <Route path={INDEX_ROUTE} component={Home} exact />
+          <PrivateRoute path={INDEX_ROUTE} component={Home} exact />
           <Route path={USER_PAGE_ROUTE} component={UserPage} />
           <Route path={WATCH_ROUTE} component={Watch} />
           <Route path={REGISTER_ROUTE} component={Register} />

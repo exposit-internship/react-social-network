@@ -1,7 +1,7 @@
 import { DB } from '../../core/axios'
 
 import { userConstance } from './types'
-import { INDEX_ROUTE, REGISTER_ROUTE } from '../../constants/routs'
+import { INDEX_ROUTE } from '../../constants/routs'
 
 export const getUser = email => dispatch =>
   DB(`/users?email=${email}`).then(res => {
@@ -22,7 +22,6 @@ export const signUp = (user, email, history) => dispatch =>
                 type: `${userConstance.USER_LOGIN}`,
                 payload: data
               })
-              localStorage.setItem('user', JSON.stringify(data))
               history.push(INDEX_ROUTE)
             })
             .catch(error => {
@@ -41,7 +40,6 @@ export const signIn = (email, password, history) => dispatch =>
           type: `${userConstance.USER_LOGIN}`,
           payload: data[0]
         })
-        localStorage.setItem('user', JSON.stringify(data[0]))
         history.push(INDEX_ROUTE)
       } else {
         alert('incorrect data')
@@ -51,12 +49,11 @@ export const signIn = (email, password, history) => dispatch =>
       console.log(error.message)
     })
 
-export const logout = history => dispatch => {
+export const logout = () => dispatch => {
   localStorage.clear()
   dispatch({
     type: `${userConstance.USER_LOGOUT}`
   })
-  history.push(REGISTER_ROUTE)
 }
 
 export const addUserDeposite =
@@ -71,7 +68,6 @@ export const addUserDeposite =
                   type: userConstance.USER_BALANCE,
                   payload: res.data
                 })
-                localStorage.setItem('user', JSON.stringify(res.data))
               })
               .catch(error => {
                 console.log(error.message)
@@ -90,7 +86,6 @@ export const userPaymentConfirm = (id, amount) => {
         type: userConstance.USER_BALANCE,
         payload: res.data
       })
-      localStorage.setItem('user', JSON.stringify(res.data))
     })
   }
 }

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 import '../index.scss'
 
-const CustomInput = ({ type, name, value, onChange, text, error }) => (
+const CustomInput = ({ type, name, value, text, error, onChange }) => (
   <div className="custom__input">
     <div className="custom__header">
       <label>{text}</label>
@@ -18,13 +18,13 @@ const CustomInput = ({ type, name, value, onChange, text, error }) => (
   </div>
 )
 
+export default CustomInput
+
 CustomInput.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
-  onChange: PropTypes.func,
   text: PropTypes.string,
-  error: PropTypes.string
+  error: PropTypes.string,
+  onChange: PropTypes.func
 }
-
-export default CustomInput

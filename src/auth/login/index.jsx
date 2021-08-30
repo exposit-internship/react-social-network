@@ -1,19 +1,15 @@
 import { useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 
-import classNames from 'classnames'
-
+import CustomInput from '../custom-unput'
 import { signIn } from '../../store/user/action'
-
 import {
   getEmptyFieldsWithErrors,
   getIsButtonDisabled
 } from '../../utils/registration'
-
-import CustomInput from '../custom-unput'
 
 const Login = () => {
   const [userLoginData, setUserLoginData] = useState({
@@ -33,8 +29,8 @@ const Login = () => {
 
   getIsButtonDisabled(email, password, errors.email, errors.password)
 
-  const loginData = useMemo(() => {
-    return [
+  const loginData = useMemo(
+    () => [
       {
         type: 'email',
         name: 'email',
@@ -49,8 +45,9 @@ const Login = () => {
         text: 'Password',
         error: errors.password
       }
-    ]
-  }, [email, password, errors.email, errors.password])
+    ],
+    [email, password, errors.email, errors.password]
+  )
 
   const handleChange = event => {
     const { value, name } = event.target
@@ -66,17 +63,16 @@ const Login = () => {
 
     const areFildsWithErrorsEmpty = !!Object.keys(emptyFieldsWithErrors).length
 
-    if (areFildsWithErrorsEmpty) {
-      setErrors({ ...errors, ...emptyFieldsWithErrors })
-    } else {
-      dispatch(signIn(email, password, history))
-    }
+    areFildsWithErrorsEmpty
+      ? setErrors({ ...errors, ...emptyFieldsWithErrors })
+      : dispatch(signIn(email, password, history))
   }
+  
   return (
-    <div className="login registration__form">
-      <div className="login__box box">
+    <div className="registration__form">
+      <div className="registration__container">
         <h1>Login</h1>
-        <form className="login__form form">
+        <form className="registration__input-data">
           {loginData.map(({ name, type, value, text, error }, idx) => (
             <CustomInput
               key={idx}
@@ -90,7 +86,7 @@ const Login = () => {
           ))}
 
           <button
-            className={classNames('login__button', 'button', {
+            className={classNames('registration__button', {
               disabled: getIsButtonDisabled()
             })}
             type="submit"

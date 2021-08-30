@@ -10,8 +10,7 @@ function Watch() {
   return (
     <div className="watch">
       <div className="watch__sidebar">
-        <SidebarOption to={WATCH_ROUTE} text="Главная" />
-        <SidebarOption to={FAKE_ROUTE} text="Original Films" />
+        <SidebarOption to={WATCH_ROUTE} text="Original Shows" />
       
       </div>
       <div className="watch__content">

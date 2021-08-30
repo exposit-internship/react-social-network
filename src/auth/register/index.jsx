@@ -124,10 +124,10 @@ const Register = () => {
   }
 
   return (
-    <div className="register registration__form">
-      <div className="register__box box">
+    <div className="registration__form">
+      <div className="registration__container">
         <h1>Register</h1>
-        <form className="register__form form">
+        <form className="registration__input-data">
           {userCredencialData.map(({ type, text, name, value, error }, idx) => (
             <CustomInput
               key={idx}
@@ -141,7 +141,7 @@ const Register = () => {
           ))}
 
           <button
-            className={classNames('register__button ', 'button', {
+            className={classNames('registration__button ', {
               disabled: getIsButtonDisabled()
             })}
             type="submit"

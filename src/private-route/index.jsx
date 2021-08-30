@@ -1,18 +1,15 @@
+import { useSelector } from 'react-redux'
 import { Redirect, Route } from 'react-router-dom'
 import { REGISTER_ROUTE } from '../constants/routs'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const isAuthenticated = window.localStorage.getItem('user')
+  const { user } = useSelector(state => state.user)
 
   return (
     <Route
       {...rest}
       render={props =>
-        isAuthenticated !== 'user' ? (
-          <Redirect to={REGISTER_ROUTE} />
-        ) : (
-          <Component {...props} />
-        )
+        !user ? <Redirect to={REGISTER_ROUTE} /> : <Component {...props} />
       }
     />
   )

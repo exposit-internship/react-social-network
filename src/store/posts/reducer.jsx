@@ -13,16 +13,22 @@ export default (state = initialState, action) => {
         posts: action.payload
       }
       break
-    case postsConstance.DELETE_POST:
+    case postsConstance.ADD_POST:
+      console.log('posts', state.posts)
       state = {
-        ...state
+        ...state,
+        posts: [ ...action.payload, ...state.posts ]
       }
       break
-    case postsConstance.ADD_POST:
+    case postsConstance.DELETE_POST:
       state = {
-        ...state
+        ...state,
+        posts: action.payload
       }
+      break
+
     case postsConstance.GET_COMMENTS:
+      console.log('PAYLOAD', action.payload)
       state = {
         ...state
       }

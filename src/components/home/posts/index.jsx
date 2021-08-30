@@ -1,7 +1,10 @@
 import { useState, useEffect, Fragment } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { useHistory } from 'react-router-dom'
+
 import { useTranslation } from 'react-i18next'
+
 import { v4 as uuidv4 } from 'uuid'
 
 import Post from '../post'
@@ -9,29 +12,32 @@ import {
   addPost,
   deletePost,
   getPosts,
-  addPostComment
+  addPostComment,
+  getComments
 } from '../../../store/posts/action'
 
 import './index.scss'
 
 const Posts = () => {
+  const { user } = useSelector(state => state.user)
+
+  const { firstName, secondName } = user
+  
+  const [comment, setComment] = useState({
+    userName: `${firstName} ${secondName}`,
+    userComment: ''
+  })
   const [post, setPost] = useState({
-    displayName: '',
+    displayName: `${firstName} ${secondName}`,
     avatarURL:
       'https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png',
     imageURL: '',
     caption: '',
     id: uuidv4(),
-    comments: [
-      {
-        userName: '',
-        userComment: ''
-      }
-    ]
+    comments: []
   })
 
   const { displayName, avatarURL, imageURL, caption, comments } = post
-  let { userName, userComment } = comments
 
   const history = useHistory()
   const dispatch = useDispatch()
@@ -39,35 +45,40 @@ const Posts = () => {
   const { t } = useTranslation('translation')
 
   const { posts } = useSelector(state => state.posts)
-  const { user } = useSelector(state => state.user)
 
-  const { firstName, secondName } = user
-
-  userName = `${firstName} ${secondName}`
-
-  //TODO if posts in dependencies, infinity get request useCallback in useEffect?
-  useEffect(() => dispatch(getPosts()), [/*posts*/])
+  useEffect(() => {
+    dispatch(getPosts())
+  }, [])
 
   const handleChange = event => {
     const { name, value } = event.target
     setPost({ ...post, [name]: value })
   }
 
-  const publishPost = () => {
-    if (!caption || !imageURL) {
-      return
-    } else {
-      dispatch(
-        addPost({ ...post, displayName: `${firstName} ${secondName}` }, history)
-      )
-    }
+  const commentHandleChange = event => {
+    const { name, value } = event.target
+    setComment({ ...comment, [name]: value })
+    console.log('COMMENT', comment)
+  }
+
+  const publishPost = event => {
+    event.preventDefault()
+    caption &&
+      imageURL &&
+      dispatch(addPost({ ...post, displayName: `${firstName} ${secondName}` }))
+    setPost({
+      avatarURL:
+        'https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png',
+      imageURL: '',
+      caption: ''
+    })
   }
 
   const handleDelete = id => dispatch(deletePost(id))
 
-  const addComment = (event, id, userName, userComment) => {
+  const addComment = event => {
     event.preventDefault()
-    dispatch(addPostComment(id, userName, userComment))
+    dispatch(addPostComment())
   }
 
   return (
@@ -104,26 +115,17 @@ const Posts = () => {
           </button>
         </form>
       </div>
-      {posts &&
-        posts.length > 0 &&
-        posts.map(
-          ({
-            id,
-            displayName,
-            avatarURL,
-            imageURL,
-            caption,
-            commentUserName,
-            commentUserMessage
-          }) => (
+      {posts?.length
+        ? posts.map(({ id, displayName, avatarURL, imageURL, caption }) => (
             <Fragment key={id}>
               <Post
                 displayName={displayName}
                 avatarURL={avatarURL}
                 image={imageURL}
                 caption={caption}
-                onClick={() => handleDelete(id)}
+                handleDelete={() => handleDelete(id)}
               />
+
               <div className="comments">
                 <div className="comments__post">
                   <form
@@ -135,8 +137,8 @@ const Posts = () => {
                       placeholder="Add a comment..."
                       type="text"
                       name="userComment"
-                      value={comments.userComment}
-                      onChange={handleChange}
+                      value={comment.userComment}
+                      onChange={commentHandleChange}
                     />
                     <button className="comments__post_button" type="submit">
                       Post
@@ -145,8 +147,8 @@ const Posts = () => {
                 </div>
               </div>
             </Fragment>
-          )
-        )}
+          ))
+        : null}
     </div>
   )
 }

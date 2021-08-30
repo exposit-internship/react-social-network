@@ -11,7 +11,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.2em;
-    position: relative;
     &_info {
       display: flex;
       align-items: center;
@@ -25,34 +24,7 @@
     margin-left: 0.8em;
     text-transform: $capitalize;
   }
-  &__delete_btn {
-    position: absolute;
-    background-color: transparent;
-    border: none;
-    width: 1.2em;
-    height: 1.2em;
-    top: 37%;
-    right: 6%;
-    opacity: 0.4;
-    &:hover {
-      opacity: 1;
-    }
-    &:before,
-    &:after {
-      content: ' ';
-      position: absolute;
-      left: 10px;
-      height: 1.2em;
-      width: 0.1em;
-      background-color: get-color($primary, 400);
-    }
-    &:before {
-      transform: rotate(45deg);
-    }
-    &:after {
-      transform: rotate(-45deg);
-    }
-  }
+
   &__body {
     & > img {
       width: 100%;
@@ -68,4 +40,8 @@
     margin-left: 1.2em;
     padding: 0.8em 0;
   }
+}
+
+.post__delete-button{
+  cursor: pointer;
 }

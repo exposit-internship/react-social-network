@@ -10,10 +10,15 @@
 
   "themeChangeMessage": "There is a charge for changing the theme. Would you like to pay $20 to change the theme?",
 
+
   "replenish": "Replenish",
   "enterSum": "Enter sum",
   "enterYourPassword": "Enter your password",
 
+
+  "dropdownMenu":{
+   "key": "Пополните счёт, {{amount}}$ не хватает для смены темы"
+  },
   "confirm": "Confirm",
   "submit": "Submit",
   "cancel": "Cancel",

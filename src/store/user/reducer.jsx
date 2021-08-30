@@ -2,8 +2,7 @@ import { userConstance } from './types'
 
 const initialState = {
   users: [],
-  user: {},
-  authenticated: false
+  user: null
 }
 
 export default (state = initialState, action) => {
@@ -17,14 +16,14 @@ export default (state = initialState, action) => {
     case userConstance.USER_LOGIN:
       state = {
         ...state,
-        user: action.payload,
-        authenticated: true
+        user: action.payload
       }
       break
     case userConstance.USER_LOGOUT:
+      //
       state = {
         ...state,
-        authenticated: false
+        ...initialState
       }
       break
     case userConstance.USER_BALANCE:

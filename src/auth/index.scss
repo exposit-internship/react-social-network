@@ -1,4 +1,4 @@
-@import '../styles/common';
+@import 'src/styles/common';
 
 .auth__button {
   min-width: 4em;
@@ -23,16 +23,19 @@
 a {
   color: get-color($text, 800);
 }
-.registration__form {
-  height: calc(40em - 4em);
-  background: url('../images/register-bcg.jpg') center no-repeat;
-  background-size: cover;
-  color: get-color($text, 900);
-  font-size: 1.2em;
-  font-family: 'Raleway', sans-serif;
-  .box {
+
+.registration {
+  &__form {
+    height: calc(40em - 4em);
+    background: url('../images/register-bcg.jpg') center no-repeat;
+    background-size: cover;
+    color: get-color($text, 900);
+    font-size: 1.2em;
+    font-family: 'Raleway', sans-serif;
+  }
+
+  &__container {
     max-width: 32em;
-    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,10 +47,12 @@ a {
     position: absolute;
     top: 50%;
     left: 50%;
+
     h1 {
       text-align: center;
       font-family: Arial, Helvetica, sans-serif;
     }
+
     &:before {
       background: url('../images/register-bcg.jpg') center no-repeat;
       background-size: cover;
@@ -61,6 +66,7 @@ a {
       transform: translate(-50%, -50%);
       width: 32em;
     }
+
     &:after {
       background: rgba(255, 255, 255, 0.6);
       content: '';
@@ -72,56 +78,63 @@ a {
       z-index: -1;
       width: 22em;
     }
-    & .form {
-      margin-top: 2.2em;
-      width: 16em;
-      & .custom {
-        &__input {
-          display: flex;
-          flex-direction: column;
-          border-bottom: 1px solid get-color($text, 900);
-          margin-bottom: 0.8em;
-          transition: all 0.24s;
+  }
+
+  &__input-data {
+    margin-top: 2.2em;
+    width: 16em;
+
+    & .custom {
+      &__input {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid get-color($text, 900);
+        margin-bottom: 0.8em;
+        transition: all 0.24s;
+      }
+      &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & span {
+          color: get-color($error, 700);
+          font-size: 0.8em;
+          text-transform: $uppercase;
         }
-        &__header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          & span {
-            color: get-color($error, 700);
-            font-size: 0.8em;
-            text-transform: $uppercase;
-          }
-        }
-        &__footer {
-          border: none;
-          outline: none;
-          height: 2.8em;
-          background: $transparent;
-          font-size: 15px;
-          font-weight: 300;
-          padding: 0.8em 0.2em 0 0.4em;
-        }
+      }
+
+      &__footer {
+        border: none;
+        outline: none;
+        height: 2.8em;
+        background: $transparent;
+        font-size: 15px;
+        font-weight: 300;
+        padding: 0.8em 0.2em 0 0.4em;
       }
     }
-    & .button {
-      display: block;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.25);
-      border: 1px solid get-color($bg, 600);
-      line-height: 0.8em;
-      padding: 0.8em 2.4em;
-      transition: all 0.24s;
-      cursor: pointer;
-      &.disabled {
-        color: $black;
-        background-color: $transparent;
-      }
-      &:hover {
-        background: get-color($text, 900);
-        color: $white;
-        outline: none;
-      }
+  }
+
+  &__button {
+    display: block;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid get-color($bg, 600);
+    line-height: 0.8em;
+    padding: 0.8em 2.4em;
+    transition: all 0.24s;
+    cursor: pointer;
+
+    &.disabled {
+      color: $black;
+      background-color: $transparent;
+    }
+
+    &:hover {
+      background: get-color($text, 900);
+      color: $white;
+      outline: none;
     }
   }
 }

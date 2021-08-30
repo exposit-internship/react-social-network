@@ -1,3 +1,5 @@
+import { ReactComponent as CloseIcon } from '../../../images/close-icon.svg'
+
 import './index.scss'
 
 const Post = ({
@@ -5,7 +7,7 @@ const Post = ({
   avatarURL,
   image,
   caption,
-  onClick,
+  handleDelete,
   commentUserName,
   commentUserMessage
 }) => (
@@ -15,7 +17,7 @@ const Post = ({
         <img className="post__avatart" src={avatarURL} alt="user-avatar" />
         <h3 className="post__username">{`${displayName}`}</h3>
       </div>
-      <div className="post__delete_btn" onClick={onClick}></div>
+      <CloseIcon onClick={handleDelete} className="post__delete-button" />
     </div>
     <div className="post__body">
       <img src={image} alt="" className="post__img" />

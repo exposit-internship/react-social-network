@@ -8,7 +8,8 @@ function SingleContentItem({
   media_type,
   release,
   date,
-  onMouseOver
+  handleClick,
+  onMouseOut
 }) {
   return (
     <div className="single-content-item">
@@ -16,7 +17,8 @@ function SingleContentItem({
         src={poster_path ? `${img_300}/${poster_path} ` : unavailable}
         alt={title || name}
         className="single-content-item__poster"
-        onMouseOver={onMouseOver}
+        onClick={handleClick}
+        onMouseOut={onMouseOut}
       />
     </div>
   )

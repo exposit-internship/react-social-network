@@ -1,4 +1,5 @@
-@import '../../styles/common';
+@import 'src/styles/common';
+
 .dropdown-menu {
   &__container {
     width: 20em;
@@ -6,27 +7,29 @@
     top: 4em;
     right: 0%;
     transform: translate(-25%, -5%);
-    padding: 1em;
+    padding: 1em 1em 1em 2em;
     background-color: $white;
     border: 1px solid get-color($primary, 100);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     overflow: hidden;
   }
+
   &__item {
     height: 2.8em;
     display: flex;
     align-items: center;
-    padding: 0.8em;
     border-radius: 8px;
     font-weight: $bold;
     font-size: 1.2em;
-    text-transform: $capitalize;
+
     &:hover {
       background-color: get-color($primary, 100);
-      transition: color 0.1ms ease-out;
+      transition: all 0.5s ease;
       & a {
         color: get-color($primary, 400);
+        padding: 0.8em;
         width: 100%;
+        transition: all 0.5s ease;
       }
     }
   }
@@ -44,6 +47,7 @@
       box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
       border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     cursor: pointer;
+
     &:hover {
       background-color: get-color($bg, 200);
     }

@@ -19,35 +19,36 @@ const Header = () => {
   )
   const closeDropDown = () => setIsVisibleMenu(false)
 
-  const user = useSelector(state => state.user)
-  const { firstName: userName } = useSelector(state => state.user.user)
+  const { user } = useSelector(state => state.user)
+  // console.log('USER', user)
+  // const { firstName } = user
+  // console.log('USER2', firstName)
 
   return (
     <div className="header">
       <div className="header__logo">
         <h1>Facebook</h1>
       </div>
-      {user.authenticated ? (
+      {user ? (
         <div className="header__navigation">
           <Link to={INDEX_ROUTE} className="header__navigation_home">
             Home
           </Link>
           <Link to={USER_PAGE_ROUTE} className="header__navigation_user">
-            {userName}
+            Master 
+            {/* {user ? firstName : null} */}
           </Link>
         </div>
       ) : null}
 
-      {user.authenticated ? (
-        <Monetization closeDropDown={closeDropDown} />
-      ) : null}
-      {user.authenticated ? (
+      {user ? <Monetization closeDropDown={closeDropDown} /> : null}
+      {user ? (
         <DropdownMenu
           isVisibleMenu={isVisibleMenu}
           isVisibleDropdown={isVisibleDropdown}
         />
       ) : null}
-      {!user.authenticated ? <Auth /> : null}
+      {!user ? <Auth /> : null}
     </div>
   )
 }

@@ -12,6 +12,11 @@ export default (state = initialState, action) => {
         shows: action.payload
       }
       break
+      case showsConstance.GET_CURRENT_SHOW:
+        state={
+          ...state,
+          shows: action.payload
+        }
   }
   return state
 }

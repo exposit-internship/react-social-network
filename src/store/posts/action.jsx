@@ -12,39 +12,36 @@ export const getPosts = () => dispatch =>
     })
     .catch(error => console.log(error))
 
-export const addPost = (post, history) => dispatch =>
+export const addPost = post => dispatch =>
   DB.post(`/posts`, post)
-    .then(() => {
+    .then(({ data }) => {
       dispatch({
-        type: `${postsConstance.ADD_POST}`
+        type: postsConstance.ADD_POST,
+        payload: [data]
       })
-      history.push(INDEX_ROUTE)
+      console.log('DATAPOST', data)
     })
     .catch(error => console.log(error))
 
-export const deletePost = id => dispatch =>
+export const deletePost = id => (dispatch, getState) =>
   DB.delete(`/posts/${id}`)
     .then(() => {
+      const { posts } = getState().posts
+      const filteredPosts = posts.filter(p => p.id !== id)
       dispatch({
-        type: `${postsConstance.DELETE_POST}`
+        type: `${postsConstance.DELETE_POST}`,
+        payload: filteredPosts
       })
     })
     .catch(error => console.log(error))
 
-// export const getComments = () => {
-//   return dispatch => {
-//     DB(`posts/comments`).then(({ data }) => {
-//       dispatch({
-//         type: `${postsConstance.GET_COMMENTS}`
-//       })
-//       console.log(data)
-//     })
-//   }
-// }
+
 
 export const addPostComment = id => dispatch =>
   DB(`/posts/${id}`)
     .then(res => {
-      console.log(res.data)
+      dispatch({
+        type: postsConstance.ADD_COMMENT
+      })
     })
     .catch(error => console.log(error))
