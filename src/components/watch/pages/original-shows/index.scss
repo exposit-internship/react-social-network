@@ -1,15 +1,15 @@
-@import '../../../../styles/common';
+@import 'src/styles/common';
 
 .original-shows {
   &__content {
     padding: 1.2em 1.6em;
     background-color: get-color($bg, 200);
-    &_title h1 {
+    &-title h1 {
       margin-bottom: 1em;
       color: get-color($text, 900);
     }
 
-    &_body {
+    &-body {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;

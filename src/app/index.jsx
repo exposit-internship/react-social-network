@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import classNames from 'classnames'
 
 import PrivateRoute from '../private-route'
-import Login from '../auth/login'
-import Register from '../auth/register'
+import Login from '../components/auth/login'
+import Register from '../components/auth/register'
 import { Home, Header, UserPage, Watch } from '../components'
 import { useTheme } from '../context/test/test-state'
 

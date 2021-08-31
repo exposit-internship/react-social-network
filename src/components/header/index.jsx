@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import Auth from '../../auth'
+import Auth from '../auth'
 import Monetization from '../monetization'
 import DropdownMenu from '../dropdown-menu'
 
@@ -20,9 +20,6 @@ const Header = () => {
   const closeDropDown = () => setIsVisibleMenu(false)
 
   const { user } = useSelector(state => state.user)
-  // console.log('USER', user)
-  // const { firstName } = user
-  // console.log('USER2', firstName)
 
   return (
     <div className="header">
@@ -31,12 +28,11 @@ const Header = () => {
       </div>
       {user ? (
         <div className="header__navigation">
-          <Link to={INDEX_ROUTE} className="header__navigation_home">
+          <Link to={INDEX_ROUTE} className="header__navigation-home">
             Home
           </Link>
-          <Link to={USER_PAGE_ROUTE} className="header__navigation_user">
+          <Link to={USER_PAGE_ROUTE} className="header__navigation-user">
             Master 
-            {/* {user ? firstName : null} */}
           </Link>
         </div>
       ) : null}

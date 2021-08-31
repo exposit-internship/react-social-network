@@ -1,4 +1,5 @@
 import { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import { withTranslation } from 'react-i18next'
 
 import './index.scss'
@@ -20,7 +21,7 @@ export class ReplenishModal extends PureComponent {
         <form onSubmit={handleAddUserDeposit} className="replenishModal__form">
           <label className="replenishModal__label">{t('enterSum')}</label>
           <input
-            className="replenishModal__depositeValue_input"
+            className="replenishModal__depositeValue-input"
             type="number"
             name="depositeValue"
             value={depositeValue}
@@ -30,18 +31,18 @@ export class ReplenishModal extends PureComponent {
             {t('enterYourPassword')}
           </label>
           <input
-            className="replenishModal__userPassword_input"
+            className="replenishModal__userPassword-input"
             type="password"
             name="userPassword"
             value={userPassword}
             onChange={handleChange}
           />
           <div className="replenishModal__buttons">
-            <button className="replenishModal__button_submit">
+            <button className="replenishModal__button-submit">
               {t('submit')}
             </button>
             <button
-              className="replenishModal__button_cancel"
+              className="replenishModal__button-cancel"
               onClick={toggleModalVisibitity}
             >
               {t('cancel')}
@@ -54,3 +55,11 @@ export class ReplenishModal extends PureComponent {
 }
 
 export default withTranslation()(ReplenishModal)
+
+ReplenishModal.propTypes = {
+  depositeValue: PropTypes.number,
+  userPassword: PropTypes.string,
+  toggleModalVisibitity: PropTypes.func,
+  handleAddUserDeposit: PropTypes.func,
+  handleChange: PropTypes.func
+}

@@ -20,7 +20,7 @@ function OriginalShows() {
   }, [])
 
   const { shows } = useSelector(state => state.shows)
-  const { poster_path, title, name, release_date, overview } = shows
+  // const { poster_path, title, name, release_date, overview } = shows
 
   const handleShowDescription = id => {
     const currentShow = shows.find(show => show.id === id)
@@ -36,10 +36,10 @@ function OriginalShows() {
 
   return (
     <div className="original-shows">
-      <div className="original-shows__content_title">
+      <div className="original-shows__content-title">
         <h1>FACEBOOK original shows</h1>
       </div>
-      <div className="original-shows__content_body">
+      <div className="original-shows__content-body">
         {shows &&
           shows.length &&
           shows.map(({ poster_path, id }) => {
@@ -48,7 +48,7 @@ function OriginalShows() {
                 key={id}
                 poster_path={poster_path}
                 handleClick={() => handleShowDescription(id)}
-                onMouseOut={() => handleHideDescription()}
+                handleMouseOut={() => handleHideDescription()}
               />
             )
           })}

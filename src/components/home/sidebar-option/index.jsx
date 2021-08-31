@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import './index.scss'
 
@@ -12,3 +13,10 @@ const SidebarOption = ({ to, text, src, alt }) => (
 )
 
 export default SidebarOption
+
+SidebarOption.propTypes={
+  to: PropTypes.string, 
+  text: PropTypes.string, 
+  src: PropTypes.string, 
+  alt: PropTypes.string
+}

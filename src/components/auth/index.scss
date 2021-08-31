@@ -27,7 +27,7 @@ a {
 .registration {
   &__form {
     height: calc(40em - 4em);
-    background: url('../images/register-bcg.jpg') center no-repeat;
+    background: url('../../images/register-bcg.jpg') center no-repeat;
     background-size: cover;
     color: get-color($text, 900);
     font-size: 1.2em;
@@ -54,7 +54,7 @@ a {
     }
 
     &:before {
-      background: url('../images/register-bcg.jpg') center no-repeat;
+      background: url('../../images/register-bcg.jpg') center no-repeat;
       background-size: cover;
       content: '';
       filter: blur(0.4em);

@@ -1,5 +1,7 @@
+@import 'src/styles/common';
+
 .userPage {
-  &__cover_photo img {
+  &__cover-photo img {
     width: 100%;
     height: 350px;
     object-fit: cover;
@@ -12,7 +14,7 @@
     position: relative;
     background-color: #ffffff;
   }
-  &__profile_photo {
+  &__profile-photo {
     height: 12em;
     width: 12em;
     object-fit: cover;
@@ -21,7 +23,7 @@
     background-color: #fff;
     position: absolute;
   }
-  &__entertainment_links {
+  &__entertainment-links {
     width: 100%;
     display: flex;
     flex-direction: row;

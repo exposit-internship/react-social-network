@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 import { ReactComponent as CloseIcon } from '../../../images/close-icon.svg'
 
 import './index.scss'
@@ -13,7 +15,7 @@ const Post = ({
 }) => (
   <div className="post">
     <div className="post__header">
-      <div className="post__header_info">
+      <div className="post__header-info">
         <img className="post__avatart" src={avatarURL} alt="user-avatar" />
         <h3 className="post__username">{`${displayName}`}</h3>
       </div>
@@ -34,3 +36,15 @@ const Post = ({
 )
 
 export default Post
+
+Post.propTypes={
+  displayName: PropTypes.string,
+  avatarURL: PropTypes.string,
+  image: PropTypes.string,
+  caption: PropTypes.string,
+  handleDelete: PropTypes.func,
+  commentUserName: PropTypes.string,
+  commentUserMessage: PropTypes.string
+}
+
+

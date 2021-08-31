@@ -1,4 +1,5 @@
-@import '../../../styles/common';
+@import 'src/styles/common';
+
 .replenishModal {
   &__container {
     position: $absolute;
@@ -30,8 +31,8 @@
     font-size: 1.2em;
     margin-bottom: 0.4em;
   }
-  &__depositeValue_input,
-  &__userPassword_input {
+  &__depositeValue-input,
+  &__userPassword-input {
     max-width: inherit;
     width: 100%;
     height: 2em;
@@ -52,8 +53,8 @@
     flex-direction: row;
     justify-content: space-evenly;
   }
-  &__button_submit,
-  &__button_cancel {
+  &__button-submit,
+  &__button-cancel {
     width: 8em;
     height: 3.2em;
     border: none;
@@ -65,11 +66,11 @@
     border-radius: 8px;
     transition: color 0.1ms ease-out;
   }
-  &__button_submit:hover {
+  &__button-submit:hover {
     color: get-color($primary, 400);
     background-color: get-color($primary, 100);
   }
-  &__button_cancel:hover {
+  &__button-cancel:hover {
     color: $white;
     background-color: get-color($text, 600);
   }

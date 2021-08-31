@@ -1,19 +1,15 @@
 import { useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-
 import classNames from 'classnames'
-
-import PropTypes from 'prop-types'
-
 import { v4 as uuidv4 } from 'uuid'
 
-import { signUp } from '../../store/user/action'
+import { signUp } from '../../../store/user/action'
 
 import {
   getEmptyFieldsWithErrors,
   getIsButtonDisabled
-} from '../../utils/registration'
+} from '../../../utils/registration'
 
 import CustomInput from '../custom-unput'
 
@@ -156,20 +152,3 @@ const Register = () => {
 }
 
 export default Register
-
-Register.propTypes = {
-  firstName: PropTypes.string,
-  secondName: PropTypes.string,
-  email: PropTypes.string,
-  password: PropTypes.string,
-  INITIAL_ERROR_STATE: PropTypes.shape({
-    firstName: PropTypes.string,
-    secondName: PropTypes.string,
-    email: PropTypes.string,
-    password: PropTypes.string
-  }),
-  idx: PropTypes.number,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  text: PropTypes.string
-}

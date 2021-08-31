@@ -2,14 +2,13 @@ import { useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import classNames from 'classnames'
-import PropTypes from 'prop-types'
 
 import CustomInput from '../custom-unput'
-import { signIn } from '../../store/user/action'
+import { signIn } from '../../../store/user/action'
 import {
   getEmptyFieldsWithErrors,
   getIsButtonDisabled
-} from '../../utils/registration'
+} from '../../../utils/registration'
 
 const Login = () => {
   const [userLoginData, setUserLoginData] = useState({
@@ -98,19 +97,6 @@ const Login = () => {
       </div>
     </div>
   )
-}
-
-Login.propTypes = {
-  email: PropTypes.string,
-  password: PropTypes.string,
-  errors: PropTypes.shape({
-    email: PropTypes.string,
-    password: PropTypes.string
-  }),
-  idx: PropTypes.number,
-  name: PropTypes.string,
-  type: PropTypes.string,
-  text: PropTypes.string
 }
 
 export default Login

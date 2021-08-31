@@ -84,9 +84,6 @@ function DropdownMenu({ isVisibleMenu, isVisibleDropdown }) {
 export default DropdownMenu
 
 DropdownMenu.propTypes = {
-  handleLanguageChange: PropTypes.func,
-  themeChangePaymentToggle: PropTypes.func,
-  areUserLogout: PropTypes.func,
   isVisibleMenu: PropTypes.bool,
   isVisibleDropdown: PropTypes.func
 }

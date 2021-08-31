@@ -1,4 +1,5 @@
-@import '../../styles/common';
+@import 'src/styles/common';
+
 .header {
   min-width: 20em;
   display: flex;
@@ -12,14 +13,14 @@
   &__navigation {
     display: flex;
     margin: 0.2em 0;
-    &_home {
+    &-home {
       margin-right: 2.4em;
     }
-    &_user {
+    &-user {
       text-transform: $capitalize;
     }
-    &_home,
-    &_user {
+    &-home,
+    &-user {
       padding: 0.8em 0.8em;
       transition: color 0.1ms ease-out;
       &:hover {
