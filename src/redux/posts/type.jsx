@@ -2,6 +2,5 @@ export const postsConstance = {
   GET_POSTS: 'GET_POSTS',
   ADD_POST: 'ADD_POST',
   DELETE_POST: 'DELETE_POST',
-  GET_COMMENTS: 'GET_COMMENTS',
   ADD_COMMENT: 'ADD_COMMENT'
 }

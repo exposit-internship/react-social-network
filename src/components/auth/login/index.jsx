@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import classNames from 'classnames'
 
 import CustomInput from '../custom-unput'
-import { signIn } from '../../../store/user/action'
+import { signIn } from '../../../redux/user/action'
 import {
   getEmptyFieldsWithErrors,
   getIsButtonDisabled

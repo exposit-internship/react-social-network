@@ -1,17 +1,16 @@
 import { useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import classNames from 'classnames'
 import { v4 as uuidv4 } from 'uuid'
+import classNames from 'classnames'
 
-import { signUp } from '../../../store/user/action'
+import CustomInput from '../custom-unput'
+import { signUp } from '../../../redux/user/action'
 
 import {
   getEmptyFieldsWithErrors,
   getIsButtonDisabled
 } from '../../../utils/registration'
-
-import CustomInput from '../custom-unput'
 
 import '../index.scss'
 

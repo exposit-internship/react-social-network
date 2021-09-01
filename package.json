@@ -30,7 +30,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "json-server": "json-server --watch -p5000 src/db/db.json"
   },
@@ -53,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "jest": "^27.1.0",
     "prettier": "^2.3.2"
   }
 }

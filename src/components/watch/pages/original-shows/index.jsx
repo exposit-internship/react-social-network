@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getShows } from '../../../../store/shows/action'
+import { getShows } from '../../../../redux/shows/action'
 
 import SingleContentItem from '../../single-content-item'
 import SingleShowModal from '../../single-show-modal'
@@ -10,8 +10,10 @@ import SingleShowModal from '../../single-show-modal'
 import './index.scss'
 
 function OriginalShows() {
-  const [isShowModalVisible, setIsShowModalVisible] = useState(false)
+  const [isShowModalVisible, setIsShowModalVisible] = useState(true)
   const [modalData, setModalData] = useState(null)
+
+  const { t } = useTranslation('translation')
 
   const dispatch = useDispatch()
 
@@ -20,7 +22,6 @@ function OriginalShows() {
   }, [])
 
   const { shows } = useSelector(state => state.shows)
-  // const { poster_path, title, name, release_date, overview } = shows
 
   const handleShowDescription = id => {
     const currentShow = shows.find(show => show.id === id)
@@ -37,7 +38,7 @@ function OriginalShows() {
   return (
     <div className="original-shows">
       <div className="original-shows__content-title">
-        <h1>FACEBOOK original shows</h1>
+        <h1>{t('watch.title')} </h1>
       </div>
       <div className="original-shows__content-body">
         {shows &&

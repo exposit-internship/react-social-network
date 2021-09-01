@@ -1,14 +1,26 @@
 {
-  "updateContext": "Обновить контекст",
-  "updateRedux": "Обновить редакс",
-  "apiText": "Любой текст",
-
   "menu": "Меню",
-  "changeLanguage": "Поменять язык",
+  "changeLanguage": "Поменять язык (ENG)",
   "light": "Светлая",
   "dark": "Тёмная",
 
-  "themeChangeMessage":"Смена темы является платной. Желаете оплатить 20$, чтобы сменить тему?",
+  "themeChangeMessage": "Смена темы является платной. Желаете оплатить 20$, чтобы сменить тему?",
+
+  "postsBox": {
+    "placeholder": "Что у вас нового?",
+    "image": "Добавьте вашу картинку...",
+    "button": "Отправить"
+  },
+
+  "comment": {
+    "placeholder": "Комментировать...",
+    "addComment": "Добавить"
+  },
+
+  "watch": {
+    "title": "Оригинальные шоу FACEBOOK",
+    "originalShows": "Оригинальные Шоу"
+  },
 
   "replenish": "Пополнить",
   "enterSum": "Введите сумму",
@@ -19,7 +31,6 @@
   "cancel": "Закрыть",
 
   "home": "Главная",
-  "post": "Отправить",
 
   "yourBalance": "Ваш баланс",
   "Messenger": "Мессенджер",

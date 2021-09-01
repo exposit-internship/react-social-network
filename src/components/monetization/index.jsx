@@ -2,14 +2,12 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-
 import { withTranslation } from 'react-i18next'
 
-import { FAKE_ROUTE } from '../../constants/routs'
-
-import { addUserDeposite } from '../../store/user/action'
-
+import { addUserDeposite } from '../../redux/user/action'
 import ReplenishModal from './replenish-modal'
+
+import { FAKE_ROUTE } from '../../constants/routs'
 
 import './replenish-modal/index.scss'
 
@@ -100,7 +98,6 @@ export default withTranslation()(
   connect(mapStateToProps, mapDispatchToProps)(Monetization)
 )
 
-Monetization.propTypes={
+Monetization.propTypes = {
   isModalVisible: PropTypes.bool
 }
-

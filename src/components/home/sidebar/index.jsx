@@ -1,15 +1,11 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
 import { useTranslation } from 'react-i18next'
 
-import PropTypes from 'prop-types'
+import { getUser } from '../../../redux/user/action'
+import SidebarOption from '../sidebar-option'
 
 import { USER_PAGE_ROUTE, WATCH_ROUTE } from '../../../constants/routs'
-
-import { getUser } from '../../../store/user/action'
-
-import SidebarOption from '../sidebar-option'
 
 import './index.scss'
 
@@ -35,9 +31,5 @@ const Sidebar = () => {
     </div>
   )
 }
-Sidebar.propTypes = {
-  amount: PropTypes.number,
-  firstName: PropTypes.string,
-  secondName: PropTypes.string
-}
+
 export default Sidebar

@@ -2,15 +2,31 @@
 
 .single-show-modal {
   display: flex;
-  width: 400px;
-  height: 300px;
+  width: 500px;
+  height: 350px;
   background-color: $white;
+  border-radius: 8px;
   position: absolute;
-  &__poster {
-    height: 200px;
-    &img {
-      height: 200px;
-      object-fit: contain;
-    }
+
+  &__poster img {
+    height: 350px;
+    width: 225px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  &__info {
+    padding: 1em;
+  }
+  &__title {
+    font-weight: $bold;
+    font-size: 20px;
+    color: get-color($text, 900);
+    text-align: center;
+    margin: 1em 0;
+  }
+  &__release {
+    font-size: 16px;
+  }
+  &__description {
   }
 }

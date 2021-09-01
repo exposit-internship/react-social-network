@@ -1,11 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.scss'
-import App from './app'
-import { store, persistor } from './store/store'
 import { Provider } from 'react-redux'
-import TestState from './context/test/test-state'
+import { store, persistor } from './redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
+
+import App from './app'
+import TestState from './context/test/test-state'
+
+import './index.scss'
 
 ReactDOM.render(
   <React.StrictMode>

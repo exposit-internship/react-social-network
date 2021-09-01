@@ -13,7 +13,7 @@
       "secondName": "Rabbit",
       "email": "r@mail.com",
       "password": "MTExMTEx",
-      "amount": 1185,
+      "amount": 965,
       "id": "5744cdc8-9a5a-4a39-a18d-8e2245f27dbb"
     }
   ],
@@ -70,7 +70,28 @@
       "imageURL": "https://hvost.news/upload/resize_cache/iblock/ba5/750_400_1/korotkosherstnyj_karlikovyj_krolik.jpg",
       "caption": "mr. Rabbit fix user reducer",
       "id": "abc74e81-435a-4465-9ab1-f7dc1a77de2d",
-      "comments": []
+      "comments": [
+        {
+          "userName": "W",
+          "userComment": "COOOOOL"
+        },
+        {
+          "userName": "Y",
+          "userComment": "yep"
+        },
+        {
+          "userName": "Y",
+          "userComment": "yep"
+        },
+        {
+          "userName": "Y",
+          "userComment": "yep"
+        },
+        {
+          "userName": "Y",
+          "userComment": "yep"
+        }
+      ]
     }
   ]
 }

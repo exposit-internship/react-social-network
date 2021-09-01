@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 
 import { handleLanguageChange } from '../../utils/translation'
+import { logout, userPaymentConfirm } from '../../redux/user/action'
 import { useTheme } from '../../context/test/test-state'
-import { logout, userPaymentConfirm } from '../../store/user/action'
 import PaymentModal from './payment-modal'
 
 import { FAKE_ROUTE } from '../../constants/routs'

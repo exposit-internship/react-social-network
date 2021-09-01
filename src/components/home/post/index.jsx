@@ -9,9 +9,7 @@ const Post = ({
   avatarURL,
   image,
   caption,
-  handleDelete,
-  commentUserName,
-  commentUserMessage
+  handleDelete
 }) => (
   <div className="post">
     <div className="post__header">
@@ -28,16 +26,13 @@ const Post = ({
         {caption}
       </h4>
     </div>
-    <div className="comment">
-      <p className="commet__user">{commentUserName}</p>
-      <span className="comment__message">{commentUserMessage}</span>
-    </div>
+    
   </div>
 )
 
 export default Post
 
-Post.propTypes={
+Post.propTypes = {
   displayName: PropTypes.string,
   avatarURL: PropTypes.string,
   image: PropTypes.string,
@@ -46,5 +41,3 @@ Post.propTypes={
   commentUserName: PropTypes.string,
   commentUserMessage: PropTypes.string
 }
-
-

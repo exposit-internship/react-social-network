@@ -7,8 +7,10 @@
     flex: 0.2;
     padding: 0.8em 1em;
     border-right: 1px solid get-color($text, 300);
+    background-color: $white;
   }
   &__content {
     flex: 0.8;
+    background-color: get-color($bg, 200);
   }
 }

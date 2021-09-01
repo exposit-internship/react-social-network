@@ -7,6 +7,7 @@
   border: 1px solid get-color($text, 300);
   border-bottom: none;
   background-color: $white;
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -25,6 +26,15 @@
     margin-left: 0.8em;
     text-transform: $capitalize;
   }
+  &__delete-button {
+    cursor: pointer;
+    stroke-opacity: 0.4;
+    stroke: get-color($primary, 400);
+
+    &:hover {
+      stroke-opacity: 1;
+    }
+  }
 
   &__body {
     & > img {
@@ -41,8 +51,19 @@
     margin-left: 1.2em;
     padding: 0.8em 0;
   }
-}
-
-.post__delete-button{
-  cursor: pointer;
+  &__comment {
+    max-width: 32em;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1em;
+    border-right: 1px solid get-color($text, 300);
+    border-left: 1px solid get-color($text, 300);
+    padding-bottom: 15px;
+    &_user {
+      font-weight: $bold;
+      margin-left: 12px;
+      margin-right: 10px;
+      padding: 10px 0px;
+    }
+  }
 }

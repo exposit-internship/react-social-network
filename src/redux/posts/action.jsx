@@ -9,6 +9,7 @@ export const getPosts = () => dispatch =>
         type: `${postsConstance.GET_POSTS}`,
         payload: res.data.reverse()
       })
+      console.log('POSTS', res.data)
     })
     .catch(error => console.log(error))
 
@@ -35,13 +36,13 @@ export const deletePost = id => (dispatch, getState) =>
     })
     .catch(error => console.log(error))
 
-
-
 export const addPostComment = id => dispatch =>
-  DB(`/posts/${id}`)
+  DB(`/posts?id=${id}`)
     .then(res => {
       dispatch({
-        type: postsConstance.ADD_COMMENT
+        type: postsConstance.ADD_COMMENT,
+        payload: res
       })
+      console.log('res.data', res, id)
     })
     .catch(error => console.log(error))

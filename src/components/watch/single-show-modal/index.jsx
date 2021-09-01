@@ -21,7 +21,7 @@ const SingleShowModal = ({
     <div className="single-show-modal__info">
       <div className="single-show-modal__title">
         <p>{title}</p>
-        <span>{release_date}</span>
+        <span className='single-show-modal__release' >{release_date}</span>
       </div>
       <div className="single-show-modal__description">{overview}</div>
     </div>
