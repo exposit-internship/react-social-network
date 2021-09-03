@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import Auth from '../auth'
+import { Auth } from '../auth'
 import Monetization from '../monetization'
 import DropdownMenu from '../dropdown-menu'
 
@@ -32,7 +32,7 @@ const Header = () => {
             Home
           </Link>
           <Link to={USER_PAGE_ROUTE} className="header__navigation-user">
-            Master 
+            Master
           </Link>
         </div>
       ) : null}

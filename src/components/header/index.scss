@@ -1,17 +1,16 @@
 @import 'src/styles/common';
 
 .header {
-  min-width: 20em;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include elementMaxMinWidth($minw: 20em);
+  @include elemenSize($h: 3.6em);
+  @include itemPlacement($dp: flex, $jc: space-between, $ai: center);
   padding: 0 3.2em;
   background-color: $white;
   border-bottom: 1px solid get-color($info, 200);
   box-shadow: 0 0px 28px rgba(0, 0, 0, 0.25), 0 0px 10px rgba(0, 0, 0, 0.22);
   position: sticky;
   &__navigation {
-    display: flex;
+    @include itemPlacement($dp: center);
     margin: 0.2em 0;
     &-home {
       margin-right: 2.4em;
@@ -34,7 +33,7 @@
 
 @include respond(small-tab) {
   .header {
-    justify-content: space-evenly;
+    @include itemPlacement($jc: space-evenly);
     padding: 0 1em;
   }
 }

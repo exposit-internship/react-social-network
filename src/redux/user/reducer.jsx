@@ -27,7 +27,6 @@ export default (state = initialState, action) => {
       }
       break
     case userConstance.USER_BALANCE:
-      console.log('BALANCEACTIONPAYLOAD', action.payload.amount)
       state = {
         ...state,
         user: {

@@ -14,7 +14,7 @@ const Post = ({
   <div className="post">
     <div className="post__header">
       <div className="post__header-info">
-        <img className="post__avatart" src={avatarURL} alt="user-avatar" />
+        <img className="post__avatart" src={avatarURL} alt="user-avatar" loading='lazy' />
         <h3 className="post__username">{`${displayName}`}</h3>
       </div>
       <CloseIcon onClick={handleDelete} className="post__delete-button" />

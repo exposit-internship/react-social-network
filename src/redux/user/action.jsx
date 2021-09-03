@@ -19,7 +19,7 @@ export const signUp = (user, email, history) => dispatch =>
         : DB.post('/users', user)
             .then(({ data }) => {
               dispatch({
-                type: `${userConstance.USER_LOGIN}`,
+                type: userConstance.USER_LOGIN,
                 payload: data
               })
               history.push(INDEX_ROUTE)
@@ -37,7 +37,7 @@ export const signIn = (email, password, history) => dispatch =>
     .then(({ data }) => {
       if (data.length > 0) {
         dispatch({
-          type: `${userConstance.USER_LOGIN}`,
+          type: userConstance.USER_LOGIN,
           payload: data[0]
         })
         history.push(INDEX_ROUTE)
@@ -52,7 +52,7 @@ export const signIn = (email, password, history) => dispatch =>
 export const logout = () => dispatch => {
   localStorage.clear()
   dispatch({
-    type: `${userConstance.USER_LOGOUT}`
+    type: userConstance.USER_LOGOUT
   })
 }
 
@@ -81,7 +81,6 @@ export const addUserDeposite =
 export const userPaymentConfirm = (id, amount) => {
   return async dispatch => {
     DB.patch(`/users/${id}`, { amount: amount - 20 }).then(res => {
-      console.log('RES', res)
       dispatch({
         type: userConstance.USER_BALANCE,
         payload: res.data

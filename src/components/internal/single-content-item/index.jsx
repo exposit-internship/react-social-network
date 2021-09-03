@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-import { img_300, unavailable } from '../config'
+import { img_300, unavailable } from '../../watch/config'
 
 import './index.scss'
 
@@ -20,6 +20,7 @@ const SingleContentItem = ({
       src={poster_path ? `${img_300}/${poster_path} ` : unavailable}
       alt={title || name}
       className="single-content-item__poster"
+      loading='lazy'
     />
   </div>
 )

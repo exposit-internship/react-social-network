@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import { LOGIN_ROUTE, REGISTER_ROUTE } from '../../constants/routs'
+import { LOGIN_ROUTE, REGISTER_ROUTE } from '../../../constants/routs'
 
 import './index.scss'
 

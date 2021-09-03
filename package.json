@@ -30,7 +30,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!@amcharts)/\"",
     "eject": "react-scripts eject",
     "json-server": "json-server --watch -p5000 src/db/db.json"
   },

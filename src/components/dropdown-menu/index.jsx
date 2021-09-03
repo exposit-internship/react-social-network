@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import { handleLanguageChange } from '../../utils/translation'
 import { logout, userPaymentConfirm } from '../../redux/user/action'
 import { useTheme } from '../../context/test/test-state'
-import PaymentModal from './payment-modal'
+import PaymentModal from '../internal/payment-modal'
 
 import { FAKE_ROUTE } from '../../constants/routs'
 import { THEME_CHANGE_PAYMENT } from '../../constants/payment'

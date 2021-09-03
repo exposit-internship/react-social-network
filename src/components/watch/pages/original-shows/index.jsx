@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { getShows } from '../../../../redux/shows/action'
 
-import SingleContentItem from '../../single-content-item'
-import SingleShowModal from '../../single-show-modal'
+import { SingleContentItem, SingleShowModal } from '../../../internal'
 
 import './index.scss'
 
@@ -25,7 +24,6 @@ function OriginalShows() {
 
   const handleShowDescription = id => {
     const currentShow = shows.find(show => show.id === id)
-    console.log('currentShow', currentShow, id)
     setModalData(currentShow)
     setIsShowModalVisible(true)
   }

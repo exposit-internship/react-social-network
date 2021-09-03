@@ -3,12 +3,13 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import classNames from 'classnames'
 
-import CustomInput from '../custom-unput'
+import { CustomInput } from '../../internal'
 import { signIn } from '../../../redux/user/action'
 import {
   getEmptyFieldsWithErrors,
   getIsButtonDisabled
 } from '../../../utils/registration'
+
 
 const Login = () => {
   const [userLoginData, setUserLoginData] = useState({

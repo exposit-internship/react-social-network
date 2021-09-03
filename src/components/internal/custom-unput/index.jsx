@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-import '../index.scss'
+import '../../auth/auth/index'
 
 const CustomInput = ({ type, name, value, text, error, onChange }) => (
   <div className="custom__input">

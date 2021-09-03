@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import { getUser } from '../../../redux/user/action'
-import SidebarOption from '../sidebar-option'
+import { SidebarOption } from '../../internal'
 
 import { USER_PAGE_ROUTE, WATCH_ROUTE } from '../../../constants/routs'
 
 import './index.scss'
+
 
 const Sidebar = () => {
   const dispatch = useDispatch()

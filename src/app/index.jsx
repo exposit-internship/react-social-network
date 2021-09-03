@@ -3,8 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import classNames from 'classnames'
 
 import PrivateRoute from '../private-route'
-import Login from '../components/auth/login'
-import Register from '../components/auth/register'
+import { Login, Register } from '../components/auth'
 import { Home, Header, UserPage, Watch } from '../components'
 import { useTheme } from '../context/test/test-state'
 
@@ -34,8 +33,8 @@ const App = () => {
         <Header />
         <Switch>
           <PrivateRoute path={INDEX_ROUTE} component={Home} exact />
-          <Route path={USER_PAGE_ROUTE} component={UserPage} />
-          <Route path={WATCH_ROUTE} component={Watch} />
+          <PrivateRoute path={USER_PAGE_ROUTE} component={UserPage} />
+          <PrivateRoute path={WATCH_ROUTE} component={Watch} />
           <Route path={REGISTER_ROUTE} component={Register} />
           <Route path={LOGIN_ROUTE} component={Login} />
         </Switch>

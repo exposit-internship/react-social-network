@@ -2,8 +2,9 @@
 
 .watch {
   display: flex;
+
   &__sidebar {
-    min-width: 200px;
+    @include elementMaxMinWidth($minw: 200px);
     flex: 0.2;
     padding: 0.8em 1em;
     border-right: 1px solid get-color($text, 300);

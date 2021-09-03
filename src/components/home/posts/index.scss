@@ -17,13 +17,12 @@
     margin-bottom: 2em;
   }
   &__form {
-    display: flex;
-    flex-direction: column;
+    @include itemPlacement($dp: flex, $fd: column);
   }
   &__input {
-    display: flex;
+    @include itemPlacement($dp: flex);
     & input {
-      width: 100%;
+      @include elemenSize($w: 100%);
       margin-left: 1.2em;
       font-size: 1.2em;
       border: none;
@@ -37,9 +36,8 @@
     border: none;
   }
   &__box-btn {
-    width: 10em;
-    height: 4em;
-    align-self: center;
+    @include elemenSize($w: 10em, $h: 4em);
+    @include itemPlacement($as: center);
     border-radius: 30px;
     color: $white;
     background-color: get-color($primary, 400);
@@ -51,18 +49,16 @@
 }
 
 .comments {
-  max-width: 32em;
-  display: flex;
-  flex-direction: column;
+  @include elementMaxMinWidth($maxw: 32em);
+  @include itemPlacement($dp: flex, $fd: column);
   border: 1px solid lightgrey;
   margin: 0 auto;
   margin-bottom: 2.4em;
   &__post {
-    display: flex;
-    flex-direction: row;
+    @include itemPlacement($dp: flex, $fd: row);
     &_container {
-      display: flex;
-      width: 100%;
+      @include elemenSize($w: 100%);
+      @include itemPlacement($dp: flex);
     }
     &_message {
       flex: 8;
@@ -81,7 +77,7 @@
   }
 }
 .posts::-webkit-scrollbar {
-  width: 0; /*or display:none*/
+  @include elemenSize($w: 0, $h: none); /*or display:none*/
 }
 .posts {
   -ms-overflow-style: none; /*IE, Edge*/

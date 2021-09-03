@@ -5,11 +5,12 @@ import PropTypes from 'prop-types'
 import { withTranslation } from 'react-i18next'
 
 import { addUserDeposite } from '../../redux/user/action'
-import ReplenishModal from './replenish-modal'
+import { ReplenishModal } from '../internal'
 
 import { FAKE_ROUTE } from '../../constants/routs'
 
-import './replenish-modal/index.scss'
+import '../internal/replenish-modal/index.scss'
+
 
 export class Monetization extends Component {
   state = {

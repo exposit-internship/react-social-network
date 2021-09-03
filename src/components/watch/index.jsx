@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import SidebarOption from '../home/sidebar-option'
+import { SidebarOption } from '../internal'
 import OriginalShows from './pages/original-shows'
 
 import { WATCH_ROUTE } from '../../constants/routs'

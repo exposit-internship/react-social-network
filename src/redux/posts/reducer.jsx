@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
     case postsConstance.ADD_POST:
       state = {
         ...state,
-        posts: [...state.posts, ...action.payload]
+        posts: [...action.payload, ...state.posts]
       }
       break
     case postsConstance.DELETE_POST:
@@ -28,7 +28,12 @@ export default (state = initialState, action) => {
 
     case postsConstance.ADD_COMMENT:
       state = {
-        ...state
+        ...state,
+        posts: {
+          ...state.posts,
+          comments: action.payload.comments
+        }
+
       }
       break
   }

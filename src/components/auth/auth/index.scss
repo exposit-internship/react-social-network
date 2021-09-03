@@ -1,7 +1,7 @@
 @import 'src/styles/common';
 
 .auth__button {
-  min-width: 4em;
+  @include elementMaxMinWidth($minw: 4em);
   padding: 1.2em 1em;
   margin: 0.4em 0;
   font-weight: $bold;
@@ -26,8 +26,8 @@ a {
 
 .registration {
   &__form {
-    height: calc(40em - 4em);
-    background: url('../../images/register-bcg.jpg') center no-repeat;
+    @include elemenSize($h: calc(40em - 4em));
+    background: url('../../../images/register-bcg.jpg') center no-repeat;
     background-size: cover;
     color: get-color($text, 900);
     font-size: 1.2em;
@@ -35,10 +35,8 @@ a {
   }
 
   &__container {
-    max-width: 32em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include elementMaxMinWidth($maxw: 32em);
+    @include itemPlacement($dp: flex, $fd: column, $ai: center);
     border-radius: 0.4em;
     box-shadow: 0 0 1em 0 rgba(51, 51, 51, 0.25);
     overflow: hidden;
@@ -54,48 +52,43 @@ a {
     }
 
     &:before {
-      background: url('../../images/register-bcg.jpg') center no-repeat;
-      background-size: cover;
+      @include elemenSize($w: 32em, $h: 36em);
       content: '';
+      background: url('../../../images/register-bcg.jpg') center no-repeat;
+      background-size: cover;
       filter: blur(0.4em);
-      height: 36em;
       position: absolute;
       top: 50%;
       left: 50%;
       z-index: -1;
       transform: translate(-50%, -50%);
-      width: 32em;
     }
 
     &:after {
+      @include elemenSize($w: 22em, $h: 30em);
       background: rgba(255, 255, 255, 0.6);
       content: '';
       display: block;
-      height: 30em;
       position: absolute;
       top: 0;
       left: 0;
       z-index: -1;
-      width: 22em;
     }
   }
 
   &__input-data {
+    @include elemenSize($w: 16em);
     margin-top: 2.2em;
-    width: 16em;
 
     & .custom {
       &__input {
-        display: flex;
-        flex-direction: column;
+        @include itemPlacement($dp: flex, $fd: column);
         border-bottom: 1px solid get-color($text, 900);
         margin-bottom: 0.8em;
         transition: all 0.24s;
       }
       &__header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        @include itemPlacement($dp: flex, $jc: space-between, $ai: center);
 
         & span {
           color: get-color($error, 700);
@@ -105,24 +98,24 @@ a {
       }
 
       &__footer {
-        border: none;
-        outline: none;
-        height: 2.8em;
+        @include elemenSize($h: 2.8em);
+        padding: 0.8em 0.2em 0 0.4em;
         background: $transparent;
         font-size: 15px;
         font-weight: 300;
-        padding: 0.8em 0.2em 0 0.4em;
+        border: none;
+        outline: none;
       }
     }
   }
 
   &__button {
-    display: block;
+    @include itemPlacement($dp: block);
     margin: 0 auto;
+    padding: 0.8em 2.4em;
     background: rgba(255, 255, 255, 0.25);
     border: 1px solid get-color($bg, 600);
     line-height: 0.8em;
-    padding: 0.8em 2.4em;
     transition: all 0.24s;
     cursor: pointer;
 
@@ -147,19 +140,20 @@ a {
       }
     }
     & .form {
+      @include elemenSize($w: 10em, $h: none);
       font-size: 14px;
       margin-top: 2em;
-      width: 10em;
+
       .custom__input {
         .custom__footer {
-          height: 1.6em;
+          @include elemenSize($w: none, $h: 1.6em);
           padding: 0.2em 0.2em 0.2em 0.4em;
         }
       }
     }
   }
   .auth__button {
-    min-width: 2em;
+    @include elementMaxMinWidth($maxw: none, $minw: 2em);
     padding: 1.2em 0.8em;
     letter-spacing: 0;
   }

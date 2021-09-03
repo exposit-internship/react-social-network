@@ -5,7 +5,7 @@
       "secondName": "White",
       "email": "w@mail.com",
       "password": "MTExMTEx",
-      "amount": 1,
+      "amount": 1802,
       "id": "230c7b5a-bd40-4e77-8724-add07d484602"
     },
     {
@@ -13,7 +13,7 @@
       "secondName": "Rabbit",
       "email": "r@mail.com",
       "password": "MTExMTEx",
-      "amount": 965,
+      "amount": 925,
       "id": "5744cdc8-9a5a-4a39-a18d-8e2245f27dbb"
     }
   ],
@@ -43,7 +43,7 @@
       "comments": [
         {
           "userName": "ilia white",
-          "userComment": "ilia white"
+          "userComment": "GREAT"
         }
       ]
     },
@@ -70,28 +70,8 @@
       "imageURL": "https://hvost.news/upload/resize_cache/iblock/ba5/750_400_1/korotkosherstnyj_karlikovyj_krolik.jpg",
       "caption": "mr. Rabbit fix user reducer",
       "id": "abc74e81-435a-4465-9ab1-f7dc1a77de2d",
-      "comments": [
-        {
-          "userName": "W",
-          "userComment": "COOOOOL"
-        },
-        {
-          "userName": "Y",
-          "userComment": "yep"
-        },
-        {
-          "userName": "Y",
-          "userComment": "yep"
-        },
-        {
-          "userName": "Y",
-          "userComment": "yep"
-        },
-        {
-          "userName": "Y",
-          "userComment": "yep"
-        }
-      ]
+      "comments": []
+     
     }
   ]
 }

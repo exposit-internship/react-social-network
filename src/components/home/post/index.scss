@@ -1,24 +1,20 @@
 @import 'src/styles/common';
 
 .post {
-  max-width: 32em;
-  width: 100%;
+  @include elementMaxMinWidth($maxw: 32em);
+  @include elemenSize($w: 100%);
   margin: 0 auto;
   border: 1px solid get-color($text, 300);
   border-bottom: none;
   background-color: $white;
 
   &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include itemPlacement($dp: flex, $jc: space-between, $ai: center);
     padding: 1.2em;
     &-info {
-      display: flex;
-      align-items: center;
+      @include itemPlacement($dp: flex, $ai: center);
       img {
-        width: 2.4em;
-        height: 2.4em;
+        @include elemenSize($w: 2.4em, $h: 2.4em);
       }
     }
   }
@@ -38,7 +34,7 @@
 
   &__body {
     & > img {
-      width: 100%;
+      @include elemenSize($w: 100%);
       margin: 0 auto;
       text-align: center;
       object-fit: contain;
@@ -52,8 +48,8 @@
     padding: 0.8em 0;
   }
   &__comment {
-    max-width: 32em;
-    width: 100%;
+    @include elemenSize($w: 100%);
+    @include elementMaxMinWidth($maxw: 32em);
     margin: 0 auto;
     padding: 0 1em;
     border-right: 1px solid get-color($text, 300);

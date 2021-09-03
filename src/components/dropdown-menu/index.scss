@@ -2,7 +2,7 @@
 
 .dropdown-menu {
   &__container {
-    width: 20em;
+    @include elemenSize($w: 20em);
     position: $absolute;
     top: 4em;
     right: 0%;
@@ -15,9 +15,8 @@
   }
 
   &__item {
-    height: 2.8em;
-    display: flex;
-    align-items: center;
+    @include elemenSize($h: 2.8em);
+    @include itemPlacement($dp: flex, $ai: center);
     border-radius: 8px;
     font-weight: $bold;
     font-size: 1.2em;
@@ -26,15 +25,15 @@
       background-color: get-color($primary, 100);
       transition: all 0.5s ease;
       & a {
+        @include elemenSize($w: 100%);
         color: get-color($primary, 400);
         padding: 0.8em;
-        width: 100%;
         transition: all 0.5s ease;
       }
     }
   }
   &__button {
-    min-width: 4em;
+    @include elementMaxMinWidth($minw: 4em);
     margin: 0.4em 0;
     padding: 0.8em 1em;
     font-weight: $bold;

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import classNames from 'classnames'
 
-import CustomInput from '../custom-unput'
+import { CustomInput } from '../../internal'
 import { signUp } from '../../../redux/user/action'
 
 import {
@@ -12,7 +12,7 @@ import {
   getIsButtonDisabled
 } from '../../../utils/registration'
 
-import '../index.scss'
+import '../auth/index.scss'
 
 const INITIAL_ERROR_STATE = {
   firstName: '',

@@ -24,6 +24,8 @@ const Posts = () => {
     userName: `${firstName} ${secondName}`,
     userComment: ''
   })
+  const { userName, userComment } = comment
+
   const [post, setPost] = useState({
     displayName: `${firstName} ${secondName}`,
     avatarURL:
@@ -50,13 +52,8 @@ const Posts = () => {
   const handleChange = event => {
     const { name, value } = event.target
     setPost({ ...post, [name]: value })
+    setComment({ ...comment, [name]: value })
   }
-
-  // const commentHandleChange = event => {
-  //   const { name, value } = event.target
-  //   setComment({ ...comment, [name]: value })
-  //   console.log('COMMENT', comment)
-  // }
 
   const publishPost = event => {
     event.preventDefault()
@@ -73,9 +70,29 @@ const Posts = () => {
 
   const handleDelete = id => dispatch(deletePost(id))
 
-  const addComment = (event, id) => {
+  // const handleCommentChange = event => {
+  //   const { value, name } = event.target
+  //   setComment({ ...comment, [name]: value })
+  //   console.log("COMMMMMO", comment)
+  // }
+
+  const addUserComment = (event, id) => {
     event.preventDefault()
-    dispatch(addPostComment(id))
+    dispatch(
+      addPostComment(id, comments, {
+        ...comment,
+        userName: `${firstName} ${secondName}`,
+        userComment
+      })
+    )
+    console.log({
+      ...comment,
+      userName: `${firstName} ${secondName}`,
+      userComment
+    })
+    setComment({
+      userComment: ''
+    })
   }
 
   return (
@@ -124,34 +141,34 @@ const Posts = () => {
               />
 
               <div className="post__comment">
-                {item.comments?.length &&
-                  item.comments.map((comment, idx) => (
-                    <p className="post__comment_container" key={idx}>
-                      <strong className="post__comment_user">
-                        {comment.userName}
-                      </strong>
-                      <span className="post__comment_message">
-                        {comment.userComment}
-                      </span>
-                    </p>
-                  ))}
+                {item.comments.map((comment, idx) => (
+                  <p className="post__comment_container" key={idx}>
+                    <strong className="post__comment_user">
+                      {comment.userName}
+                    </strong>
+                    <span className="post__comment_message">
+                      {comment.userComment}
+                    </span>
+                  </p>
+                ))}
               </div>
 
               <div className="comments">
                 <div className="comments__post">
-                  <form
-                    onSubmit={addComment}
-                    className="comments__post_container"
-                  >
+                  <form className="comments__post_container">
                     <input
                       className="comments__post_message"
                       placeholder={t('comment.placeholder')}
                       type="text"
                       name="userComment"
-                      value={comment.userComment}
-                      onChange={e => setComment(e.target.value)}
+                      value={userComment}
+                      onChange={handleChange}
                     />
-                    <button className="comments__post_button" type="submit">
+                    <button
+                      className="comments__post_button"
+                      type="submit"
+                      onClick={event => addUserComment(event, item.id)}
+                    >
                       {t('comment.addComment')}
                     </button>
                   </form>

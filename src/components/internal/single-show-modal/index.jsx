@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
+import { img_300, unavailable } from '../../watch/config'
 
-import { img_300, unavailable } from '../config'
 
 import './index.scss'
 
@@ -14,7 +14,7 @@ const SingleShowModal = ({
   <div className="single-show-modal">
     <div className="single-show-modal__poster">
       <img
-        src={poster_path ? `${img_300}/${poster_path}` : unavailable}
+        src={poster_path ? `${img_300}/${poster_path}` : unavailable }
         alt={title || name}
       />
     </div>
