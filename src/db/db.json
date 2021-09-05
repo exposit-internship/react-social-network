@@ -13,8 +13,16 @@
       "secondName": "Rabbit",
       "email": "r@mail.com",
       "password": "MTExMTEx",
-      "amount": 925,
+      "amount": 19,
       "id": "5744cdc8-9a5a-4a39-a18d-8e2245f27dbb"
+    },
+    {
+      "firstName": "Harley",
+      "secondName": "Quinn",
+      "email": "h@mail.com",
+      "password": "MTExMTEx",
+      "amount": 9380,
+      "id": "6c8f9603-80e3-42fa-b2ef-5c72f0e2ff6d"
     }
   ],
   "posts": [
@@ -44,6 +52,10 @@
         {
           "userName": "ilia white",
           "userComment": "GREAT"
+        },
+        {
+          "userName": "Ilia White",
+          "userComment": "its working"
         }
       ]
     },
@@ -57,10 +69,6 @@
         {
           "userName": "ilia white",
           "userComment": "WOW, it great, BRO!"
-        },
-        {
-          "userName": "Jake",
-          "userComment": "Tnx)))"
         }
       ]
     },
@@ -70,8 +78,24 @@
       "imageURL": "https://hvost.news/upload/resize_cache/iblock/ba5/750_400_1/korotkosherstnyj_karlikovyj_krolik.jpg",
       "caption": "mr. Rabbit fix user reducer",
       "id": "abc74e81-435a-4465-9ab1-f7dc1a77de2d",
+      "comments": [
+        {
+          "userName": "Harley Quinn",
+          "userComment": "uiiiiiii, u r so cute, mr. Rabbit"
+        },
+        {
+          "userName": "Harley Quinn",
+          "userComment": "ehehehehe"
+        }
+      ]
+    },
+    {
+      "displayName": "Harley Quinn",
+      "avatarURL": "https://seeklogo.com/images/M/mountain-adventure-time-logo-55A1B18F0E-seeklogo.com.png",
+      "imageURL": "https://64.media.tumblr.com/0dbbadbd7942e8a91c3a0c6eb2e7bdb5/cb5f68e503bae2e5-28/s540x810/cac29c9475b018f65caa3dade54e33d6779a0b5d.gifv",
+      "caption": "Live fast, DIE CLOWN!)))) ahahahahah",
+      "id": "889eb08e-b3b4-49b8-b631-e192c8119698",
       "comments": []
-     
     }
   ]
 }

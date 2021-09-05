@@ -10,6 +10,7 @@ import {
   getIsButtonDisabled
 } from '../../../utils/registration'
 
+import '../auth/index.scss'
 
 const Login = () => {
   const [userLoginData, setUserLoginData] = useState({

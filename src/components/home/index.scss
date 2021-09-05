@@ -1,10 +1,21 @@
 @import 'src/styles/common';
 
 .home {
-  @include elemenSize($h: calc(44em - 0.4em));
+  @include elemenSize($h: calc(44em - .4em));
   @include itemPlacement($dp: flex);
 
   .widgets {
-    flex: 0.3;
+    flex: .3;
+  }
+}
+
+@include respond(small-tab) {
+  .home {
+    @include itemPlacement($dp: block);
+    flex: 1;
+
+    & .widgets {
+      @include itemPlacement($dp: none);
+    }
   }
 }

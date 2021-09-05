@@ -1,13 +1,22 @@
 @import 'src/styles/common';
 
 .sidebar {
-  flex: 0.2;
+  flex: .2;
   border-right: 1px solid get-color($primary, 100);
   background-color: $white;
   padding: 1.2em;
-  
+
   & h2 {
     text-align: center;
     color: get-color($primary, 400);
+  }
+}
+
+@include respond(small-tab) {
+  .sidebar {
+    border-bottom: 1px solid get-color($primary, 100);
+    &__nav {
+      @include itemPlacement($dp: flex, $jc: center);
+    }
   }
 }

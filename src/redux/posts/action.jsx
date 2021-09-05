@@ -9,7 +9,7 @@ export const getPosts = () => dispatch =>
         payload: res.data.reverse()
       })
     })
-    .catch(error => console.log(error))
+    .catch(error => console.log(error.message))
 
 export const addPost = post => dispatch =>
   DB.post(`/posts`, post)
@@ -19,7 +19,7 @@ export const addPost = post => dispatch =>
         payload: [data]
       })
     })
-    .catch(error => console.log(error))
+    .catch(error => console.log(error.message))
 
 export const deletePost = id => (dispatch, getState) =>
   DB.delete(`/posts/${id}`)
@@ -31,24 +31,14 @@ export const deletePost = id => (dispatch, getState) =>
         payload: filteredPosts
       })
     })
-    .catch(error => console.log(error))
+    .catch(error => console.log(error.message))
 
-export const addPostComment = (id, comment, comments) => dispatch =>
-  DB(`/posts/${id}`)
-    .then(({ data }) => {
-      console.log("DATA1",data)
-      DB.patch(`posts/${id}`, comments ).then(res => {
-        dispatch({
-          type: postsConstance.ADD_COMMENT,
-          payload: res.data.comments
-        })
-        console.log('RES', res.data.comments)
+export const addPostComment = (id, comments) => dispatch =>
+  DB.patch(`posts/${id}`, comments)
+    .then(res => {
+      dispatch({
+        type: postsConstance.ADD_COMMENT,
+        payload: { comments: res.data.comments, id }
       })
-      // DB.patch(`posts/${id}`, {
-      //   comments: [{ ...comment, userName, userComment }]
-      // }).then(() => {
-
-      console.log('data', data)
-      //   })
     })
-    .catch(error => console.log(error))
+    .catch(error => console.log(error.message))

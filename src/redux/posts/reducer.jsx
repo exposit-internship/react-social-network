@@ -1,41 +1,40 @@
 import { postsConstance } from './type'
 
 const initialState = {
-  posts: [],
-  post: {}
+  posts: []
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case postsConstance.GET_POSTS:
-      state = {
+      return {
         ...state,
         posts: action.payload
       }
-      break
+
     case postsConstance.ADD_POST:
-      state = {
+      return {
         ...state,
         posts: [...action.payload, ...state.posts]
       }
-      break
+
     case postsConstance.DELETE_POST:
-      state = {
+      return {
         ...state,
         posts: action.payload
       }
-      break
 
     case postsConstance.ADD_COMMENT:
-      state = {
-        ...state,
-        posts: {
-          ...state.posts,
-          comments: action.payload.comments
-        }
+      const newPosts = [...state.posts]
+      const post = newPosts.find(elem => elem.id === action.payload.id)
+      post.comments = action.payload.comments
 
+      return {
+        ...state,
+        posts: newPosts
       }
-      break
+
+    default:
+      return state
   }
-  return state
 }

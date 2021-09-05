@@ -2,20 +2,23 @@ import { DB } from '../../core/axios'
 
 import { userConstance } from './types'
 import { INDEX_ROUTE } from '../../constants/routs'
+import { THEME_CHANGE_PAYMENT } from '../../constants/payment'
 
 export const getUser = email => dispatch =>
-  DB(`/users?email=${email}`).then(res => {
-    dispatch({
-      type: userConstance.GET_USER,
-      payload: res.data[0]
+  DB(`/users?email=${email}`)
+    .then(res => {
+      dispatch({
+        type: userConstance.GET_USER,
+        payload: res.data[0]
+      })
     })
-  })
+    .catch(error => console.log(error.message))
 
 export const signUp = (user, email, history) => dispatch =>
   DB(`/users?email=${email}`)
     .then(({ data }) => {
       data.length > 0
-        ? alert('This user is already registered')
+        ? alert('This user has already registered')
         : DB.post('/users', user)
             .then(({ data }) => {
               dispatch({
@@ -42,7 +45,7 @@ export const signIn = (email, password, history) => dispatch =>
         })
         history.push(INDEX_ROUTE)
       } else {
-        alert('incorrect data')
+        alert('Please, enter correct password')
       }
     })
     .catch(error => {
@@ -50,7 +53,6 @@ export const signIn = (email, password, history) => dispatch =>
     })
 
 export const logout = () => dispatch => {
-  localStorage.clear()
   dispatch({
     type: userConstance.USER_LOGOUT
   })
@@ -60,7 +62,7 @@ export const addUserDeposite =
   ({ email, amount, id, depositeValue, userPassword }) =>
   dispatch =>
     DB(`/users?email=${email}&password=${userPassword}`)
-      .then(async ({ data }) => {
+      .then(({ data }) => {
         data.length
           ? DB.patch(`/users/${id}`, { amount: amount + depositeValue })
               .then(res => {
@@ -78,13 +80,14 @@ export const addUserDeposite =
         console.log(error.message)
       })
 
-export const userPaymentConfirm = (id, amount) => {
-  return async dispatch => {
-    DB.patch(`/users/${id}`, { amount: amount - 20 }).then(res => {
+export const userPaymentConfirm = (id, amount) => dispatch =>
+  DB.patch(`/users/${id}`, { amount: amount - THEME_CHANGE_PAYMENT })
+    .then(res => {
       dispatch({
         type: userConstance.USER_BALANCE,
         payload: res.data
       })
     })
-  }
-}
+    .catch(error => {
+      console.log(error.message)
+    })

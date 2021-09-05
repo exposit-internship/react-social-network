@@ -3,17 +3,16 @@
 .original-shows {
   &__content {
     padding: 1.2em 1.6em;
+
     &-title h1 {
-      padding: 0.8em;
-      font-size: 24px;
+      padding: .8em;
+      font-size: 1.6em;
       margin-bottom: 1em;
       color: get-color($text, 900);
     }
 
     &-body {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      @include itemPlacement($dp: flex, $fw: wrap, $jc: center);
     }
   }
 }

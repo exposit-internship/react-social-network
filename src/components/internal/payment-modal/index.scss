@@ -1,10 +1,12 @@
 @import 'src/styles/common';
 
 .payment-modal {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  @include itemPlacement(
+    $dp: flex,
+    $fd: column,
+    $jc: space-evenly,
+    $ai: center
+  );
   text-align: center;
   background-color: $white;
   color: get-color($text, 900);
@@ -21,24 +23,23 @@
 
   &__confirm-button,
   &__cancel-button {
-    min-width: 4em;
-    margin: 0.4em 0;
-    padding: 0.8em 1em;
+    margin: .4em 0;
+    padding: .8em 1em;
     font-weight: $bold;
     background-color: transparent;
     font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-    letter-spacing: 0.04em;
+    letter-spacing: .04em;
     text-transform: $uppercase;
     border: none;
     border-radius: 4px;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-      box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-      border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    transition: background-color 250ms cubic-bezier(.4, 0, .2, 1) 0ms,
+      box-shadow 250ms cubic-bezier(.4, 0, .2, 1) 0ms,
+      border 250ms cubic-bezier(.4, 0, .2, 1) 0ms;
     cursor: pointer;
 
     &:hover {
       background-color: get-color($primary, 100);
-      transition: color 0.1ms ease-out;
+      transition: color .1ms ease-out;
       color: get-color($primary, 400);
     }
   }

@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import PrivateRoute from '../private-route'
 import { Login, Register } from '../components/auth'
 import { Home, Header, UserPage, Watch } from '../components'
-import { useTheme } from '../context/test/test-state'
+import { useTheme } from '../context/theme/theme-state'
 
 import {
   INDEX_ROUTE,

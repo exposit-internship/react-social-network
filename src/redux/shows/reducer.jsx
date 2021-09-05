@@ -7,16 +7,18 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case showsConstance.GET_SHOWS:
-      state = {
+      return {
         ...state,
         shows: action.payload
       }
-      break
-      case showsConstance.GET_CURRENT_SHOW:
-        state={
-          ...state,
-          shows: action.payload
-        }
+
+    case showsConstance.GET_CURRENT_SHOW:
+      return {
+        ...state,
+        shows: action.payload
+      }
+      
+    default:
+      return state
   }
-  return state
 }

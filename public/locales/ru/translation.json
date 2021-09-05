@@ -26,6 +26,10 @@
   "enterSum": "Введите сумму",
   "enterYourPassword": "Введите пароль",
 
+  "lowBalance": {
+    "message": "Пополните счёт, {{amount}}$ не хватает для смены темы"
+  },
+
   "confirm": "Подтвердить",
   "submit": "Пополнить",
   "cancel": "Закрыть",

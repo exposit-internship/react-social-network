@@ -11,20 +11,24 @@
   &__header {
     @include itemPlacement($dp: flex, $jc: space-between, $ai: center);
     padding: 1.2em;
+
     &-info {
       @include itemPlacement($dp: flex, $ai: center);
+
       img {
         @include elemenSize($w: 2.4em, $h: 2.4em);
       }
     }
   }
+
   &__username {
-    margin-left: 0.8em;
+    margin-left: .8em;
     text-transform: $capitalize;
   }
+
   &__delete-button {
     cursor: pointer;
-    stroke-opacity: 0.4;
+    stroke-opacity: .4;
     stroke: get-color($primary, 400);
 
     &:hover {
@@ -42,11 +46,13 @@
       border-bottom: 1px solid get-color($text, 300);
     }
   }
+
   &__text {
     font-weight: normal;
     margin-left: 1.2em;
-    padding: 0.8em 0;
+    padding: .8em 0;
   }
+
   &__comment {
     @include elemenSize($w: 100%);
     @include elementMaxMinWidth($maxw: 32em);
@@ -55,11 +61,12 @@
     border-right: 1px solid get-color($text, 300);
     border-left: 1px solid get-color($text, 300);
     padding-bottom: 15px;
+
     &_user {
       font-weight: $bold;
-      margin-left: 12px;
-      margin-right: 10px;
-      padding: 10px 0px;
+      margin-left: .8em;
+      margin-right: .4;
+      padding: .8 0px;
     }
   }
 }

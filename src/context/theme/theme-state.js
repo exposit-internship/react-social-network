@@ -1,25 +1,25 @@
 import { useState, useContext } from 'react'
 
-import TestContext from './test-context'
+import ThemeContext from './theme-context'
 
-const TestState = props => {
+const ThemeState = props => {
   const [changeThemeToDark, setChangeThemeToDark] = useState(false)
 
   const themeChangeToggle = () => setChangeThemeToDark(!changeThemeToDark)
   
 
   return (
-    <TestContext.Provider
+    <ThemeContext.Provider
       value={{
         changeThemeToDark,
         themeChangeToggle
       }}
     >
       {props.children}
-    </TestContext.Provider>
+    </ThemeContext.Provider>
   )
 }
 
-export default TestState
+export default ThemeState
 
-export const useTheme = () => useContext(TestContext)
+export const useTheme = () => useContext(ThemeContext)

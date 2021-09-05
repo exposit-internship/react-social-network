@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 
-import { handleLanguageChange } from '../../utils/translation'
 import { logout, userPaymentConfirm } from '../../redux/user/action'
-import { useTheme } from '../../context/test/test-state'
+import { useTheme } from '../../context/theme/theme-state'
 import PaymentModal from '../internal/payment-modal'
+import { handleLanguageChange } from '../../utils/translation'
 
 import { FAKE_ROUTE } from '../../constants/routs'
 import { THEME_CHANGE_PAYMENT } from '../../constants/payment'
@@ -34,11 +34,14 @@ function DropdownMenu({ isVisibleMenu, isVisibleDropdown }) {
       dispatch(userPaymentConfirm(id, amount))
       themeChangeToggle()
     } else {
-      alert(t('dropdownMenu.key', { amount }))
+      alert(t('lowBalance.message', { amount }))
     }
   }
 
-  const areUserLogout = () => dispatch(logout())
+  const areUserLogout = () => {
+    dispatch(logout())
+    isVisibleDropdown()
+  }
 
   return (
     <div className="dropdown-menu">
@@ -52,13 +55,13 @@ function DropdownMenu({ isVisibleMenu, isVisibleDropdown }) {
 
       {isVisibleMenu && (
         <div className="dropdown-menu__container">
-          <div className="dropdown-menu__language-change dropdown-menu__item">
+          <div className=" dropdown-menu__item">
             <Link to={FAKE_ROUTE} onClick={handleLanguageChange}>
               {t('changeLanguage')}
             </Link>
           </div>
 
-          <div className="dropdown-menu__theme-change dropdown-menu__item">
+          <div className="dropdown-menu__item">
             <Link to={FAKE_ROUTE} onClick={themeChangePaymentToggle}>
               {isPaymentModalVisible ? (
                 <PaymentModal
@@ -70,7 +73,7 @@ function DropdownMenu({ isVisibleMenu, isVisibleDropdown }) {
             </Link>
           </div>
 
-          <div className="dropdown-menu__logout dropdown-menu__item">
+          <div className="dropdown-menu__item">
             <Link to={FAKE_ROUTE} onClick={areUserLogout}>
               {t('logout')}
             </Link>

@@ -7,25 +7,30 @@
   padding: 0 3.2em;
   background-color: $white;
   border-bottom: 1px solid get-color($info, 200);
-  box-shadow: 0 0px 28px rgba(0, 0, 0, 0.25), 0 0px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 0px 28px rgba(0, 0, 0, .25), 0 0px 10px rgba(0, 0, 0, .22);
   position: sticky;
+
   &__navigation {
     @include itemPlacement($dp: center);
-    margin: 0.2em 0;
+    margin: .2em 0;
+
     &-home {
       margin-right: 2.4em;
     }
+
     &-user {
       text-transform: $capitalize;
     }
+
     &-home,
     &-user {
-      padding: 0.8em 0.8em;
-      transition: color 0.1ms ease-out;
+      padding: .8em .8em;
+      transition: color .1ms ease-out;
+
       &:hover {
         color: get-color($primary, 400);
         background-color: get-color($primary, 100);
-        transition: color 0.1ms ease-out;
+        transition: color .1ms ease-out;
       }
     }
   }
@@ -35,5 +40,14 @@
   .header {
     @include itemPlacement($jc: space-evenly);
     padding: 0 1em;
+    h1 {
+      font-size: 1em;
+    }
+    &__navigation-home {
+      margin-right: 0;
+    }
+    &__navigation-user {
+      @include itemPlacement($dp: none);
+    }
   }
 }

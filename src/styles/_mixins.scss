@@ -66,9 +66,17 @@
   min-width: $minw;
 }
 
-@mixin itemPlacement($dp: null, $fd: null, $jc: null, $ai: null, $as: null) {
+@mixin itemPlacement(
+  $dp: null,
+  $fd: null,
+  $fw: null,
+  $jc: null,
+  $ai: null,
+  $as: null
+) {
   display: $dp;
   flex-direction: $fd;
+  flex-wrap: $fw;
   justify-content: $jc;
   align-items: $ai;
   align-self: $as;

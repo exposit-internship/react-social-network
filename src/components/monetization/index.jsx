@@ -1,8 +1,8 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import { withTranslation } from 'react-i18next'
+import PropTypes from 'prop-types'
 
 import { addUserDeposite } from '../../redux/user/action'
 import { ReplenishModal } from '../internal'
@@ -10,7 +10,6 @@ import { ReplenishModal } from '../internal'
 import { FAKE_ROUTE } from '../../constants/routs'
 
 import '../internal/replenish-modal/index.scss'
-
 
 export class Monetization extends Component {
   state = {
@@ -20,6 +19,8 @@ export class Monetization extends Component {
   }
 
   componentDidMount() {}
+  componentDidUpdate() {}
+  componentWillUnmount() {}
 
   toggleModalVisibitity = e => {
     e.preventDefault()

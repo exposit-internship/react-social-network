@@ -1,0 +1,55 @@
+@import 'src/styles/common';
+
+.create-post {
+  &__header {
+    top: 0;
+    background-color: $white;
+    border-bottom: 1px solid get-color($info, 100);
+    padding: .8em 1.2em;
+  }
+
+  &__box {
+    padding: 1.2em 1.6em;
+    border-bottom: 1px solid get-color($info, 100);
+    margin-bottom: 2em;
+  }
+
+  &__form {
+    @include itemPlacement($dp: flex, $fd: column);
+  }
+
+  &__input {
+    @include itemPlacement($dp: flex);
+
+    img {
+      @include elemenSize($w: 2.4em, $h: 2.4em);
+    }
+
+    input {
+      @include elemenSize($w: 100%);
+      margin-left: 1.2em;
+      font-size: 1.2em;
+      border: none;
+      outline: none;
+      padding-left: .8em;
+    }
+  }
+
+  &__image-upload {
+    margin-top: 1.2em;
+    padding: .8em;
+    border: none;
+  }
+
+  &__box-button {
+    @include elemenSize($w: 10em, $h: 4em);
+    @include itemPlacement($as: center);
+    border-radius: 32px;
+    color: $white;
+    background-color: get-color($primary, 400);
+    border: none;
+    text-transform: $uppercase;
+    margin-top: 1.6em;
+    cursor: pointer;
+  }
+}

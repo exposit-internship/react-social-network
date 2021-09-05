@@ -9,7 +9,6 @@ import { USER_PAGE_ROUTE, WATCH_ROUTE } from '../../../constants/routs'
 
 import './index.scss'
 
-
 const Sidebar = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation('translation')

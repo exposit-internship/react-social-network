@@ -9,7 +9,7 @@ import { SingleContentItem, SingleShowModal } from '../../../internal'
 import './index.scss'
 
 function OriginalShows() {
-  const [isShowModalVisible, setIsShowModalVisible] = useState(true)
+  const [isShowModalVisible, setIsShowModalVisible] = useState(false)
   const [modalData, setModalData] = useState(null)
 
   const { t } = useTranslation('translation')
@@ -39,8 +39,7 @@ function OriginalShows() {
         <h1>{t('watch.title')} </h1>
       </div>
       <div className="original-shows__content-body">
-        {shows &&
-          shows.length &&
+        {shows.length &&
           shows.map(({ poster_path, id }) => {
             return (
               <SingleContentItem

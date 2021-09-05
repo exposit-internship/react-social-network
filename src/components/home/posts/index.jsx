@@ -1,9 +1,9 @@
 import { useState, useEffect, Fragment } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuidv4 } from 'uuid'
 
+import CreatePost from '../create-post'
 import Post from '../post'
 import {
   addPost,
@@ -21,10 +21,10 @@ const Posts = () => {
   const { firstName, secondName } = user
 
   const [comment, setComment] = useState({
-    userName: `${firstName} ${secondName}`,
+    userName: '',
     userComment: ''
   })
-  const { userName, userComment } = comment
+  const { userComment } = comment
 
   const [post, setPost] = useState({
     displayName: `${firstName} ${secondName}`,
@@ -36,9 +36,8 @@ const Posts = () => {
     comments: []
   })
 
-  const { displayName, avatarURL, imageURL, caption, comments, id } = post
+  const { avatarURL, imageURL, caption } = post
 
-  const history = useHistory()
   const dispatch = useDispatch()
 
   const { t } = useTranslation('translation')
@@ -70,26 +69,18 @@ const Posts = () => {
 
   const handleDelete = id => dispatch(deletePost(id))
 
-  // const handleCommentChange = event => {
-  //   const { value, name } = event.target
-  //   setComment({ ...comment, [name]: value })
-  //   console.log("COMMMMMO", comment)
-  // }
-
-  const addUserComment = (event, id) => {
+  const addUserComment = (event, { id, comments }) => {
     event.preventDefault()
-    dispatch(
-      addPostComment(id, comments, {
-        ...comment,
-        userName: `${firstName} ${secondName}`,
-        userComment
-      })
-    )
-    console.log({
-      ...comment,
-      userName: `${firstName} ${secondName}`,
-      userComment
-    })
+    userComment &&
+      dispatch(
+        addPostComment(id, {
+          comments: [
+            ...comments,
+            { userName: `${firstName} ${secondName}`, userComment }
+          ]
+        })
+      )
+
     setComment({
       userComment: ''
     })
@@ -97,51 +88,26 @@ const Posts = () => {
 
   return (
     <div className="posts">
-      <div className="posts__header">
-        <h3>{t('home')}</h3>
-      </div>
-      <div className="posts__box">
-        <form className="posts__form">
-          <div className="posts__input">
-            <img width="40px" height="40px" src={avatarURL} alt="avatar" />
-            <input
-              type="text"
-              name="caption"
-              value={caption}
-              onChange={handleChange}
-              placeholder={t('postsBox.placeholder')}
-            />
-          </div>
-          <input
-            type="text"
-            name="imageURL"
-            value={imageURL}
-            onChange={handleChange}
-            placeholder={t('postsBox.image')}
-            className="posts__image_upload"
-          />
-          <button
-            type="submit"
-            className="posts__box-btn"
-            onClick={publishPost}
-          >
-            {t('postsBox.button')}
-          </button>
-        </form>
-      </div>
+      <CreatePost
+        imageURL={imageURL}
+        avatarURL={avatarURL}
+        caption={caption}
+        handleChange={handleChange}
+        publishPost={publishPost}
+      />
       {posts?.length
-        ? posts.map(item => (
-            <Fragment key={item.id}>
+        ? posts.map(post => (
+            <Fragment key={post.id}>
               <Post
-                displayName={item.displayName}
-                avatarURL={item.avatarURL}
-                image={item.imageURL}
-                caption={item.caption}
-                handleDelete={() => handleDelete(item.id)}
+                displayName={post.displayName}
+                avatarURL={post.avatarURL}
+                image={post.imageURL}
+                caption={post.caption}
+                handleDelete={() => handleDelete(post.id)}
               />
 
               <div className="post__comment">
-                {item.comments.map((comment, idx) => (
+                {post.comments.map((comment, idx) => (
                   <p className="post__comment_container" key={idx}>
                     <strong className="post__comment_user">
                       {comment.userName}
@@ -167,7 +133,7 @@ const Posts = () => {
                     <button
                       className="comments__post_button"
                       type="submit"
-                      onClick={event => addUserComment(event, item.id)}
+                      onClick={event => addUserComment(event, post)}
                     >
                       {t('comment.addComment')}
                     </button>

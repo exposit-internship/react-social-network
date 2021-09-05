@@ -1,32 +1,38 @@
 @import 'src/styles/common';
 
 .single-show-modal {
-  display: flex;
-  width: 500px;
-  height: 350px;
+  @include elemenSize($w: 32em, $h: 22em);
+  @include itemPlacement($dp: flex);
   background-color: $white;
   border-radius: 8px;
-  position: absolute;
+  position: $absolute;
+  box-shadow: 0 0px 28px rgba(238, 238, 238, .25),
+    0 0px 10px rgba(255, 255, 255, .945);
 
   &__poster img {
-    height: 350px;
-    width: 225px;
+    @include elemenSize($w: 14em, $h: 22em);
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
   }
+
   &__info {
     padding: 1em;
   }
+
   &__title {
     font-weight: $bold;
-    font-size: 20px;
+    font-size: 1.2em;
     color: get-color($text, 900);
     text-align: center;
     margin: 1em 0;
   }
+
   &__release {
-    font-size: 16px;
+    font-size: .8em;
   }
+
   &__description {
+    @include elemenSize($h: 12em);
+    overflow: hidden;
   }
 }

@@ -1,17 +1,14 @@
 @import 'src/styles/common';
 
 .single-content-item {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  @include itemPlacement($dp: flex, $fd: column, $fw: wrap);
   background-color: $white;
   border-radius: 8px;
-  margin: 0.2em;
+  margin: .2em;
   cursor: pointer;
 
   img {
-    width: 200px;
-    height: 200px;
+    @include elemenSize($w: 12em, $h: 12em);
     object-fit: cover;
     border-radius: 8px;
   }

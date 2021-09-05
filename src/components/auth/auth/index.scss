@@ -3,23 +3,24 @@
 .auth__button {
   @include elementMaxMinWidth($minw: 4em);
   padding: 1.2em 1em;
-  margin: 0.4em 0;
+  margin: .4em 0;
   font-weight: $bold;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  letter-spacing: 0.04em;
+  letter-spacing: .04em;
   text-transform: $uppercase;
   background-color: $transparent;
   border: none;
   border-radius: 4px;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(.4, 0, .2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(.4, 0, .2, 1) 0ms,
+    border 250ms cubic-bezier(.4, 0, .2, 1) 0ms;
   cursor: pointer;
 
   &:hover {
     background-color: get-color($bg, 200);
   }
 }
+
 a {
   color: get-color($text, 800);
 }
@@ -37,8 +38,8 @@ a {
   &__container {
     @include elementMaxMinWidth($maxw: 32em);
     @include itemPlacement($dp: flex, $fd: column, $ai: center);
-    border-radius: 0.4em;
-    box-shadow: 0 0 1em 0 rgba(51, 51, 51, 0.25);
+    border-radius: .4em;
+    box-shadow: 0 0 1em 0 rgba(51, 51, 51, .25);
     overflow: hidden;
     transform: translate(-50%, -50%);
     padding: 2.2em;
@@ -56,7 +57,7 @@ a {
       content: '';
       background: url('../../../images/register-bcg.jpg') center no-repeat;
       background-size: cover;
-      filter: blur(0.4em);
+      filter: blur(.4em);
       position: absolute;
       top: 50%;
       left: 50%;
@@ -66,7 +67,7 @@ a {
 
     &:after {
       @include elemenSize($w: 22em, $h: 30em);
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, .6);
       content: '';
       display: block;
       position: absolute;
@@ -84,24 +85,25 @@ a {
       &__input {
         @include itemPlacement($dp: flex, $fd: column);
         border-bottom: 1px solid get-color($text, 900);
-        margin-bottom: 0.8em;
-        transition: all 0.24s;
+        margin-bottom: .8em;
+        transition: all .24s;
       }
+
       &__header {
         @include itemPlacement($dp: flex, $jc: space-between, $ai: center);
 
         & span {
           color: get-color($error, 700);
-          font-size: 0.8em;
+          font-size: .8em;
           text-transform: $uppercase;
         }
       }
 
       &__footer {
         @include elemenSize($h: 2.8em);
-        padding: 0.8em 0.2em 0 0.4em;
+        padding: .8em 0.2em 0 .4em;
         background: $transparent;
-        font-size: 15px;
+        font-size: .8em;
         font-weight: 300;
         border: none;
         outline: none;
@@ -112,11 +114,11 @@ a {
   &__button {
     @include itemPlacement($dp: block);
     margin: 0 auto;
-    padding: 0.8em 2.4em;
-    background: rgba(255, 255, 255, 0.25);
+    padding: .8em 2.4em;
+    background: rgba(255, 255, 255, .25);
     border: 1px solid get-color($bg, 600);
-    line-height: 0.8em;
-    transition: all 0.24s;
+    line-height: .8em;
+    transition: all .24s;
     cursor: pointer;
 
     &.disabled {
@@ -133,28 +135,30 @@ a {
 }
 
 @include respond(small-tab) {
-  .registration__form {
-    & .box {
+  .registration {
+    &__container {
       h1 {
-        font-size: 16px;
+        font-size: 1em;
       }
     }
-    & .form {
+
+    &__input-data {
       @include elemenSize($w: 10em, $h: none);
-      font-size: 14px;
+      font-size: .8em;
       margin-top: 2em;
 
       .custom__input {
         .custom__footer {
           @include elemenSize($w: none, $h: 1.6em);
-          padding: 0.2em 0.2em 0.2em 0.4em;
+          padding: .2em .2em .2em 0.4em;
         }
       }
     }
   }
+
   .auth__button {
     @include elementMaxMinWidth($maxw: none, $minw: 2em);
-    padding: 1.2em 0.8em;
+    padding: 1.2em .8em;
     letter-spacing: 0;
   }
 }

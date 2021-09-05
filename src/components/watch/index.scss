@@ -1,17 +1,17 @@
 @import 'src/styles/common';
 
 .watch {
-  display: flex;
+  @include itemPlacement($dp: flex);
 
   &__sidebar {
     @include elementMaxMinWidth($minw: 200px);
-    flex: 0.2;
-    padding: 0.8em 1em;
+    flex: .2;
+    padding: .8em 1em;
     border-right: 1px solid get-color($text, 300);
     background-color: $white;
   }
   &__content {
-    flex: 0.8;
+    flex: .8;
     background-color: get-color($bg, 200);
   }
 }

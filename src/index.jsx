@@ -5,18 +5,18 @@ import { store, persistor } from './redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
 
 import App from './app'
-import TestState from './context/test/test-state'
+import ThemeState from './context/theme/theme-state'
 
 import './index.scss'
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <TestState>
+      <ThemeState>
         <PersistGate persistor={persistor}>
           <App />
         </PersistGate>
-      </TestState>
+      </ThemeState>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

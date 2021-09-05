@@ -8,6 +8,7 @@
   input::-webkit-input-placeholder {
     color: #c5c0c0;
   }
+
   .header,
   .sidebar {
     background: #505050;
@@ -15,29 +16,36 @@
     &__option:hover {
       background-color: rgb(29, 173, 240);
     }
+
     a,
     h1 {
       color: #fefefe;
     }
   }
+
   .posts,
   .post,
+  .create-post,
   .watch,
   .payment-modal {
     background: #424242;
     border-color: #7b7676;
     color: #fefefe;
+
     &__header,
     &__sidebar {
       background: #424242;
       border-color: #7b7676;
     }
+
     &__item:hover {
       background-color: rgb(29, 173, 240);
     }
+
     &__sidebar a {
       color: #fefefe;
     }
+
     &__content {
       background: #424242;
       border-color: #7b7676;
@@ -46,35 +54,75 @@
         color: #fefefe;
       }
     }
+
     &__box {
       border-color: #7b7676;
+
       input {
         background: #393939;
         color: #fefefe;
       }
     }
   }
+
   .payment-modal {
     &__confirm-button,
     &__cancel-button {
       color: #fefefe;
+
       &:hover {
         background-color: rgb(29, 173, 240);
       }
     }
   }
+
+  .replenishModal {
+    &__form {
+      background: #424242;
+      border-color: #7b7676;
+
+      & label,
+      & input {
+        color: #fefefe;
+      }
+
+      & input {
+        background: #393939;
+      }
+    }
+
+    &__button-submit,
+    &__button-cancel {
+      color: #fefefe;
+      background: #393939;
+    }
+
+    &__button-submit:hover,
+    &__button-cancel:hover {
+      color: #fefefe;
+      background-color: rgb(29, 173, 240);
+    }
+  }
+
   .dropdown-menu {
     &__container {
       background: #424242;
       border-color: #7b7676;
     }
+
     &__item:hover,
     &__button:hover {
       background-color: rgb(29, 173, 240);
     }
   }
+
+  .post__comment {
+    border-color: #7b7676;
+  }
+
   .comments {
     border-color: #7b7676;
+
     input {
       color: #fefefe;
       background: #393939;

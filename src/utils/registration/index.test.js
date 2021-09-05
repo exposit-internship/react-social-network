@@ -1,6 +1,6 @@
 import { getIsButtonDisabled } from './index'
 
-const mocckDB = {
+const mockDB = {
   userFirstName: 'Ilia',
   userSecondName: 'White',
   userEmail: 'w@mail.ru',
@@ -13,10 +13,10 @@ const mocckDB = {
 
 describe('getIsButtonDisabled', () => {
   it('disable button', () => {
-    expect(getIsButtonDisabled(mocckDB)).toBe(true)
+    expect(getIsButtonDisabled(mockDB)).toBe(true)
   })
   it('have user propierty', () => {
-    expect(mocckDB).toMatchObject({
+    expect(mockDB).toMatchObject({
       userFirstName: expect.any(String),
       userSecondName: expect.any(String),
       userEmail: expect.any(String),
@@ -26,7 +26,4 @@ describe('getIsButtonDisabled', () => {
   it('field email include @', () => {
     expect(mocckDB.userEmail).toMatch(/@/)
   })
-  // it('field email include .com', () => {
-  //   expect(mocckDB.userEmail).toMatch(/@/, /email/, /./, /com/, /ru/, /by/)
-  // })
 })

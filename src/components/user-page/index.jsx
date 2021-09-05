@@ -21,11 +21,6 @@ const UserPage = () => (
         <a href="https://www.netflix.com/by-ru/">Netflix</a>
       </div>
     </div>
-    <div>change profile photo</div>
-    <div>change cover photo</div>
-    <div>User name</div>
-    <div>description</div>
-    <div>user posts without file attach</div>
   </div>
 )
 

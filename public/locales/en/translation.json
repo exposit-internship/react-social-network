@@ -26,9 +26,10 @@
   "enterSum": "Enter sum",
   "enterYourPassword": "Enter your password",
 
-  "dropdownMenu": {
-    "key": "Пополните счёт, {{amount}}$ не хватает для смены темы"
+  "lowBalance": {
+    "message": "Top up your balance, {{amount}}$ is not enough to change the theme"
   },
+  
   "confirm": "Confirm",
   "submit": "Submit",
   "cancel": "Cancel",
